@@ -70,15 +70,16 @@ exports.run = async (client, message, args) => {
     .setImage(saophotos)
 
   await message.inlineReply(SAOEmbed).then(msg => {
-    msg.react('🔄') // 1º Embed
-    msg.react('❌')
-    setTimeout(function () { msg.reactions.removeAll() }, 30000)
+    msg.react('🔄').catch(err => { return }) // 1º Embed
+    msg.react('❌').catch(err => { return })
+    setTimeout(function () { msg.reactions.removeAll().catch(err => { return }) }, 30000)
 
     msg.awaitReactions((reaction, user) => {
-      if (message.author.id !== user.id) return;
+      if (message.author.id !== user.id) return
 
       if (reaction.emoji.name === '🔄') { // 1º Embed - Principal
-        reaction.users.remove(user)
+        reaction.users.remove(user).catch(err => { return })
+
         let SAOEmbed1 = new Discord.MessageEmbed()
           .setTitle('📺 SAO - Sword Art Online')
           .setColor('BLUE')
@@ -86,7 +87,7 @@ exports.run = async (client, message, args) => {
         msg.edit(SAOEmbed1)
       }
       if (reaction.emoji.name === '❌') {
-        msg.delete()
+        msg.delete().catch(err => { return })
       }
     })
   })

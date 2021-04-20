@@ -55,7 +55,7 @@ exports.run = async (client, message, args) => {
         args[0] = message.mentions.members.first()
 
         if (['all', 'tudo'].includes(args[1])) {
-            let mon = db.get(`money_${message.author.id}`)
+            let money = db.get(`money_${message.author.id}`)
             if (!db.get(`money_${message.author.id}`)) money = '0'
 
             if (!user || !args[0]) {
@@ -69,11 +69,11 @@ exports.run = async (client, message, args) => {
                 return message.inlineReply(noamout)
             }
 
-            if (mon === null) {
+            if (money === null) {
                 return message.inlineReply('Você não tem dinheiro para efetuar doações.')
             }
 
-            if (mon < 0 && mon === 0) {
+            if (money < 0 || money === 0) {
                 var nota = new Discord.MessageEmbed()
                     .setColor('#FF0000')
                     .setTitle('Você não tem dinheiro para doar.')
@@ -83,7 +83,7 @@ exports.run = async (client, message, args) => {
             var confirm = new Discord.MessageEmbed()
                 .setColor('BLUE')
                 .setTitle('Confirmação...')
-                .setDescription(`Confirmar transação no valor de ${mon}<:StarPoint:766794021128765469>MPoints para ${user}?`)
+                .setDescription(`Confirmar transação no valor de ${money}<:StarPoint:766794021128765469>MPoints para ${user}?`)
 
             return message.inlineReply(confirm).then(msg => {
                 msg.react('✅') // Check
@@ -91,20 +91,23 @@ exports.run = async (client, message, args) => {
                 msg.delete({ timeout: 120000 }).catch(err => { return })
 
                 msg.awaitReactions((reaction, user) => {
-                    let mone = db.get(`money_${message.author.id}`)
-                    if (!db.get(`money_${message.author.id}`)) money = '0'
+                    let money = db.get(`money_${message.author.id}`)
 
                     if (message.author.id !== user.id) return
 
                     if (reaction.emoji.name === '✅') { // Sim
-                        msg.delete()
+                        msg.delete().catch(err => { return })
 
                         var embed = new Discord.MessageEmbed()
                             .setColor('GREEN')
                             .setTitle('Transação efetuada com sucesso!')
-                        message.channel.send('🔄 Efetuando a transação...').then(msg => msg.delete({ timeout: 4000 })).then(msg => msg.channel.send(embed))
-                        db.add(`money_${user.id}`, mone)
-                        db.subtract(`money_${message.author.id}`, mone)
+
+                        message.channel.send('🔄 Efetuando a transação...').then(msg => msg.delete({ timeout: 4000 })).catch(err => { return })
+                        setTimeout(function () {
+                            db.add(`money_${message.mentions.members.first().id}`, money)
+                            db.subtract(`money_${message.author.id}`, money)
+                            message.channel.send(embed)
+                        }, 4400)
                     }
 
                     if (reaction.emoji.name === '❌') { // Não
