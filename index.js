@@ -19,6 +19,7 @@ client.on("message", async (message) => {
 
     if (message.author.bot) return // no bots
     if (message.channel.type == "dm") {
+
         const dmEmbed = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('💬 Nova mensagem no privado')
@@ -106,13 +107,6 @@ client.on("message", async (message) => {
         }
     }
 
-    const cmd = client.commands.get(command) || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(command))
-    if (cmd) cmd.run(client, message, args)
-    let customCommands = db.get(`guildConfigurations_${message.guild.id}.commands`)
-    if (customCommands) {
-        let customCommandsName = customCommands.find(x => x.name === command)
-        if (customCommandsName) return message.inlineReply(customCommandsName.response)
-    }
 
     if (message.content.startsWith(`${prefix}check`)) { message.react("✅") }
     if (message.content.startsWith(`${prefix}inline`)) { return message.inlineReply("✅ Inline Reply funcionando corretamente") }
@@ -205,6 +199,14 @@ client.on("message", async (message) => {
         const commandFile = require(`./moderation/${command}.js`)
         return commandFile.run(client, message, args)
     } catch (err) { }
+
+    const cmd = client.commands.get(command) || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(command))
+    if (cmd) cmd.run(client, message, args)
+    let customCommands = db.get(`guildConfigurations_${message.guild.id}.commands`)
+    if (customCommands) {
+        let customCommandsName = customCommands.find(x => x.name === command)
+        if (customCommandsName) return message.inlineReply(customCommandsName.response)
+    }
 
     return message.inlineReply(`Comando desconhecido.`).then(msg => msg.delete({ timeout: 6000 })).catch(err => { return })
 }) // Fim do Client.on('Message')
