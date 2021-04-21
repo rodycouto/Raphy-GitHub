@@ -3,7 +3,6 @@ const Discord = require("discord.js")
 exports.run = async (client, message, args) => {
 
   let user = message.mentions.users.first() || message.author || message.member
-  let user1 = message.author || message.member
   let avatar = user.avatarURL({ dynamic: true, format: "png", size: 1024 })
   let linkavatar = user.displayAvatarURL()
 
@@ -15,7 +14,7 @@ exports.run = async (client, message, args) => {
   await message.inlineReply(embed).then(msg => {
     msg.react('❌').catch(err => { return }) // X
     msg.react('📨').catch(err => { return }) // Carta
-    setTimeout(function () { msg.reactions.removeAll() }, 30000)
+    setTimeout(function () { msg.reactions.removeAll().catch(err => { return })}, 30000)
 
     msg.awaitReactions((reaction, member) => {
 

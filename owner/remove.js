@@ -138,6 +138,24 @@ exports.run = async (client, message, args) => {
         return message.inlineReply(`Peixes removidos do slot de ${user}.`)
     }
 
+    if (['ficha', 'fichas'].includes(args[0])) {
+
+        if (!user) {
+            return message.inlineReply('`' + prefix + 'remove fichas @user Valor`')
+        }
+
+        let amount = args[2]
+        if (!amount) {
+            return message.inlineReply('`' + prefix + 'remove fichas @user Valor`')
+        }
+        if (isNaN(amount)) {
+            return message.inlineReply(`**${args[2]}** não é um número.`)
+        }
+
+        db.subtract(`fichas_${user.id}`, amount)
+        return message.inlineReply(`Fichas removidas do slot de ${user}.`)
+    }
+
     if (['arma'].includes(args[0])) {
 
         if (!user) {

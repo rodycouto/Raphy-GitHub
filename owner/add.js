@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
     let user = message.mentions.members.first()
 
     if (['banco', 'bank'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add bank @user Valor`')
         }
@@ -42,7 +42,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (['iscas', 'isca'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add iscas @user Valor`')
         }
@@ -59,8 +59,26 @@ exports.run = async (client, message, args) => {
         return message.inlineReply(`${args[1]} iscas foram adicionadas ao slot de ${user}.`)
     }
 
+    if (['fichas', 'ficha'].includes(args[0])) {
+
+        if (!user) {
+            return message.inlineReply('`' + prefix + 'add fichas @user Valor`')
+        }
+
+        let amount = args[2]
+        if (!amount) {
+            return message.inlineReply('`' + prefix + 'add fichas @user Valor`')
+        }
+        if (isNaN(amount)) {
+            return message.inlineReply(`**${args[2]}** não é um número.`)
+        }
+
+        db.add(`fichas_${user.id}`, amount)
+        return message.inlineReply(`${args[1]} fichas foram adicionadas ao slot de ${user}.`)
+    }
+
     if (['mp', 'money'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add money @user Valor`')
         }
@@ -78,7 +96,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (['peixe', 'peixes', 'fish'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add peixes @user Valor`')
         }
@@ -96,7 +114,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (['rp', 'reputação'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add rp @user Valor`')
         }
@@ -114,7 +132,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (['xp'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add xp @user Valor`')
         }
@@ -131,7 +149,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (['agua', 'água', 'water'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add água @user Valor`')
         }
@@ -149,7 +167,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (['minerio', 'minério'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add minério @user Valor`')
         }
@@ -167,7 +185,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (['diamantes', 'diamante', 'diamond'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add diamantes @user Valor`')
         }
@@ -185,7 +203,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (['ossos', 'bone', 'osso'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add ossos @user Valor`')
         }
@@ -202,8 +220,8 @@ exports.run = async (client, message, args) => {
         return message.inlineReply(`${args[1]} ossos foram adicionadas ao slot de ${user}.`)
     }
 
-    if (['maça', 'apple','maças'].includes(args[0])) {
-        
+    if (['maça', 'apple', 'maças'].includes(args[0])) {
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add maça @user Valor`')
         }
@@ -221,7 +239,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (['madeira', 'wood', 'madeiras'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add madeiras @user Valor`')
         }
@@ -239,7 +257,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (['camarão', 'camarao'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add camarão @user Valor`')
         }
@@ -257,7 +275,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (['blacklist'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add blacklist @user Valor`')
         }
@@ -267,7 +285,7 @@ exports.run = async (client, message, args) => {
     }
 
     if (['whitelist'].includes(args[0])) {
-        
+
         if (!user) {
             return message.inlineReply('`' + prefix + 'add whitelist @user Valor`')
         }
