@@ -3,12 +3,6 @@ const db = require('quick.db')
 
 exports.run = async (client, message, args) => {
 
- if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-    const adm = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Eu preciso da permissão "Gerenciar Mensagens" para utilizar esta função.')
-    return message.inlineReply(adm)
-  }
   var list1 = [
     'https://imgur.com/iclUiUN.gif',
     'https://imgur.com/II1bakc.gif',
@@ -42,10 +36,10 @@ exports.run = async (client, message, args) => {
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (prefix === null) prefix = "-"
 
-    const nouser = new Discord.MessageEmbed()
+    var nouser = new Discord.MessageEmbed()
       .setColor('#FF0000')
       .setTitle('Erroooou')
-      .setDescription('`' + prefix + 'kiss @user`')
+      .setDescription('`' + prefix + 'beijar @user`')
     return message.reply(nouser)
   }
 
@@ -57,25 +51,30 @@ exports.run = async (client, message, args) => {
     return message.inlineReply('Você não pode usar este comando com você mesmo.')
   }
 
-  let avatar1 = user.displayAvatarURL({ format: 'png' })
-  const embed = new Discord.MessageEmbed()
-    .setColor('BLUE')
-    .setDescription(`${user}, aceita beijar ${message.author.username}?`,)
-    .setFooter('Clique em 🔁 para aceitar')
+  if (message.mentions.bot) {
+    return message.inlineReply('Você não pode beijar bots.')
+  }
 
-  const embed2 = new Discord.MessageEmbed()
+  let avatar1 = user.displayAvatarURL({ format: 'png' })
+
+  var embed = new Discord.MessageEmbed()
     .setColor('BLUE')
     .setAuthor(user.username + ` aceitou o beijo de ${message.author.username}`, avatar1)
     .setImage(rand1)
 
-  await message.inlineReply(embed).then(msg => {
-    msg.react('🔁')
+  await message.inlineReply(`${user}, aceita beijar ${message.author.username}?`,).then(msg => {
+    msg.react('✅')
+    setTimeout(function () {
+      msg.reactions.removeAll().catch(err => { return })
+      msg.edit(`${user} não respondeu ao pedido do beijo. #Força`).catch(err => { return })
+    }, 20000)
+
     msg.awaitReactions((reaction, user) => {
       if (message.mentions.users.first().id !== user.id) return
 
-      if (reaction.emoji.name === '🔁') { // Retribuiu
+      if (reaction.emoji.name === '✅') { // Retribuiu
         msg.delete()
-        return message.inlineReply(embed2)
+        return message.inlineReply(embed)
       }
     })
   })

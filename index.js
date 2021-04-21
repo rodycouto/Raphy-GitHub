@@ -248,7 +248,7 @@ client.on("guildMemberAdd", (member) => {
 })
 
 client.on("ready", () => {
-    let activities = ['Me marca que eu falo o prefixo', '@maya', '382 Comandos Onlines | 2 Offlines']
+    let activities = ['Me marca que eu falo o prefixo', '@maya', '412 Comandos Onlines']
     i = 0
     setInterval(() => client.user.setActivity(`${activities[i++ % activities.length]}`, { type: "WATCHING" }), 10000)
 })
@@ -309,7 +309,7 @@ client.once("ready", () => {
     if (!envi) {
         return
     } else if (envi) {
-        return envi.send(`Estou online.`)
+        return envi.send(`Cheguei ( ͡° ͜ʖ ͡°)`)
     }
 })
 
