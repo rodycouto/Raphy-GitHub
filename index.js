@@ -90,7 +90,9 @@ client.on("message", async (message) => {
                 var newlevel = new Discord.MessageEmbed()
                     .setColor('GREEN')
                     .setDescription(`:tada: ${message.author}, você subiu para o level ${newLevel} no ranking global!`)
-                if (client.channels.cache.get(xpchannel)) {
+                let xpchannel = db.get(`xpchannel_${message.guild.id}`)
+                if (xpchannel === null) { return }
+                if (xpchannel) {
                     var newlevel = new Discord.MessageEmbed()
                         .setColor('GREEN')
                         .setDescription(`:tada: ${message.author}, você subiu para o level ${newLevel}!`)

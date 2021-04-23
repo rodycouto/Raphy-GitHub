@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
         return message.inlineReply(presomax)
     } else {
 
-        let timeout1 = 7600000
+        let timeout1 = 2400000
         let author1 = await db.fetch(`roletatimeout_${message.author.id}`)
 
         if (author1 !== null && timeout1 - (Date.now() - author1) > 0) {
