@@ -22,7 +22,7 @@ exports.run = async (client, message, args) => {
             var presomax = new Discord.MessageEmbed()
                 .setColor('#FF0000')
                 .setTitle('🚨 Você está em prisão máxima!')
-                .setDescription('`Liberdade em: ' + `${time.minutes}` + 'm e ' + `${time.seconds}` + 's`')
+                .setDescription(`Liberdade em: ${time.minutes}m e ${time.seconds}s`)
 
             return message.inlineReply(presomax)
         } else {
@@ -113,10 +113,10 @@ exports.run = async (client, message, args) => {
                     if (randa === 'fossil') {
                         var fossil = db.get(`fossil_${message.author.id}`)
                         if (fossil === null) {
-                            var dinh = Math.floor(Math.random() * 500) + 1
+                            var dinh = Math.floor(Math.random() * 100) + 1
                             var ossos = Math.floor(Math.random() * 3) + 1
-                            var minerios = Math.floor(Math.random() * 7) + 1
-                            var diamantes = Math.floor(Math.random() * 2) + 1
+                            var minerios = Math.floor(Math.random() * 3) + 1
+                            var diamantes = Math.floor(Math.random() * 1) + 1
                             db.subtract(`agua_${message.author.id}`, 1)
                             db.add(`minerio_${message.author.id}`, minerios)
                             db.add(`ossos_${message.author.id}`, ossos)
@@ -129,10 +129,10 @@ exports.run = async (client, message, args) => {
                                 .addField('Classe Especial: <:fossil:831859111578173450> Fossil', `Você obteve: ${dinh}<:StarPoint:766794021128765469>MPoints, ${minerios} 🪨 Minerios, ${ossos} 🦴 Ossos e ${diamantes} 💎 Diamantes`)
                             return message.inlineReply(pescaembed)
                         } else if (!db.get(`fossil_${message.author.id}`)) {
-                            var dinh = Math.floor(Math.random() * 500) + 1
+                            var dinh = Math.floor(Math.random() * 100) + 1
                             var ossos = Math.floor(Math.random() * 3) + 1
-                            var minerios = Math.floor(Math.random() * 7) + 1
-                            var diamantes = Math.floor(Math.random() * 2) + 1
+                            var minerios = Math.floor(Math.random() * 3) + 1
+                            var diamantes = Math.floor(Math.random() * 1) + 1
                             db.subtract(`agua_${message.author.id}`, 1)
                             db.add(`minerio_${message.author.id}`, minerios)
                             db.add(`ossos_${message.author.id}`, ossos)
@@ -146,9 +146,9 @@ exports.run = async (client, message, args) => {
                             return message.inlineReply(pescaembed)
                         } else {
 
-                            var dinh = Math.floor(Math.random() * 300) + 1
+                            var dinh = Math.floor(Math.random() * 100) + 1
                             var ossos = Math.floor(Math.random() * 2) + 1
-                            var minerios = Math.floor(Math.random() * 5) + 1
+                            var minerios = Math.floor(Math.random() * 2) + 1
                             var diamantes = Math.floor(Math.random() * 2) + 1
                             db.subtract(`agua_${message.author.id}`, 1)
                             db.add(`minerio_${message.author.id}`, minerios)
@@ -166,10 +166,10 @@ exports.run = async (client, message, args) => {
 
                     if (randa === "loose") {
 
-                        var dinh = Math.floor(Math.random() * 300) + 1
+                        var dinh = Math.floor(Math.random() * 80) + 1
                         var ossos = Math.floor(Math.random() * 2) + 1
-                        var minerios = Math.floor(Math.random() * 5) + 1
-                        var diamantes = Math.floor(Math.random() * 2) + 1
+                        var minerios = Math.floor(Math.random() * 2) + 1
+                        var diamantes = Math.floor(Math.random() * 1) + 1
                         db.subtract(`agua_${message.author.id}`, 1)
                         db.add(`minerio_${message.author.id}`, minerios)
                         db.add(`ossos_${message.author.id}`, ossos)
@@ -217,8 +217,8 @@ exports.run = async (client, message, args) => {
                 }
 
                 if (rand === 'lose') {
-                    var dinh = Math.floor(Math.random() * 300) + 1
-                    var minerios = Math.floor(Math.random() * 3) + 1
+                    var dinh = Math.floor(Math.random() * 70) + 1
+                    var minerios = Math.floor(Math.random() * 2) + 1
                     db.subtract(`agua_${message.author.id}`, 1)
                     db.add(`minerio_${message.author.id}`, minerios)
                     var pescaembed = new Discord.MessageEmbed()
@@ -227,13 +227,7 @@ exports.run = async (client, message, args) => {
                         .setDescription(`Com a mineração, você obteve 🪨 ${minerios} minerios.`)
                     return message.inlineReply(pescaembed)
                 }
-            } else {
-                var nopicareta = new Discord.MessageEmbed()
-                    .setColor('#FF0000')
-                    .setTitle('❌ Comando bloqueado')
-                    .setDescription(`${message.author}, você não tem águas   suficiente.`)
-                return message.inlineReply(nopicareta)
-            }
+            } else { return message.inlineReply(`:x: ${message.author}, você não tem águas suficiente.`) }
         }
     }
 }
