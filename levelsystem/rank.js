@@ -66,16 +66,16 @@ exports.run = async (client, message, args) => {
                 level,
                 xp,
             })
-        }
+        } 
 
         var embedxp = new Discord.MessageEmbed()
-            .setTitle("👑 Ranking Global - MPoints")
-            .setDescription("")
             .setColor("YELLOW")
+            .setTitle("👑 Ranking Global - MPoints")
         lb.forEach(d => {
             embedxp.addField(`${d.rank}. ${d.user.tag}`, `💸 Carteira - ${d.level} <:StarPoint:766794021128765469>MPoints\n🏦 Banco - ${d.xp} <:StarPoint:766794021128765469>MPoints`)
         })
         embedxp.setFooter(`Seu ranking: ${myrank}`)
+        embedxp.addField('Loteria Maya', `Prêmio Atual: ${db.get('loteria')} <:StarPoint:766794021128765469>MPoints`)
         return message.channel.send(embedxp)
     }
 

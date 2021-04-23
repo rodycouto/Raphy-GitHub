@@ -17,7 +17,8 @@ exports.run = async (client, message, args) => {
       .setTitle('⭐ Centralzinha de Ajuda da Maya ⭐')
       .setDescription('Use `' + `${prefix}help categoria` + '` para as pastas de comandos')
       .addField('Acesso rápido', `:tools: [Lista de Comandos](${linkgithub})\n☎️ [Suporte](${linksupport})\n🧩 [Meu servidor](${linkservidor})\n:heart: [Me adicione](${invitebot})`)
-      .addField('Me ajude a ficar online', `<a:MoneyWings:834899137991540797> [Doar R$1,00](${mercadopago})`)
+      .addField('Me ajude a ficar online', `<a:MoneyWings:834899137991540797> [Doar R$1,00](${mercadopago})`, true)
+      .addField('💰 Loteria Maya', `Prêmio Atual: ${db.get('loteria')} <:StarPoint:766794021128765469>MPoints`, true)
       .setFooter(`${prefix}gif | ${prefix}ideiamaya`)
     return message.inlineReply(`Heey! Tudo bem ${message.author}?`, newhelp)
   }

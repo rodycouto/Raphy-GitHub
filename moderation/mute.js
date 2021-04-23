@@ -77,15 +77,14 @@ exports.run = async (client, message, args) => {
          console.log(error)
       }
       try {
-         var role7 = message.guild.roles.cache.find(role => role.name === 'Muted')
 
          var criando = new Discord.MessageEmbed()
             .setColor('BLUE')
-            .setTitle('🔄 Criando e configurando cargo, espere...')
+            .setDescription('<a:loading:834782920287846430> Criando e configurando cargo, espere...')
 
          var roleembedcreate = new Discord.MessageEmbed()
             .setColor('BLUE')
-            .setDescription(`🔄 Buscando erros...`)
+            .setDescription(`<a:loading:834782920287846430> Buscando erros...`)
 
          var criado = new Discord.MessageEmbed()
             .setColor('GREEN')
@@ -128,7 +127,7 @@ exports.run = async (client, message, args) => {
 
       var sobcarg = new Discord.MessageEmbed()
          .setColor('#FF0000')
-         .setTitle('🔄 Um erro foi encontrado. Buscando solução...')
+         .setDescription('<a:loading:834782920287846430> Um erro foi encontrado. Buscando solução...')
 
       setTimeout(function () {
          message.inlineReply(soberol)
@@ -153,11 +152,11 @@ exports.run = async (client, message, args) => {
                .setTitle('Se você tem cargo para usar este comando, você não pode mutar você mesmo. 😗')
 
             if (reaction.emoji.name === '✅') { // home
-               msg.delete()
+               msg.delete().catch(err => { return })
                return message.inlineReply(troll)
             }
             if (reaction.emoji.name === '❌') { // MPEmbed
-               msg.delete()
+               msg.delete().catch(err => { return })
             }
          })
       })
@@ -182,8 +181,7 @@ exports.run = async (client, message, args) => {
       var notime = new Discord.MessageEmbed()
          .setColor('#FF0000')
          .setTitle('Siga o padrão do comando!')
-         .setDescription('`' + prefix + 'mute @user 5s/m/h Razão`')
-         .setFooter('Deseja o ' + prefix + 'muteinfo' + '?')
+         .setDescription('Você não disse o tempo do mute. Deseja o `' + prefix + 'muteinfo' + '`?')
 
       var embeddetail = new Discord.MessageEmbed()
          .setColor("BLUE")
@@ -220,11 +218,11 @@ exports.run = async (client, message, args) => {
             if (message.author.id !== user.id) return
 
             if (reaction.emoji.name === '✅') { // Sim
-               msg.delete()
+               msg.delete().catch(err => { return })
                message.inlineReply(embeddetail)
             }
             if (reaction.emoji.name === '❌') { // Não
-               msg.delete()
+               msg.delete().catch(err => { return })
             }
          })
       })
@@ -300,7 +298,7 @@ exports.run = async (client, message, args) => {
             var logchannel = db.get(`logchannel_${member.guild.id}`)
             if (message.author.id !== user.id) return
             if (reaction.emoji.name === '✅') { // home
-               msg.delete()
+               msg.delete().catch(err => { return })
 
                member.roles.remove(role).then(x => x.roles.add(role))
 
@@ -322,7 +320,7 @@ exports.run = async (client, message, args) => {
                return message.inlineReply(rela)
             }
             if (reaction.emoji.name === '❌') { // MPEmbed
-               msg.delete()
+               msg.delete().catch(err => { return })
             }
          })
       })
@@ -342,7 +340,7 @@ exports.run = async (client, message, args) => {
             if (message.author.id !== user.id) return
 
             if (reaction.emoji.name === '✅') { // Sim
-               msg.delete()
+               msg.delete().catch(err => { return })
 
                member.roles.add(role) // Ação Mute
                setTimeout(function () {
@@ -359,7 +357,7 @@ exports.run = async (client, message, args) => {
                client.channels.cache.get(logchannel).send(muteembed)
             }
             if (reaction.emoji.name === '❌') { // MPEmbed
-               msg.delete()
+               msg.delete().catch(err => { return })
             }
          })
       })

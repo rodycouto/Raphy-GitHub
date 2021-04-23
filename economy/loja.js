@@ -9,6 +9,7 @@ exports.run = async (client, message, args) => {
     var star = '<:StarPoint:766794021128765469>'
     var loli = '<:Loli:831571527744356422>'
     var StarM = '<:starM:832974891635572787>'
+    let loteria = db.get(`loteria`)
 
     var loja = new Discord.MessageEmbed()
         .setColor('YELLOW')
@@ -17,7 +18,11 @@ exports.run = async (client, message, args) => {
         .addFields(
             {
                 name: 'Disponiveis',
-                value: '🛡️ `Escudo` (Em Breve)\n🎣 `Vara de Pesca` 140 <:StarPoint:766794021128765469>MPoints\n🔫 `Arma` 4.000 <:StarPoint:766794021128765469>MPoints\n⛏️ `Picareta` 85 <:StarPoint:766794021128765469>MPoints\n🪓 `Machado` 35 <:StarPoint:766794021128765469>MPoints\n🎫 `Ticket Loteria` 10 <:StarPoint:766794021128765469>MPoints\n🎟️ `Fichas` 2 <:StarPoint:766794021128765469>MPoints\n💌 `Carta de Amor` 1 <:StarPoint:766794021128765469>MPoints\n🪱 `Isca` 1 <:StarPoint:766794021128765469>MPoints\n🥤 `Água` 1 <:StarPoint:766794021128765469>MPoints'
+                value: '🛡️ `Escudo` (Em Breve)\n🎣 `Vara de Pesca` 140 <:StarPoint:766794021128765469>MPoints\n🔫 `Arma` 4.000 <:StarPoint:766794021128765469>MPoints\n⛏️ `Picareta` 85 <:StarPoint:766794021128765469>MPoints\n🪓 `Machado` 35 <:StarPoint:766794021128765469>MPoints\n🎟️ `Fichas` 2 <:StarPoint:766794021128765469>MPoints\n💌 `Carta de Amor` 1 <:StarPoint:766794021128765469>MPoints\n🪱 `Isca` 1 <:StarPoint:766794021128765469>MPoints\n🥤 `Água` 1 <:StarPoint:766794021128765469>MPoints'
+            },
+            {
+                name: 'Loteria',
+                value: '🎫 `Ticket Loteria` 10 <:StarPoint:766794021128765469>MPoints' + `\nPrêmio Atual: ${loteria} <:StarPoint:766794021128765469>MPoints`
             },
             {
                 name: 'Jogos',
