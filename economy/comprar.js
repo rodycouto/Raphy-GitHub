@@ -111,7 +111,7 @@ exports.run = async (client, message, args) => {
             var buyarma = new Discord.MessageEmbed()
                 .setColor('GREEN')
                 .setTitle('✅ Compra aprovada')
-                .setDescription(`${message.author}, você comprou ${args[1]}` + ' 🎟️ `Tickets da Loteria`')
+                .setDescription(`${message.author}, você comprou ${args[1]}` + ' 🎫 `Tickets da Loteria`')
             return message.inlineReply(buyarma)
         }
 
@@ -334,7 +334,7 @@ exports.run = async (client, message, args) => {
                     .setDescription(`${message.author}, você comprou <:starM:832974891635572787><:starM:832974891635572787>` + '`Estrela 2`')
                 return message.inlineReply(buyStar1)
             }
-        }
+        } 
 
         if (['estrela3', 'Estrela3'].includes(args[0].toLowerCase())) {
 
@@ -356,7 +356,7 @@ exports.run = async (client, message, args) => {
                     .setDescription(`${message.author}, você comprou <:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787>` + '`Estrela 3`')
                 return message.inlineReply(buyStar1)
             }
-        }
+        } 
 
         if (['estrela4', 'Estrela4'].includes(args[0].toLowerCase())) {
 
@@ -378,7 +378,7 @@ exports.run = async (client, message, args) => {
                     .setDescription(`${message.author}, você comprou <:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787>` + '`Estrela 4`')
                 return message.inlineReply(buyStar1)
             }
-        }
+        } 
 
         if (['estrela5', 'Estrela5'].includes(args[0].toLowerCase())) {
 

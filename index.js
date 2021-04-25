@@ -93,9 +93,11 @@ client.on("message", async (message) => {
             let lvl = db.get(`level_${message.author.id}`) || db.set(`level_${message.author.id}`, 1)
             if (level > lvl) {
                 let newLevel = db.set(`level_${message.author.id}`, level)
-                var newlevel = new Discord.MessageEmbed()
+                db.add(`mpoints_${message.author.id}`, 500)
+                var newlevel1 = new Discord.MessageEmbed()
                     .setColor('GREEN')
-                    .setDescription(`:tada: ${message.author}, você subiu para o level ${newLevel} no ranking global!`)
+                    .setDescription(`:tada: ${message.author}, você subiu para o level ${newLevel} no ranking global! Bônus: 500 <:StarPoint:766794021128765469>MPoints`)
+                message.author.send(newlevel1).catch(err => { return })
                 let xpchannel = db.get(`xpchannel_${message.guild.id}`)
                 if (xpchannel === null) { return }
                 if (xpchannel) {
@@ -104,7 +106,6 @@ client.on("message", async (message) => {
                         .setDescription(`:tada: ${message.author}, você subiu para o level ${newLevel}!`)
                     client.channels.cache.get(xpchannel).send(newlevel)
                 }
-                message.author.send(newlevel).catch(err => { return })
             }
         }
     }

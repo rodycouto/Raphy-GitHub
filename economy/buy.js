@@ -111,7 +111,7 @@ exports.run = async (client, message, args) => {
             var buyarma = new Discord.MessageEmbed()
                 .setColor('GREEN')
                 .setTitle('✅ Compra aprovada')
-                .setDescription(`${message.author}, você comprou ${args[1]}` + ' 🎟️ `Tickets da Loteria`')
+                .setDescription(`${message.author}, você comprou ${args[1]}` + ' 🎫 `Tickets da Loteria`')
             return message.inlineReply(buyarma)
         }
 

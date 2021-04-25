@@ -43,5 +43,4 @@ exports.run = async (client, message, args) => {
             .setFooter(`${prefix}help autorole`)
         return message.inlineReply(autoroleautal)
     }
-
 }
