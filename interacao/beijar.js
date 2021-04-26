@@ -32,28 +32,13 @@ exports.run = async (client, message, args) => {
   var rand1 = list1[Math.floor(Math.random() * list1.length)]
   let user = message.mentions.users.first()
 
-  if (!user) {
-    let prefix = db.get(`prefix_${message.guild.id}`)
-    if (prefix === null) prefix = "-"
+  let prefix = db.get(`prefix_${message.guild.id}`)
+  if (prefix === null) prefix = "-"
 
-    var nouser = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Erroooou')
-      .setDescription('`' + prefix + 'beijar @user`')
-    return message.reply(nouser)
-  }
-
-  if (user.id === '821471191578574888') {
-    return message.inlineReply('Aiin, eu sou timida')
-  }
-
-  if (user.id === message.author.id) {
-    return message.inlineReply('Você não pode usar este comando com você mesmo.')
-  }
-
-  if (message.mentions.bot) {
-    return message.inlineReply('Você não pode beijar bots.')
-  }
+  if (!user) { return message.reply('`' + prefix + 'beijar @user`') }
+  if (user.id === '821471191578574888') { return message.inlineReply('Aiin, eu sou timida') }
+  if (user.id === message.author.id) { return message.inlineReply('Você não pode usar este comando com você mesmo.') }
+  if (message.mentions.members.bot) { return message.inlineReply('Você não pode beijar bots.') }
 
   let avatar1 = user.displayAvatarURL({ format: 'png' })
 
@@ -63,7 +48,7 @@ exports.run = async (client, message, args) => {
     .setImage(rand1)
 
   await message.inlineReply(`${user}, aceita beijar ${message.author.username}?`,).then(msg => {
-    msg.react('✅')
+    msg.react('✅').catch(err => { return })
     setTimeout(function () {
       msg.reactions.removeAll().catch(err => { return })
       msg.edit(`${user} não respondeu ao pedido do beijo. #Força`).catch(err => { return })

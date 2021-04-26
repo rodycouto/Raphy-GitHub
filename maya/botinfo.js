@@ -22,7 +22,7 @@ exports.run = async (client, message, args) => {
         .addFields(
             {
                 name: 'Informações Técinas',
-                value: (`🌐 Servidores: ${client.guilds.cache.size}\n💬 Canais: ${client.channels.cache.size}\n🫂 Usuários: ${client.users.cache.size}\n⏳ Ping Atual: ${Math.round(client.ws.ping)}ms\n🕛 Criada em: 15/03/2021\n💡 Idealizada por: Rody#4191 \n:gear: Criada por: Rody#4191\n🖌️ Design: yma?#5175\n🖊️ Start Cooper: Gowther#9233\n📡 Host: DisCloud\n🇩 Discord.js Version: 12.5.3\n🇯 Linguagem: 100% JavaScript`)
+                value: (`🌐 Servidores: ${client.guilds.cache.size}\n💬 Canais: ${client.channels.cache.size}\n🫂 Usuários: ${client.users.cache.size}\n⏳ Ping Atual: ${Math.round(client.ws.ping)}ms\n🕛 Criada em: 15/03/2021\n💡 Idealizada por: Rody#4191 \n:gear: Criada por: Rody#4191\n🖌️ Design: Rody#4191 | Sayu\n🖊️ Start Cooper: Gowther#9233\n📡 Host: DisCloud\n🇩 Discord.js Version: 12.5.3\n🇯 Linguagem: 100% JavaScript`)
             }
         )
 
@@ -61,13 +61,15 @@ exports.run = async (client, message, args) => {
                 inline: true
             }
         )
+        .setFooter('Desativando em 1 minuto...')
 
     await message.inlineReply(embed).then(msg => {
-        msg.react('📃') // 1º Embed
-        msg.react('⚙️') // 2º Embed
-        msg.react('❤️') // Thanks
-        msg.react('💬') // Support
-        msg.react('❌') // Delete
+        msg.react('📃').catch(err => { return }) // 1º Embed
+        msg.react('⚙️').catch(err => { return }) // 2º Embed
+        msg.react('❤️').catch(err => { return }) // Thanks
+        msg.react('💬').catch(err => { return }) // Support
+        msg.react('❌').catch(err => { return }) // Delete
+        setTimeout(function () { msg.reactions.removeAll().catch(err => { return }) }, 60000)
 
         msg.awaitReactions((reaction, user) => {
             if (message.author.id !== user.id) return;

@@ -33,19 +33,12 @@ exports.run = async (client, message, args) => {
   var rand1 = list1[Math.floor(Math.random() * list1.length)]
   let user = message.mentions.users.first()
 
-  if (!user) {
-    let prefix = db.get(`prefix_${message.guild.id}`)
-    if (prefix === null) prefix = "-"
+  let prefix = db.get(`prefix_${message.guild.id}`)
+  if (prefix === null) prefix = "-"
 
-    var nouser = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Erroooou')
-      .setDescription('`' + prefix + 'highfive @user`')
-    return message.inlineReply(nouser)
-  }
+  if (!user) { return message.inlineReply('`' + prefix + 'highfive @user`') }
 
   if (user.id === '821471191578574888') {
-
     var embed1 = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setDescription(`${message.author.username} & ${user.username} mandaram um HIGHFIVE!`)
@@ -53,9 +46,7 @@ exports.run = async (client, message, args) => {
     return message.inlineReply(embed1)
   }
 
-  if (user.id === message.author.id) {
-    return message.inlineReply('Você não pode usar este comando com você mesmo.')
-  }
+  if (user.id === message.author.id) { return message.inlineReply('Você não pode usar este comando com você mesmo.') }
 
   var embed = new Discord.MessageEmbed()
     .setColor('BLUE')
@@ -69,7 +60,10 @@ exports.run = async (client, message, args) => {
 
   await message.inlineReply(embed).then(msg => {
     msg.react('🔁').catch(err => { return })
-    msg.delete({ timeout: 20000 }).catch(err => { return })
+    setTimeout(function () {
+      msg.reactions.removeAll().catch(err => { return })
+      msg.edit(`${user} não respondeu ao pedido de highfive. #F`).catch(err => { return })
+    }, 15000)
 
     msg.awaitReactions((reaction, user) => {
       if (message.mentions.users.first().id !== user.id) return

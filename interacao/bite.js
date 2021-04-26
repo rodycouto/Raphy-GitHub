@@ -37,26 +37,16 @@ exports.run = async (client, message, args) => {
   var rand1 = list1[Math.floor(Math.random() * list1.length)]
   let user = message.mentions.users.first()
 
-  if (!user) {
-    let prefix = db.get(`prefix_${message.guild.id}`)
-    if (prefix === null) prefix = "-"
+  let prefix = db.get(`prefix_${message.guild.id}`)
+  if (prefix === null) prefix = "-"
 
-    var nouser = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Erroooou')
-      .setDescription('`' + prefix + 'bite @user`')
-    return message.reply(nouser)
-  }
-
-  if (user.id === '821471191578574888')
-    return message.inlineReply('Paaara, não me morde não :cry:')
-
-  if (user.id === message.author.id) {
-    return message.inlineReply('Você não pode usar este comando com você mesmo.')
-  }
+  if (!user) { return message.reply('`' + prefix + 'bite @user`') }
+  if (user.id === '821471191578574888') { return message.inlineReply('Paaara, não me morde não :cry:') }
+  if (user.id === message.author.id) { return message.inlineReply('Você não pode usar este comando com você mesmo.') }
 
   let avatar = message.author.displayAvatarURL({ format: 'png' })
   let avatar1 = user.displayAvatarURL({ format: 'png' })
+  
   var embed = new Discord.MessageEmbed()
     .setColor('BLUE')
     .setAuthor(message.author.username + ` está mordendo ${user.username}`, avatar)
@@ -69,12 +59,14 @@ exports.run = async (client, message, args) => {
     .setImage(rand1)
 
   await message.inlineReply(embed).then(msg => {
-    msg.react('🔁')
+    msg.react('🔁').catch(err => { return })
+    setTimeout(function () { msg.reactions.removeAll().catch(err => { return }) }, 15000)
+    
     msg.awaitReactions((reaction, user) => {
       if (message.mentions.users.first().id !== user.id) return
 
       if (reaction.emoji.name === '🔁') {
-        reaction.users.remove()
+        msg.reactions.removeAll().catch(err => { return })
         return message.inlineReply(embed2)
       }
     })

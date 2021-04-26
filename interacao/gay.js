@@ -7,24 +7,12 @@ exports.run = async (client, message, args) => {
   var num = Math.floor(Math.random() * 100) + 1
 
   var user = message.mentions.members.first()
-  if (!user) {
-    let prefix = db.get(`prefix_${message.guild.id}`)
-    if (prefix === null) prefix = "-"
+  let prefix = db.get(`prefix_${message.guild.id}`)
+  if (prefix === null) prefix = "-"
 
-    var nouser = new Discord.MessageEmbed()
-      .setColor('#FF0000')
-      .setTitle('Siga o formato correto')
-      .setDescription('`' + prefix + 'gay @user`')
-    return message.inlineReply(nouser)
-  }
-
-  if (user.id === '821471191578574888') {
-    return message.inlineReply('Eu não tenho gênero, eu acho.')
-  }
-
-  if (user.id === message.author.id) {
-    return message.inlineReply('Você não pode usar este comando com você mesmo.')
-  }
+  if (!user) { return message.inlineReply('`' + prefix + 'gay @user`') }
+  if (user.id === '821471191578574888') { return message.inlineReply('Eu não tenho gênero, eu acho.') }
+  if (user.id === message.author.id) { return message.inlineReply('Você não pode usar este comando com você mesmo.') }
 
   var rand = ['YELLOW', 'RED', 'GREEN', 'PURPLE']
   var calors = rand[Math.floor(Math.random() * rand.length)]
@@ -33,8 +21,6 @@ exports.run = async (client, message, args) => {
     .setColor(calors)
     .setTitle('🏳️‍🌈 Maya Gaymometro')
     .setDescription(`Pela minha análise, ${user} é ${num}% gay.`)
-  if (num > 80) {
-    gay.setImage(gif)
-  }
+  if (num > 80) { gay.setImage(gif) }
   return message.inlineReply(gay)
 }

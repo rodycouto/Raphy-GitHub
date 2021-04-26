@@ -64,11 +64,14 @@ exports.run = async (client, message, args) => {
         .setImage(rand1)
 
     await message.inlineReply(embed).then(msg => {
-        msg.react('🔁')
+        msg.react('🔁').catch(err => { return })
+        setTimeout(function () { msg.reactions.removeAll().catch(err => { return }) }, 15000)
+
         msg.awaitReactions((reaction, user) => {
             if (message.mentions.users.first().id !== user.id) return
 
             if (reaction.emoji.name === '🔁') {
+                msg.reactions.removeAll().catch(err => { return })
                 return message.inlineReply(embed2)
             }
         })

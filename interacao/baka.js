@@ -16,13 +16,9 @@ exports.run = async (client, message, args) => {
   var rand = list[Math.floor(Math.random() * list.length)]
   let user = message.mentions.users.first() || client.users.cache.get(args[0])
 
-  if (!user) {
-    return message.reply('Hey, quem você quer chamar de baka? `-baka @user`')
-  }
+  if (!user) { return message.reply('Hey, quem você quer chamar de baka? `-baka @user`') }
 
-  if (user.id === message.author.id) {
-    return message.inlineReply('Você não pode usar este comando com você mesmo.')
-  }
+  if (user.id === message.author.id) { return message.inlineReply('Você não pode usar este comando com você mesmo.') }
 
   var embed = new Discord.MessageEmbed()
     .setColor('BLUE')

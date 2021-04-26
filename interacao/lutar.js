@@ -4,20 +4,13 @@ const db = require('quick.db')
 exports.run = async (client, message, args) => {
 
     var user = message.mentions.members.first()
-    if (!user) {
-        let prefix = db.get(`prefix_${message.guild.id}`)
-        if (prefix === null) prefix = "-"
+    let prefix = db.get(`prefix_${message.guild.id}`)
+    if (prefix === null) prefix = "-"
 
-        var nouser = new Discord.MessageEmbed()
-            .setColor('#FF0000')
-            .setTitle('Use formato correto')
-            .setDescription('`' + prefix + 'lutar @user`')
-        return message.inlineReply(nouser)
-    }
 
-    if (user.id === message.author.id) {
-        return message.inlineReply('Você não pode usar este comando com você mesmo.')
-    }
+    if (!user) { return message.inlineReply('`' + prefix + 'lutar @user`') }
+
+    if (user.id === message.author.id) { return message.inlineReply('Você não pode usar este comando com você mesmo.') }
 
     var list = ['win', 'lose']
     var result = list[Math.floor(Math.random() * list.length)]
