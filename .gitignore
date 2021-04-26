@@ -3,3 +3,4 @@ config.json
 json.sqlite
 afksystem/givelotery.js
 afksystem/sortearticket.js
+owner/sortearticket.js
