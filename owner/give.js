@@ -63,6 +63,14 @@ exports.run = async (client, message, args) => {
         return message.inlineReply(`Uma faca adicionada ao slot de ${user}`)
     }
 
+    if (['cachorro', 'doguinho', 'dog'].includes(args[0])) {
+
+        if (!user) { return message.inlineReply('`' + prefix + 'give cachorro @user') }
+
+        db.set(`cachorro_${user.id}`, "Cachorro Brown")
+        return message.inlineReply(`Cachorrinho Brown foi adicionado ao slot de ${user}`)
+    }
+
     if (['machado'].includes(args[0])) {
 
         if (!user) { return message.inlineReply('`' + prefix + 'give machado @user') }

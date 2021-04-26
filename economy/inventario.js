@@ -91,7 +91,7 @@ exports.run = async (client, message, args) => {
     if (!db.get(`loli_${user.id}`)) { loli = "" }
 
     let cachorro = db.get(`cachorro_${user.id}`)
-    if (cachorro) { cachorro = "\n🐶 Cachorro" }
+    if (cachorro) { cachorro = "\n🐶 Cachorro Brown" }
     if (cachorro === null) { cachorro = "" }
     if (!db.get(`cachorro_${user.id}`)) { cachorro = "" }
 

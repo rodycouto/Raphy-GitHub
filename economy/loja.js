@@ -32,7 +32,7 @@ exports.run = async (client, message, args) => {
             .addFields(
                 {
                     name: 'Disponiveis',
-                    value: '🛡️ `Escudo` (Em Breve)\n🎣 `Vara de Pesca` 140 <:StarPoint:766794021128765469>MPoints\n🔫 `Arma` 4.000 <:StarPoint:766794021128765469>MPoints\n⛏️ `Picareta` 85 <:StarPoint:766794021128765469>MPoints\n🪓 `Machado` 35 <:StarPoint:766794021128765469>MPoints\n🎟️ `Fichas` 2 <:StarPoint:766794021128765469>MPoints\n💌 `Carta de Amor` 1 <:StarPoint:766794021128765469>MPoints\n🪱 `Isca` 1 <:StarPoint:766794021128765469>MPoints\n🥤 `Água` 1 <:StarPoint:766794021128765469>MPoints'
+                    value: '🛡️ `Escudo` (Em Breve)\n🎣 `Vara de Pesca` 140 <:StarPoint:766794021128765469>MPoints\n🔫 `Arma` 4.000 <:StarPoint:766794021128765469>MPoints\n⛏️ `Picareta` 85 <:StarPoint:766794021128765469>MPoints\n🪓 `Machado` 35 <:StarPoint:766794021128765469>MPoints\n🎟️ `Fichas` 2 <:StarPoint:766794021128765469>MPoints\n💌 `Carta de Amor` 1 <:StarPoint:766794021128765469>MPoints\n🥘 `Comida` 2 <:StarPoint:766794021128765469>MPoints\n🪱 `Isca` 1 <:StarPoint:766794021128765469>MPoints\n🥤 `Água` 1 <:StarPoint:766794021128765469>MPoints'
                 },
                 {
                     name: 'Loteria',
@@ -40,7 +40,7 @@ exports.run = async (client, message, args) => {
                 },
                 {
                     name: 'Jogos',
-                    value: '<:Loli:831571527744356422> `Loli` (Pesca)\n🔪 `Faca` (Pesca)\n<:fossil:831859111578173450> `Fossil` (Mineração)\n🦣 `Mamute` (Mineração)'
+                    value: '<:Loli:831571527744356422> `Loli` (Pesca)\n🔪 `Faca` (Pesca)\n<:fossil:831859111578173450> `Fossil` (Mineração)\n🦣 `Mamute` (Mineração)\n🥎 `Bola do Brown` (Floresta Cammum)\n🐶 `Cachorro Brown` (Floresta Cammum)'
                 },
                 {
                     name: 'Perfil',
@@ -48,7 +48,7 @@ exports.run = async (client, message, args) => {
                 },
                 {
                     name: 'Itens Coletaveis',
-                    value: '🍤 `Camarões` - Baú do Tesouro (Pesca)\n🐟 `Peixes` - Baú do Tesouro (Pesca)\n🪵 `Madeira` - Florestamento\n🍎 `Maça` - Florestamento\n🦴 `Ossos` Mineração\n🪨 `Minérios` - Mineração\n💎 `Diamantes` - Mineração'
+                    value: '🍤 `Camarões` - Baú do Tesouro (Pesca)\n🐟 `Peixes` - Baú do Tesouro (Pesca)\n🌹 `Rosas` - Floresta Cammum\n🍎 `Maças` - Floresta Cammum\n🦴 `Ossos` Mineração\n🪨 `Minérios` - Mineração\n💎 `Diamantes` - Mineração'
                 }
             )
             .setFooter(`${prefix}buy | ${prefix}itens`)

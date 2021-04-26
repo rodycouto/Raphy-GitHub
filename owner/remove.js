@@ -25,14 +25,10 @@ exports.run = async (client, message, args) => {
 
     if (['banco', 'bank'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove bank @user Valor`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove bank @user Valor`') }
 
         let amount = args[2]
-        if (!amount || isNaN(amount)) {
-            return message.inlineReply('`' + prefix + 'remove bank @user Valor`')
-        }
+        if (!amount || isNaN(amount)) { return message.inlineReply('`' + prefix + 'remove bank @user Valor`') }
 
         db.subtract(`banco_${user.id}`, amount)
         return message.inlineReply(`O dinheiro foi removido do banco de ${user}`)
@@ -40,9 +36,7 @@ exports.run = async (client, message, args) => {
 
     if (['title', 'titulo', 'título'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove título @user`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove título @user`') }
 
         db.delete(`titulo_${user.id}`)
         return message.inlineReply(`O título de ${user} foi removido.`)
@@ -50,17 +44,11 @@ exports.run = async (client, message, args) => {
 
     if (['iscas', 'isca'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove iscas @user Valor`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove iscas @user Valor`') }
 
         let amount = args[2]
-        if (!amount) {
-            return message.inlineReply('`' + prefix + 'remove iscas @user Valor`')
-        }
-        if (isNaN(amount)) {
-            return message.inlineReply(`**${args[2]}** não é um número.`)
-        }
+        if (!amount) { return message.inlineReply('`' + prefix + 'remove iscas @user Valor`') }
+        if (isNaN(amount)) { return message.inlineReply(`**${args[2]}** não é um número.`) }
 
         db.subtract(`iscas_${user.id}`, amount)
         return message.inlineReply(`Iscas removidas do slot de ${user}.`)
@@ -68,17 +56,11 @@ exports.run = async (client, message, args) => {
 
     if (['cartas', 'carta'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove cartas @user Valor`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove cartas @user Valor`') }
 
         let amount = args[2]
-        if (!amount) {
-            return message.inlineReply('`' + prefix + 'remove cartas @user Valor`')
-        }
-        if (isNaN(amount)) {
-            return message.inlineReply(`**${args[2]}** não é um número.`)
-        }
+        if (!amount) { return message.inlineReply('`' + prefix + 'remove cartas @user Valor`') }
+        if (isNaN(amount)) { return message.inlineReply(`**${args[2]}** não é um número.`) }
 
         db.subtract(`cartas_${user.id}`, amount)
         return message.inlineReply(`Cartas removidas do slot de ${user}.`)
@@ -86,17 +68,11 @@ exports.run = async (client, message, args) => {
 
     if (['maça', 'apple', 'maças'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove maça @user Valor`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove maça @user Valor`') }
 
         let amount = args[2]
-        if (!amount) {
-            return message.inlineReply('`' + prefix + 'remove maça @user Valor`')
-        }
-        if (isNaN(amount)) {
-            return message.inlineReply(`**${args[2]}** não é um número.`)
-        }
+        if (!amount) { return message.inlineReply('`' + prefix + 'remove maça @user Valor`') }
+        if (isNaN(amount)) { return message.inlineReply(`**${args[2]}** não é um número.`) }
 
         db.subtract(`apple_${user.id}`, amount)
         return message.inlineReply(`${amount} Maças foram removidas do slot de ${user}.`)
@@ -104,17 +80,11 @@ exports.run = async (client, message, args) => {
 
     if (['mp', 'money'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove money @user Valor`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove money @user Valor`') }
 
         let amount = args[2]
-        if (!amount) {
-            return message.inlineReply('`' + prefix + 'remove money @user Valor`')
-        }
-        if (isNaN(amount)) {
-            return message.inlineReply(`**${args[2]}** não é um número.`)
-        }
+        if (!amount) { return message.inlineReply('`' + prefix + 'remove money @user Valor`') }
+        if (isNaN(amount)) { return message.inlineReply(`**${args[2]}** não é um número.`) }
 
         db.subtract(`mpoints_${user.id}`, amount)
         return message.inlineReply(`Dinheiro removido da conta de ${user}.`)
@@ -122,35 +92,35 @@ exports.run = async (client, message, args) => {
 
     if (['peixe', 'peixes', 'fish'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove peixes @user Valor`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove peixes @user Valor`') }
 
         let amount = args[2]
-        if (!amount) {
-            return message.inlineReply('`' + prefix + 'remove peixes @user Valor`')
-        }
-        if (isNaN(amount)) {
-            return message.inlineReply(`**${args[2]}** não é um número.`)
-        }
+        if (!amount) { return message.inlineReply('`' + prefix + 'remove peixes @user Valor`') }
+        if (isNaN(amount)) { return message.inlineReply(`**${args[2]}** não é um número.`) }
 
         db.subtract(`peixes_${user.id}`, amount)
         return message.inlineReply(`Peixes removidos do slot de ${user}.`)
     }
 
-    if (['ficha', 'fichas'].includes(args[0])) {
+    if (['comida', 'food', 'comidas', 'foods'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove fichas @user Valor`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove comida @user Valor`') }
 
         let amount = args[2]
-        if (!amount) {
-            return message.inlineReply('`' + prefix + 'remove fichas @user Valor`')
-        }
-        if (isNaN(amount)) {
-            return message.inlineReply(`**${args[2]}** não é um número.`)
-        }
+        if (!amount) { return message.inlineReply('`' + prefix + 'remove comida @user Valor`') }
+        if (isNaN(amount)) { return message.inlineReply(`**${args[2]}** não é um número.`) }
+
+        db.subtract(`comida_${user.id}`, amount)
+        return message.inlineReply(`Comidas removidas do slot de ${user}.`)
+    }
+
+    if (['ficha', 'fichas'].includes(args[0])) {
+
+        if (!user) { return message.inlineReply('`' + prefix + 'remove fichas @user Valor`') }
+
+        let amount = args[2]
+        if (!amount) { return message.inlineReply('`' + prefix + 'remove fichas @user Valor`') }
+        if (isNaN(amount)) { return message.inlineReply(`**${args[2]}** não é um número.`) }
 
         db.subtract(`fichas_${user.id}`, amount)
         return message.inlineReply(`Fichas removidas do slot de ${user}.`)
@@ -158,9 +128,7 @@ exports.run = async (client, message, args) => {
 
     if (['arma'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove arma @user`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove arma @user`') }
 
         db.delete(`arma_${user.id}`)
         return message.inlineReply(`Arma removida do slot de ${user}.`)
@@ -168,9 +136,7 @@ exports.run = async (client, message, args) => {
 
     if (['picareta'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove picareta @user`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove picareta @user`') }
 
         db.delete(`picareta_${user.id}`)
         return message.inlineReply(`Picareta removida do slot de ${user}.`)
@@ -178,9 +144,7 @@ exports.run = async (client, message, args) => {
 
     if (['machado'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove machado @user`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove machado @user`') }
 
         db.delete(`machado_${user.id}`)
         return message.inlineReply(`Machado removido do slot de ${user}.`)
@@ -188,9 +152,7 @@ exports.run = async (client, message, args) => {
 
     if (['vara', 'vara de pesca'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove vara @user`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove vara @user`') }
 
         db.delete(`vara_${user.id}`)
         return message.inlineReply(`Vara de pesca removida do slot de ${user}.`)
@@ -198,9 +160,7 @@ exports.run = async (client, message, args) => {
 
     if (['faca'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove faca @user`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove faca @user`') }
 
         db.delete(`faca_${user.id}`)
         return message.inlineReply(`Faca removida do slot de ${user}.`)
@@ -208,9 +168,7 @@ exports.run = async (client, message, args) => {
 
     if (['loli'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove loli @user`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove loli @user`') }
 
         db.delete(`loli_${user.id}`)
         return message.inlineReply(`Loli removida do slot de ${user}.`)
@@ -218,9 +176,7 @@ exports.run = async (client, message, args) => {
 
     if (['fossil'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove fossil @user`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove fossil @user`') }
 
         db.delete(`fossil_${user.id}`)
         return message.inlineReply(`Fossil removido do slot de ${user}.`)
@@ -228,9 +184,7 @@ exports.run = async (client, message, args) => {
 
     if (['mamute'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove mamute @user`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove mamute @user`') }
 
         db.delete(`mamute_${user.id}`)
         return message.inlineReply(`Mamute removido do slot de ${user}.`)
@@ -238,17 +192,11 @@ exports.run = async (client, message, args) => {
 
     if (['rp', 'reputação'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove rp @user Valor`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove rp @user Valor`') }
 
         let amount = args[2]
-        if (!amount) {
-            return message.inlineReply('`' + prefix + 'remove rp @user Valor`')
-        }
-        if (isNaN(amount)) {
-            return message.inlineReply(`**${args[2]}** não é um número.`)
-        }
+        if (!amount) { return message.inlineReply('`' + prefix + 'remove rp @user Valor`') }
+        if (isNaN(amount)) { return message.inlineReply(`**${args[2]}** não é um número.`) }
 
         db.subtract(`rp_${user.id}`, amount)
         return message.inlineReply(`Reputação removida ao perfil de ${user}.`)
@@ -256,17 +204,11 @@ exports.run = async (client, message, args) => {
 
     if (['xp'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove xp @user Valor`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove xp @user Valor`') }
 
         let amount = args[2]
-        if (!amount) {
-            return message.inlineReply('`' + prefix + 'remove xp @user Valor`')
-        }
-        if (isNaN(amount)) {
-            return message.inlineReply(`**${args[2]}** não é um número.`)
-        }
+        if (!amount) { return message.inlineReply('`' + prefix + 'remove xp @user Valor`') }
+        if (isNaN(amount)) { return message.inlineReply(`**${args[2]}** não é um número.`) }
 
         db.subtract(`xp_${user.id}`, amount)
         return message.inlineReply(`Experiência removida ao perfil de ${user}.`)
@@ -274,19 +216,24 @@ exports.run = async (client, message, args) => {
 
     if (['blacklist'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove blacklist @user Valor`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove blacklist @user Valor`') }
 
         db.delete(`blacklist_${user.id}`, user.id)
         return message.inlineReply(`Você removeu ${user} da blacklist.`)
     }
 
+    if (['blacklistid'].includes(args[0])) {
+
+        var id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'remove blacklistid ID`') }
+
+        db.delete(`blacklist_${id}`, id)
+        return message.inlineReply(`Você removeu <@${user}> da blacklist.`)
+    }
+
     if (['whitelist'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove whitelist @user`')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove whitelist @user`') }
 
         db.delete(`whitelist_${user.id}`, user.id)
         return message.inlineReply(`Você removeu ${user} da whitelist.`)
@@ -295,9 +242,7 @@ exports.run = async (client, message, args) => {
     if (['whitelistid'].includes(args[0])) {
 
         var id = args[1]
-        if (!id) {
-            return message.inlineReply('`' + prefix + 'remove whitelist ID`')
-        }
+        if (!id) { return message.inlineReply('`' + prefix + 'remove whitelistid ID`') }
 
         db.delete(`whitelist_${id}`, id)
         return message.inlineReply(`Você removeu <@${user}> da whitelist.`)
@@ -305,9 +250,7 @@ exports.run = async (client, message, args) => {
 
     if (['timeout', 'tempo', 'cooldown'].includes(args[0])) {
 
-        if (!user) {
-            return message.inlineReply('`' + prefix + 'remove timeout @user')
-        }
+        if (!user) { return message.inlineReply('`' + prefix + 'remove timeout @user') }
 
         db.delete(`dailyxp_${user.id}`)
         db.delete(`rptimeout_${user.id}`)
