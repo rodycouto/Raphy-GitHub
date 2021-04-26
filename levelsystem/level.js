@@ -10,8 +10,8 @@ exports.run = async (client, message, args) => {
   let exp = db.fetch(`xp_${user.id}`) || 0
   let neededXP = Math.floor(Math.pow(level / 0.1, 2))
 
-  let every = db.all().filter(i => i.ID.startsWith("xp1_")).sort((a, b) => b.data - a.data);
-  let rank = every.map(x => x.ID).indexOf(`xp1_${message.guild.id}_${user.id}`) + 1
+  let every = db.all().filter(i => i.ID.startsWith("xp_")).sort((a, b) => b.data - a.data);
+  let rank = every.map(x => x.ID).indexOf(`xp_${user.id}`) + 1
 
   var card = new canvacord.Rank()
     .setUsername(user.username)

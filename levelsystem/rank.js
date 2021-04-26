@@ -42,7 +42,7 @@ exports.run = async (client, message, args) => {
             .setTitle("👑 Ranking Global - XP")
             .setColor("YELLOW")
         lb.forEach(d => {
-            embedxp.addField(`${d.rank}. ${d.user.tag}`, `Lvl. - ${d.level} (${d.xp} / ${d.xpreq})`)
+            embedxp.addField(`${d.rank}. ${d.user.tag}`, `🆔 *(${d.user.id})*\n⬆️ ${d.level} (${d.xp} / ${d.xpreq})`)
         })
         embedxp.setFooter(`Seu ranking: ${myrank}`)
         return message.channel.send(embedxp)
@@ -72,7 +72,7 @@ exports.run = async (client, message, args) => {
             .setColor("YELLOW")
             .setTitle("👑 Ranking Global - MPoints")
         lb.forEach(d => {
-            embedxp.addField(`${d.rank}. ${d.user.tag}`, `💸 Carteira - ${d.level} <:StarPoint:766794021128765469>MPoints\n🏦 Banco - ${d.xp} <:StarPoint:766794021128765469>MPoints`)
+            embedxp.addField(`${d.rank}. ${d.user.tag}`, `🆔 *(${d.user.id})*\n💸 Carteira - ${d.level} <:StarPoint:766794021128765469>MPoints\n🏦 Banco - ${d.xp} <:StarPoint:766794021128765469>MPoints`)
         })
         embedxp.setFooter(`Seu ranking: ${myrank}`)
         embedxp.addField('Loteria Maya', `Prêmio Atual: ${db.get('loteria')} <:StarPoint:766794021128765469>MPoints`)

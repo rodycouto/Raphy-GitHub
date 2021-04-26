@@ -271,16 +271,15 @@ exports.run = async (client, message, args) => {
 
             db.add(`comida_${message.author.id}`, args[1])
             var acima = db.get(`comida_${message.author.id}`)
-            if (acima > 20) {
+            if (acima > 80) {
                 db.subtract(`comida_${message.author.id}`, args[1])
                 var nota = new Discord.MessageEmbed()
                     .setColor('#FF0000')
                     .setTitle('LIMITE DE COMIDA ATINGIDO!')
-                    .setDescription(`${message.author}, você não pode passar de **20 comidas**.`)
+                    .setDescription(`${message.author}, você não pode passar de **80 comidas**.`)
                 return message.inlineReply(nota)
             }
 
-            if (money > args[1] * 2) {
                 db.subtract(`mpoints_${message.author.id}`, args[1] * 2)
                 db.add(`banco_${client.user.id}`, args[1] * 2)
                 var buycomida = new Discord.MessageEmbed()
@@ -288,7 +287,6 @@ exports.run = async (client, message, args) => {
                     .setTitle('✅ Compra aprovada')
                     .setDescription(`${message.author} você comprou ${args[1]} 🥘 ` + '`Comidas`')
                 return message.inlineReply(buycomida)
-            }
         }
 
         if (['Carta', 'carta', 'cartas', 'Cartas', 'letter', 'Letter'].includes(args[0])) {
