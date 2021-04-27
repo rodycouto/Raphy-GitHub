@@ -43,7 +43,7 @@ exports.run = async (client, message, args) => {
         if (PrivadoDesativado) { return message.inlineReply('<:xis:835943511932665926> Ative as mensagens privadas para continuar a história. `' + prefix + 'privado`') }
 
         if (PrivadoDesativado === null) {
-            message.channel.send('<a:Check:836347816036663309> Eu mandei a história no seu privado, se você não recebeu, ative as mensagens diretas poxa...')
+            message.channel.send('<a:Check:836347816036663309> Eu mandei a história no seu privado, se você não recebeu, ative as mensagens diretas poxa...\n \nCOMANDO EM REFORMA #112451')
             message.author.send(CammumContinue1).catch(err => { return })
 
             if (remedio === null) { return message.author.send('Encontre os remédios do Velho Welter para continuar a história...').catch(err => { return }) }

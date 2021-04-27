@@ -6,20 +6,20 @@ exports.run = async (client, message, args) => {
 
     let timeout1 = 9140000
     let author1 = await db.fetch(`pego_${message.author.id}`)
-
+  
     if (author1 !== null && timeout1 - (Date.now() - author1) > 0) {
         let time = ms(timeout1 - (Date.now() - author1))
-
+  
         let presomax = new Discord.MessageEmbed()
             .setColor('#FF0000')
             .setTitle('🚨 Você está em prisão máxima!')
             .setDescription(`Liberdade em: ${time.hours}h ${time.minutes}m e ${time.seconds}s`)
-
+  
         return message.inlineReply(presomax)
     } else {
 
         let user = message.mentions.members.first()
-        let bot = message.mentions.bot
+        let bot = message.mentions.members.bot
         let nomoney = 'Dinheiro insuficiente.'
 
         let money = db.get(`mpoints_${message.author.id}`)
@@ -32,13 +32,13 @@ exports.run = async (client, message, args) => {
             .setColor('BLUE')
             .setTitle('💸 Sistema de Pagamento')
             .setDescription('Page a galera, é simples e rápido!\n \n*MPoints perdidos não serão recuperados. Cuidado para não ser enganado*')
-            .addField('Comando', '`' + prefix + 'pay @user quantia`\n' + '`' + prefix + 'pay @user all/tudo`')
+            .addField('Comando', '`' + prefix + 'pagar @user quantia`\n' + '`' + prefix + 'pagar @user all/tudo`')
             .setFooter('Apenas o dinheiro na carteira será válido para pagamentos.')
 
         let formato = new Discord.MessageEmbed()
             .setColor('#ff0000')
             .setTitle('Siga o formato correto')
-            .setDescription('`' + prefix + 'pay @user Valor`')
+            .setDescription('`' + prefix + 'pagar @user Valor`')
 
         if (!args[0]) { return message.inlineReply(noargs) }
         if (!args[1]) { return message.inlineReply(formato) }
@@ -47,6 +47,10 @@ exports.run = async (client, message, args) => {
         if (money < args[1]) { return message.inlineReply(`Você precisa ter ${args[1]}<:StarPoint:766794021128765469> na carteira para poder pagar ${user.user.username}.`) }
         if (args[1] < 0) { return message.inlineReply(nomoney) }
         if (isNaN(args[1])) { return message.inlineReply('Valor digitado não é um número.') }
+        db.add(`cachepay_${message.author.id}`, args[1])
+        db.subtract(`mpoints_${message.author.id}`, args[1])
+        let cache = db.get(`cachepay_${message.author.id}`)
+
 
         let confirm = new Discord.MessageEmbed()
             .setColor('BLUE')
@@ -65,8 +69,8 @@ exports.run = async (client, message, args) => {
 
                 if (reaction.emoji.name === '✅') { // Sim
                     msg.delete().catch(err => { return })
-                    db.add(`mpoints_${message.mentions.members.first().id}`, args[1])
-                    db.subtract(`mpoints_${message.author.id}`, args[1])
+                    db.add(`mpoints_${message.mentions.members.first().id}`, cache)
+                    db.delete(`cachepay_${message.author.id}`)
 
                     let embed = new Discord.MessageEmbed()
                         .setColor('#efff00')
@@ -75,6 +79,8 @@ exports.run = async (client, message, args) => {
                 }
                 if (reaction.emoji.name === '❌') { // Não
                     msg.delete().catch(err => { return })
+                    db.add(`mpoints_${message.author.id}`, cache)
+                    db.delete(`cachepay_${message.author.id}`)
                     message.inlineReply("Pagamento cancelado.")
                 }
             })

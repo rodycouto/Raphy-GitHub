@@ -25,6 +25,6 @@ exports.run = async (client, message, args) => {
 
         message.inlineReply(`Você deu reputação para ${user}`)
         let PrivadoDesativado = db.get(`privadooff_${user.id}`)
-        if (PrivadoDesativado) { return } else { user.send(`${message.author} te deu uma reputação.`) }
+        if (PrivadoDesativado) { return } else { user.send(`${message.author} te deu uma reputação.`).catch(err => { return }) }
     }
 }

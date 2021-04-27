@@ -2,7 +2,7 @@ const db = require('quick.db')
 const Discord = require('discord.js')
 const ms = require('parse-ms')
 
-exports.run = async (client, message, args) => { 
+exports.run = async (client, message, args) => {
 
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (prefix === null) { prefix = "-" }
@@ -45,6 +45,10 @@ exports.run = async (client, message, args) => {
             let quantia = args[2]
             if (!quantia) { return message.inlineReply('<:xis:835943511932665926> Use o comando de forma correta! `' + prefix + 'doar rosas @user quantidade`') }
             if (isNaN(quantia)) { return message.inlineReply(`<:xis:835943511932665926> **${quantia}** não é um número!`) }
+            if (rosas < quantia) { return message.inlineReply(`<:xis:835943511932665926> você não tem ${quantia} rosas para doar.`) }
+            db.subtract(`rosas_${message.author.id}`, quantia)
+            db.add(`cacherosas_${message.author.id}`, quantia)
+            let quantiarosas = db.get(`cacherosas_${message.author.id}`)
 
             let ConfirmRosas = new Discord.MessageEmbed()
                 .setColor('BLUE')
@@ -63,15 +67,17 @@ exports.run = async (client, message, args) => {
                     if (reaction.emoji.name === '✅') { // Sim
                         msg.delete().catch(err => { return })
 
-                        db.add(`rosas_${message.mentions.members.first().id}`, rosas)
-                        db.subtract(`rosas_${message.author.id}`, rosas)
-                        db.add(`rp_${message.mentions.members.first().id}`, quantia * 2)
-                        return message.channel.send(`<a:Check:836347816036663309> Transação efetuada com sucesso!\n${user} recebeu: ${args[2] * 2} Reputações e ${args[2]} 🌹 Rosas`).catch(err => { return })
+                        db.add(`rosas_${message.mentions.members.first().id}`, quantiarosas)
+                        db.delete(`cacherosas_${message.author.id}`)
+                        db.add(`rp_${message.mentions.members.first().id}`, quantiarosas * 2)
+                        return message.channel.send(`<a:Check:836347816036663309> Transação efetuada com sucesso!\n${user} recebeu: ${quantiarosas * 2} Reputações e ${quantiarosas} 🌹 Rosas`).catch(err => { return })
                     }
 
                     if (reaction.emoji.name === '❌') { // Não
                         msg.delete().catch(err => { return })
-                        msg.channel.send(`<a:Check:836347816036663309> Transação cancelada.`)
+                        db.add(`rosas_${message.author.id}`, quantiarosas)
+                        db.delete(`cacherosas_${message.author.id}`)
+                        return msg.channel.send(`<a:Check:836347816036663309> Transação cancelada.`)
                     }
                 })
             })
@@ -80,6 +86,9 @@ exports.run = async (client, message, args) => {
             if (["all", 'tudo'].includes(args[2])) {
                 if (money === '0') { return message.inlineReply('<:xis:835943511932665926> Você não tem dinheiro para doar.') }
                 if (money < '0') { return message.inlineReply('<:xis:835943511932665926> Você não pode doar dinheiro estando negativado.') }
+                db.add(`cachemoney_${message.author.id}`, money)
+                db.subtract(`mpoints_${message.author.id}`, money)
+                let cachemoney = db.get(`cachemoney_${message.author.id}`)
 
                 let confirm = new Discord.MessageEmbed() // Doar all
                     .setColor('BLUE')
@@ -98,23 +107,28 @@ exports.run = async (client, message, args) => {
                         if (reaction.emoji.name === '✅') { // Sim
                             msg.delete().catch(err => { return })
 
-                            db.add(`mpoints_${message.mentions.members.first().id}`, money)
-                            db.subtract(`mpoints_${message.author.id}`, money)
+                            db.add(`mpoints_${message.mentions.members.first().id}`, cachemoney)
+                            db.delete(`cachemoney_${message.author.id}`)
                             return message.channel.send(`<a:Check:836347816036663309> Transação efetuada com sucesso!\nQuantia: ${money}<:StarPoint:766794021128765469>MPoints`).catch(err => { return })
                         }
 
                         if (reaction.emoji.name === '❌') { // Não
                             msg.delete().catch(err => { return })
+                            db.add(`mpoints_${message.author.id}`, cachemoney)
+                            db.delete(`cachemoney_${message.author.id}`)
                             return msg.channel.send(`<a:Check:836347816036663309> Transação cancelada.`)
                         }
                     })
                 })
             } else {
-                
+
                 if (args[2] < '0') { return message.inlineReply('<a:attention:836101248183959562> Diga um valor maior que 0') }
                 if (money === '0') { return message.inlineReply('<:xis:835943511932665926> Você não pode fazer doações sem dinheiro.') }
                 if (money < args[2]) { return message.inlineReply('<:xis:835943511932665926> Você não tem todo esse dinheiro para doar.') }
                 if (isNaN(args[2])) { return message.inlineReply(`<:xis:835943511932665926> **${args[2]}** não é um número.`) }
+                db.add(`cachemoney2_${message.author.id}`, money)
+                db.subtract(`mpoints_${message.author.id}`, money)
+                let cachemoney2 = db.get(`cachemoney_${message.author.id}`)
 
                 let confirm2 = new Discord.MessageEmbed() // Doar quantia
                     .setColor('BLUE')
@@ -133,13 +147,15 @@ exports.run = async (client, message, args) => {
                         if (reaction.emoji.name === '✅') { // Sim
                             msg.delete().catch(err => { return })
 
-                            db.add(`mpoints_${message.mentions.members.first().id}`, args[2])
-                            db.subtract(`mpoints_${message.author.id}`, args[2])
+                            db.add(`mpoints_${message.mentions.members.first().id}`, cachemoney2)
+                            db.delete(`cachemoney2_${message.author.id}`, args[2])
                             return message.channel.send(`<a:Check:836347816036663309> Transação efetuada com sucesso!\n${user.username} recebeu ${args[2]}<:StarPoint:766794021128765469>MPoints`).catch(err => { return })
                         }
 
                         if (reaction.emoji.name === '❌') { // Não
                             msg.delete().catch(err => { return })
+                            db.add(`mpoints_${message.author.id}`, cachemoney2)
+                            db.delete(`cachemoney2_${message.author.id}`)
                             return msg.channel.send(`<a:Check:836347816036663309> Transação cancelada.`)
                         }
                     })

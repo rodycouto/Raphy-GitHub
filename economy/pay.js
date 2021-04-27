@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
     } else {
 
         let user = message.mentions.members.first()
-        let bot = message.mentions.bot
+        let bot = message.mentions.members.bot
         let nomoney = 'Dinheiro insuficiente.'
 
         let money = db.get(`mpoints_${message.author.id}`)
@@ -47,6 +47,10 @@ exports.run = async (client, message, args) => {
         if (money < args[1]) { return message.inlineReply(`Você precisa ter ${args[1]}<:StarPoint:766794021128765469> na carteira para poder pagar ${user.user.username}.`) }
         if (args[1] < 0) { return message.inlineReply(nomoney) }
         if (isNaN(args[1])) { return message.inlineReply('Valor digitado não é um número.') }
+        db.add(`cachepay_${message.author.id}`, args[1])
+        db.subtract(`mpoints_${message.author.id}`, args[1])
+        let cache = db.get(`cachepay_${message.author.id}`)
+
 
         let confirm = new Discord.MessageEmbed()
             .setColor('BLUE')
@@ -65,8 +69,8 @@ exports.run = async (client, message, args) => {
 
                 if (reaction.emoji.name === '✅') { // Sim
                     msg.delete().catch(err => { return })
-                    db.add(`mpoints_${message.mentions.members.first().id}`, args[1])
-                    db.subtract(`mpoints_${message.author.id}`, args[1])
+                    db.add(`mpoints_${message.mentions.members.first().id}`, cache)
+                    db.delete(`cachepay_${message.author.id}`)
 
                     let embed = new Discord.MessageEmbed()
                         .setColor('#efff00')
@@ -75,6 +79,8 @@ exports.run = async (client, message, args) => {
                 }
                 if (reaction.emoji.name === '❌') { // Não
                     msg.delete().catch(err => { return })
+                    db.add(`mpoints_${message.author.id}`, cache)
+                    db.delete(`cachepay_${message.author.id}`)
                     message.inlineReply("Pagamento cancelado.")
                 }
             })
