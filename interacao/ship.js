@@ -11,13 +11,30 @@ exports.run = async (client, message, args) => {
   let love = Math.random() * 100
   let loveIndex = Math.floor(love / 10)
   let loveLevel = "💖".repeat(loveIndex) + "💔".repeat(10 - loveIndex)
-  let avatar = message.author.displayAvatarURL({ format: 'png' })
+  let gif70 = 'https://imgur.com/zZLdONH.gif'
+  let gif40 = 'https://imgur.com/jx3VwoC.gif'
+  let gif00 = 'https://imgur.com/LOFGlt5.gif'
 
-  let embed = new Discord.MessageEmbed()
-    .setAuthor(message.author.username, avatar)
+  const embed = new Discord.MessageEmbed()
     .setColor("RED")
-    .setThumbnail(user.user.displayAvatarURL({ dynamic: true }))
-    .addField(`${user.user.username} ama você em: ${Math.floor(love)}%`, `${loveLevel}`)
+
+  if (love > 70) {
+    embed.setTitle('<:zeroheart:833378638475821088> Medidor de Amor Maya')
+    embed.setThumbnail(gif70)
+    embed.setDescription(`${user} & ${message.author}\nHuuum... Eu vejo futuro.\n${loveLevel} ${Math.floor(love)}% `)
+  }
+
+  if (love > 40 && love < 70) {
+    embed.setTitle('<:zerocute:832643202321874956> Medidor de Amor Maya')
+    embed.setThumbnail(gif40)
+    embed.setDescription(`${user} & ${message.author}\nhmm... Ainda acho que pode sair algo.\n${loveLevel} ${Math.floor(love)}% `)
+  }
+
+  if (love < 40) {
+    embed.setTitle('<:sleep:833378639302754354> Medidor de Amor Maya')
+    embed.setThumbnail(gif00)
+    embed.setDescription(`${user} & ${message.author}\n... Que pena.\n${loveLevel} ${Math.floor(love)}% `)
+  }
 
   return message.inlineReply(embed)
 }
