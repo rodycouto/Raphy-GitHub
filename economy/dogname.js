@@ -7,8 +7,8 @@ exports.run = async (client, message, args) => {
     if (prefix === null) prefix = "-"
 
     let medalha = db.get(`medalha_${message.author.id}`)
-    if (medalha === null) { '<:xis:835943511932665926> Você ainda não obteve sua melhada!' }
-    if (!db.get(`medalha_${message.author.id}`)) { '<:xis:835943511932665926> Você ainda não obteve sua melhada!' }
+    if (medalha === null) { return message.inlineReply('<:xis:835943511932665926> Você ainda não obteve sua melhada!') }
+    if (!db.get(`medalha_${message.author.id}`)) { return message.inlineReply('<:xis:835943511932665926> Você ainda não obteve sua melhada!') }
 
     const args0 = new Discord.MessageEmbed()
         .setColor('BLUE')
