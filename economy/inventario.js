@@ -70,42 +70,51 @@ exports.run = async (client, message, args) => {
     if (picareta === null) { picareta = "" }
     if (!db.get(`picareta_${user.id}`)) { picareta = "" }
 
-    let machado = db.get(`machado_${user.id}`)
+    let machado = await db.get(`machado_${user.id}`)
     if (machado) { machado = "\n🪓 Machado" }
     if (machado === null) { machado = "" }
     if (!db.get(`machado_${user.id}`)) { machado = "" }
 
-    let vara = db.get(`vara_${user.id}`)
+    let vara = await db.get(`vara_${user.id}`)
     if (vara) { vara = "\n🎣 Vara de pesca" }
     if (vara === null) { vara = "" }
     if (!db.get(`vara_${user.id}`)) { vara = "" }
 
-    let faca = db.get(`faca_${user.id}`)
+    let faca = await db.get(`faca_${user.id}`)
     if (faca) { faca = "\n🔪 Faca" }
     if (faca === null) { faca = "" }
     if (!db.get(`faca_${user.id}`)) { faca = "" }
 
-    let loli = db.get(`loli_${user.id}`)
+    let loli = await db.get(`loli_${user.id}`)
     if (loli) { loli = "\n<:Loli:831571527744356422> Loli" }
     if (loli === null) { loli = "" }
     if (!db.get(`loli_${user.id}`)) { loli = "" }
 
-    let cachorro = db.get(`cachorro_${user.id}`)
+    let cachorro = await db.get(`cachorro_${user.id}`)
     if (cachorro) { cachorro = "\n🐶 Cachorro Brown" }
     if (cachorro === null) { cachorro = "" }
     if (!db.get(`cachorro_${user.id}`)) { cachorro = "" }
 
-    let bola = db.get(`bola_${user.id}`)
+    let dogname = await `\n<:doguinho:836393852889202698> ${db.get(`dogname_${message.author.id}`)}`
+    if (dogname === "\n<:doguinho:836393852889202698> ON") { dogname = "\n<:doguinho:836393852889202698> Doguinho sem nome" }
+    if (dogname === null) { dogname = "" }
+    if (!db.get(`dogname_${message.author.id}`)) { dogname = "" }
+
+    let medalha = await db.get(`medalha_${user.id}`)
+    if (medalha === null) { medalha = "0" }
+    if (!db.get(`medalha_${user.id}`)) { medalha = "0" }
+
+    let bola = await db.get(`bola_${user.id}`)
     if (bola) { bola = "\n🥎 Bola" }
     if (bola === null) { bola = "" }
     if (!db.get(`bola_${user.id}`)) { bola = "" }
 
-    let fossil = db.get(`fossil_${user.id}`)
+    let fossil = await db.get(`fossil_${user.id}`)
     if (fossil) { fossil = "\n<:fossil:831859111578173450> Fossil" }
     if (fossil === null) { fossil = "" }
     if (!db.get(`fossil_${user.id}`)) { fossil = "" }
 
-    let mamute = db.get(`mamute_${user.id}`)
+    let mamute = await db.get(`mamute_${user.id}`)
     if (mamute) { mamute = "\n🦣 Mamute" }
     if (mamute === null) { mamute = "" }
     if (!db.get(`mamute_${user.id}`)) { mamute = "" }
@@ -114,7 +123,7 @@ exports.run = async (client, message, args) => {
     if (nada) { nada = 'Não há nada aqui' }
     if (!nada) { nada = '' }
 
-    let nada2 = !title && !faca && !loli && !fossil && !mamute && !bola && !cachorro
+    let nada2 = !title && !faca && !loli && !fossil && !mamute && !bola && !cachorro && !dogname
     if (nada2) { nada2 = 'Não há nada aqui' }
     if (!nada2) { nada2 = '' }
 
@@ -122,8 +131,8 @@ exports.run = async (client, message, args) => {
         .setColor('BLUE')
         .setTitle(`📖 **Inventário de ${user.user.username}**`)
         .addField('Itens Comprados', `${nada}${arma}${picareta}${vara}${machado}${cartas}`)
-        .addField('Itens Obtidos', `${nada2}${title}${faca}${loli}${fossil}${mamute}${bola}${cachorro}`)
-        .addField('Mantimentos', `🐟 ${peixes} Peixes\n🥘 ${comida} Comidas\n🪱 ${iscas} Iscas\n🥤 ${agua} Água\n🎟️ ${fichas} Fichas\n🍤 ${camarao} Camarões\n🦴 ${ossos} Ossos\n🌹 ${rosas} Rosas\n🍎 ${apple} Maça\n🪨 ${minerio} Minérios\n💎 ${diamond} Diamantes`)
-
+    if (medalha === "0") { Embed.addField('Itens Obtidos', `${nada2}${title}${faca}${loli}${fossil}${mamute}${bola}${cachorro}`) }
+    if (medalha) { Embed.addField('Itens Obtidos', `${nada2}${title}${faca}${loli}${fossil}${mamute}\n🏅 Medalha Cammum${dogname}`) }
+    Embed.addField('Mantimentos', `🐟 ${peixes} Peixes\n🥘 ${comida} Comidas\n🪱 ${iscas} Iscas\n🥤 ${agua} Água\n🎟️ ${fichas} Fichas\n🍤 ${camarao} Camarões\n🦴 ${ossos} Ossos\n🌹 ${rosas} Rosas\n🍎 ${apple} Maça\n🪨 ${minerio} Minérios\n💎 ${diamond} Diamantes`)
     await message.inlineReply(Embed)
 }

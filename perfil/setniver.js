@@ -58,7 +58,7 @@ exports.run = async (client, message, args) => {
     if (args[1] !== "/") { return message.inlineReply(erro) }
 
     if (args[2] > 12) { return message.inlineReply('Quantos meses tem seu ano?', erro) }
-    if (args[2] === "2" && args[0] > 28) { return message.inlineReply('Fevereiro não tem mais de 28 dias', erro) }
+    if (args[2] === 02 && args[0] > 28) { return message.inlineReply('Fevereiro não tem mais de 28 dias', erro) }
     if (args[2] < 1) { return message.inlineReply('Qual é, colabora!', erro) }
     if (isNaN(args[2])) { return message.inlineReply('Sem letras poxa', erro) }
     if (args[2].length < 2) { return message.inlineReply('Não trolla', erro) }
