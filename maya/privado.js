@@ -23,7 +23,7 @@ exports.run = async (client, message, args) => {
 
         const confirm = new Discord.MessageEmbed()
             .setColor('BLUE')
-            .setTitle('Confirmação...')
+            .setTitle('<a:carregando:836101628083437608> Confirmação...')
             .setDescription('Você confirma em desabilitar minhas mensagens no seu privado?\n \nVocê confirmando esta ação, alguns comandos será desativado para você e você não receberá nenhuma mensagem minha no seu privado.')
             .setFooter('Auto delete em 1 minuto.')
 
@@ -39,7 +39,7 @@ exports.run = async (client, message, args) => {
                     msg.delete().catch(err => { return })
 
                     if (PrivadoDesativado) {
-                        setTimeout(function () { return message.inlineReply('<a:Check:836347816036663309> Minhas mensagens no seu privado já estão desativadas.`' + prefix + 'privado` para mais informações.') }, 4300)
+                        setTimeout(function () { return message.inlineReply('<a:Check:836347816036663309> Minhas mensagens no seu privado já estão desativadas.\nDigite `' + prefix + 'privado` para mais informações.') }, 4300)
                         return message.inlineReply('<a:carregando:836101628083437608> Autenticando alterações...').then(msg => msg.delete({ timeout: 4200 }).catch(err => { return }))
                     }
 
@@ -61,7 +61,7 @@ exports.run = async (client, message, args) => {
 
         const confirm1 = new Discord.MessageEmbed()
             .setColor('BLUE')
-            .setTitle('Confirmação...')
+            .setTitle('<a:carregando:836101628083437608> Confirmação...')
             .setDescription('Você confirma em habilitar minhas mensagens no seu privado?\n \nVocê confirmando esta ação, comandos será ativado para você e você receberá mensagens minhas no seu privado. *(Tudo opicional)*')
             .setFooter('Auto delete em 1 minuto.')
 
@@ -77,7 +77,7 @@ exports.run = async (client, message, args) => {
                     msg.delete().catch(err => { return })
 
                     if (PrivadoDesativado === null) {
-                        setTimeout(function () { message.channel.send('<a:Check:836347816036663309> Minhas mensagens no seu privado já estão ativadas.`' + prefix + 'privado` para mais informações.') }, 6300)
+                        setTimeout(function () { message.channel.send('<a:Check:836347816036663309> Minhas mensagens no seu privado já estão ativadas.\nDigite `' + prefix + 'privado` para mais informações.') }, 6300)
                         return message.inlineReply('<a:carregando:836101628083437608> Autenticando alterações...').then(msg => msg.delete({ timeout: 6200 }).catch(err => { return }))
                     }
 
@@ -97,7 +97,7 @@ exports.run = async (client, message, args) => {
         })
     } else if (['status'].includes(args[0].toLowerCase())) {
         let privado = db.get(`privadooff_${message.author.id}`)
-        if (privado) { return message.inlineReply('Mensagens Privadas: Desativadas | Você não recebe mensagens minhas no seu privado') }
-        if (privado === null) { return message.inlineReply('Mensagens Privadas: Ativadas | Você recebe mensagens minhas no seu privado') }
+        if (privado) { return message.inlineReply('Status: Desativado\nVocê **não recebe** mensagens minhas no seu privado') }
+        if (privado === null) { return message.inlineReply('Status: Ativado\nVocê **recebe** mensagens minhas no seu privado') }
     }
 }
