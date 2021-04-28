@@ -26,22 +26,16 @@ client.on("message", async (message) => {
             .setTimestamp()
 
         const canal = client.channels.cache.get('831154821204803634')
-        if (!canal) {
-            return
-        } else {
-            return canal.send(dmEmbed)
-        }
+        if (!canal) { return } else { return canal.send(dmEmbed) }
     }
     xp(message)
 
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (prefix === null) { prefix = "-" }
 
-    let PrivadoDesativado = db.get(`privadooff_${message.author.id}`)
-
     if (message.content.startsWith('<')) {
         if (message.content.endsWith('>'))
-            if (message.mentions.has(client.user.id)) { return message.inlineReply('Prefixo atual: `' + prefix + '` | `' + prefix + 'help`').then(msg => msg.delete({ timeout: 5000 })).catch(err => { return }) }
+        if (message.mentions.has(client.user.id)) { return message.inlineReply('Prefixo atual: `' + prefix + '` | `' + prefix + 'help`').then(msg => msg.delete({ timeout: 5000 })).catch(err => { return }) }
     }
 
     if (!message.member.hasPermission("ADMINISTRATOR")) {
@@ -113,7 +107,7 @@ client.on("message", async (message) => {
         }
     }
 
-    if (message.content.startsWith(`${prefix}check`)) { message.react("") }
+    if (message.content.startsWith(`${prefix}check`)) { message.react("✅") }
     if (message.content.startsWith(`${prefix}inline`)) { return message.inlineReply("<a:Check:836347816036663309> Inline Reply funcionando corretamente") }
 
     try {
@@ -226,9 +220,7 @@ client.on("guildMemberRemove", (member) => {
     let msgleave = db.get(`msgleave_${member.guild.id}`)
     if (msgleave === null) { msgleave = 'saiu do servidor.' }
 
-    if (canal) {
-        client.channels.cache.get(canal).send(`📢 ${member.user.tag} ${msgleave}`)
-    }
+    if (canal) { client.channels.cache.get(canal).send(`📢 ${member.user.tag} ${msgleave}`) }
 })
 
 client.on("guildMemberAdd", (member) => {
@@ -240,9 +232,7 @@ client.on("guildMemberAdd", (member) => {
     let msgwelcome = db.get(`msgwelcome_${member.guild.id}`)
     if (msgwelcome === null) { msgwelcome = 'entrou no servidor.' }
 
-    if (canal) {
-        return client.channels.cache.get(canal).send(`📢 ${member} ${msgwelcome}`)
-    }
+    if (canal) { return client.channels.cache.get(canal).send(`📢 ${member} ${msgwelcome}`) }
 
     let role = db.get(`autorole_${member.guild.id}`)
     if (role === null) { return }
@@ -277,12 +267,8 @@ client.on('guildCreate', guild => {
         .setDescription(`**Servidor:** ${guild.name}\n:id: ${guild.id}\n**Membros:** ${guild.memberCount}\n🌐 **Shard** ${client.guilds.cache.size}`)
         .setTimestamp()
 
-        let canal = client.channels.cache.get('831663336776400957')
-    if (!canal) {
-        return
-    } else {
-        return canal.send(NewGuildEmbed)
-    }
+    let canal = client.channels.cache.get('831663336776400957')
+    if (!canal) { return } else { return canal.send(NewGuildEmbed) }
 })
 
 client.on('guildDelete', guild => {
@@ -292,23 +278,14 @@ client.on('guildDelete', guild => {
         .setDescription(`**Servidor:** ${guild.name}\n:id: ${guild.id}\n🌐 **Shard** ${client.guilds.cache.size}`)
         .setTimestamp()
 
-        let canal = client.channels.cache.get('831663336776400957')
-    if (!canal) {
-        return
-    } else {
-        return canal.send(NewGuildEmbed)
-    }
+    let canal = client.channels.cache.get('831663336776400957')
+    if (!canal) { return } else { return canal.send(NewGuildEmbed) }
 })
 
 client.once("ready", () => {
     let envi = client.channels.cache.get('830964037461344296')
     console.log(`Loguei com sucesso!`)
-
-    if (!envi) {
-        return
-    } else if (envi) {
-        return envi.send(`Cheguei ( ͡° ͜ʖ ͡°)`)
-    }
+    if (!envi) { return } else if (envi) { return envi.send(`Cheguei ( ͡° ͜ʖ ͡°)`) }
 })
 
 client.login(token)
