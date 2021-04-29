@@ -17,7 +17,7 @@ exports.run = async (client, message, args) => {
     const rody = message.author.id === ("451619591320371213")
     if (!rody) {
         message.delete().catch(err => { return })
-        return message.channel.send('⚠️ Este comando é um restrito.').then(msg => msg.delete({ timeout: 5000 }))
+        return message.channel.send('⚠️ Este é um comando restrito.').then(msg => msg.delete({ timeout: 5000 }))
     }
 
     let user = message.mentions.members.first()

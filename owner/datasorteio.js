@@ -4,7 +4,7 @@ exports.run = async (client, message, args) => {
 
     if (message.author.id !== "451619591320371213") {
         message.delete().catch(err => { return })
-        return message.inlineReply('⚠️ Este comando é um restrito.').then(msg => msg.delete({ timeout: 5000 }))
+        return message.inlineReply('⚠️ Este é um comando restrito.').then(msg => msg.delete({ timeout: 5000 }))
     }
 
     if (!args[0]) { return message.channel.send('Faltou dizer a data') }

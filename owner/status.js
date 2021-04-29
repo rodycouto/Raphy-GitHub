@@ -4,7 +4,7 @@ exports.run = async (client, message, args) => {
 
   let rody = message.author.id === ("451619591320371213")
   if (!rody)
-    return message.inlineReply('⚠️ Este comando é um restrito.')
+    return message.inlineReply('⚠️ Este é um comando restrito.')
 
   if (!args.length) {
     return message.inlineReply("Qual é a mensagem?")

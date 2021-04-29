@@ -281,11 +281,14 @@ exports.run = async (client, message, args) => {
     }
 
   } else if (["count", "membros", "registrados"].includes(args[0])) {
-    let role = message.mentions.roles.first().id
+    let role = message.mentions.roles.first()
     if (!role) { return message.inlineReply('Hey! Você não me disse qual é o cargo! `' + prefix + 'role membros @cargo`') }
 
-    let MembrosComARole = message.guild.roles.cache.get(role).members
-    return message.channel.send(`Membros com cargo <@&${role}>: ${MembrosComARole.size}`)
+    let MembrosComARole = message.guild.roles.cache.get(role.id).members
+    const RoleMembrosEmbed = new Discord.MessageEmbed()
+      .setColor('BLUE')
+      .setDescription(`**Cargo:** ${role}\n**${MembrosComARole.size} Membros** possui este cargo.`)
+    return message.channel.send(RoleMembrosEmbed)
 
   } else if (["id"].includes(args[0])) {
     let role = message.mentions.roles.first().id
