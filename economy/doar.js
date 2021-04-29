@@ -67,10 +67,9 @@ exports.run = async (client, message, args) => {
                     if (reaction.emoji.name === '✅') { // Sim
                         msg.delete().catch(err => { return })
 
-                        db.add(`rosas_${message.mentions.members.first().id}`, quantiarosas)
                         db.delete(`cacherosas_${message.author.id}`)
                         db.add(`rp_${message.mentions.members.first().id}`, quantiarosas * 2)
-                        return message.channel.send(`<a:Check:836347816036663309> Transação efetuada com sucesso!\n${message.mentions.members.first()} recebeu: ${quantiarosas * 2} Reputações e ${quantiarosas} 🌹 Rosas`).catch(err => { return })
+                        return message.channel.send(`<a:Check:836347816036663309> ${message.mentions.members.first()} recebeu ${quantiarosas * 2} Reputações por ter recebido 🌹 Rosas de ${message.author}`).catch(err => { return })
                     }
 
                     if (reaction.emoji.name === '❌') { // Não
