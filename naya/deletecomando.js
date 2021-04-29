@@ -41,9 +41,7 @@ exports.run = async (client, message, args) => {
         let value = database.indexOf(data)
         delete database[value]
 
-        let filter = database.filter(x => {
-            return x != null && x != ''
-        })
+        let filter = database.filter(x => { return x != null && x != '' })
 
         db.set(`guildConfigurations_${message.guild.id}.commands`, filter)
 

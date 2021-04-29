@@ -71,7 +71,7 @@ exports.run = async (client, message, args) => {
 
     let data = {
         name: commandName,
-        response: commandResponse
+        response: `${commandResponse}\n\nComando por: <@${message.author.id}>`
     }
 
     db.push(`guildConfigurations_${message.guild.id}.commands`, data)

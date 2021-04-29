@@ -30,5 +30,5 @@ exports.run = async (client, message, args) => {
   }
 
   let sayMessage = args.join(' ')
-  message.inlineReply(sayMessage + `\n \n- *Mensagem por: ${message.author}*`)
+  message.channel.send(sayMessage + `\n \n- *Mensagem por: ${message.author}*`)
 }

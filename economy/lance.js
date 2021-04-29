@@ -57,7 +57,11 @@ exports.run = async (client, message, args) => {
                 let cache = db.get(`lancechache_${message.author.id}`)
                 db.set(`lancetimeout_${message.author.id}`, Date.now())
 
-                let m = await message.channel.send(LanceEmbed)
+                const LanceEmbedAll = new Discord.MessageEmbed()
+                .setColor('GREEN')
+                .setDescription(`<a:MoneyWings:834899137991540797> ${message.author} lançou ${cache} <:StarPoint:766794021128765469>MPoints no chat.`)
+
+                let m = await message.channel.send(LanceEmbedAll)
                 m.react("✅")
                 setTimeout(() => {
                     if (m.reactions.cache.get("✅").count <= 1) {
@@ -90,6 +94,12 @@ exports.run = async (client, message, args) => {
                 let m = await message.channel.send(LanceEmbed)
                 m.react("✅")
                 setTimeout(() => {
+                    if (!m.reactions.cache.get("✅")) {
+                        db.add(`mpoints_${message.author.id}`, cache)
+                        db.delete(`lancechache_${message.author.id}`)
+                        return message.channel.send('<:xis:835943511932665926> Lance cancelado por falta de participantes.')
+                    }
+
                     if (m.reactions.cache.get("✅").count <= 1) {
                         db.add(`mpoints_${message.author.id}`, cache)
                         db.delete(`lancechache_${message.author.id}`)
