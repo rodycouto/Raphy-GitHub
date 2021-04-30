@@ -70,7 +70,7 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`${args[2]} fichas foram adicionadas ao slot de ${user}.`)
     }
 
-    if (['mp', 'money'].includes(args[0])) {
+    if (['np', 'money'].includes(args[0])) {
 
         if (!user) { return message.channel.send('`' + prefix + 'add money @user Valor`') }
 
@@ -263,7 +263,7 @@ exports.run = async (client, message, args) => {
         if (isNaN(valor)) { return message.channel.send(`**${valor}** não é um número.`) }
 
         db.add(`loteria`, valor)
-        return message.channel.send(`${valor}<:StarPoint:766794021128765469>MPoints foram adicionados a loteria com sucesso!.`)
+        return message.channel.send(`${valor}<:NPoints:837666759389347910>NPoints foram adicionados a loteria com sucesso!.`)
     }
 
     return message.channel.send('Comando não encontrado no registro.')

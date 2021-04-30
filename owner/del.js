@@ -65,7 +65,7 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`As cartas de ${user} foram deletadas..`)
     }
 
-    if (['mp', 'money', 'carteira'].includes(args[0])) {
+    if (['np', 'money', 'carteira'].includes(args[0])) {
 
         if (!user) { return message.channel.send('`' + prefix + 'del money @user`') }
 

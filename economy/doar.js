@@ -80,7 +80,7 @@ exports.run = async (client, message, args) => {
                     }
                 })
             })
-        } else if (['money', 'mp', 'dinheiro', 'cash'].includes(args[0])) {
+        } else if (['money', 'np', 'dinheiro', 'cash'].includes(args[0])) {
 
             if (["all", 'tudo'].includes(args[2])) {
                 if (money === '0') { return message.inlineReply('<:xis:835943511932665926> Você não tem dinheiro para doar.') }
@@ -92,7 +92,7 @@ exports.run = async (client, message, args) => {
                 let confirm = new Discord.MessageEmbed() // Doar all
                     .setColor('BLUE')
                     .setTitle('Confirmação...')
-                    .setDescription(`<a:attention:836101248183959562> Confirmar transação no valor de ${money}<:StarPoint:766794021128765469>MPoints para ${user}?`)
+                    .setDescription(`<a:attention:836101248183959562> Confirmar transação no valor de ${money}<:NPoints:837666759389347910>NPoints para ${user}?`)
 
                 return message.inlineReply(confirm).then(msg => {
                     msg.react('✅') // Check
@@ -108,7 +108,7 @@ exports.run = async (client, message, args) => {
 
                             db.add(`mpoints_${message.mentions.members.first().id}`, cachemoney)
                             db.delete(`cachemoney_${message.author.id}`)
-                            return message.channel.send(`<a:Check:836347816036663309> Transação efetuada com sucesso!\nQuantia: ${money}<:StarPoint:766794021128765469>MPoints`).catch(err => { return })
+                            return message.channel.send(`<a:Check:836347816036663309> Transação efetuada com sucesso!\nQuantia: ${money}<:NPoints:837666759389347910>NPoints`).catch(err => { return })
                         }
 
                         if (reaction.emoji.name === '❌') { // Não
@@ -133,7 +133,7 @@ exports.run = async (client, message, args) => {
                 let confirm2 = new Discord.MessageEmbed() // Doar quantia
                     .setColor('BLUE')
                     .setTitle('Confirmação...')
-                    .setDescription(`<a:attention:836101248183959562> Confirmar transação no valor de ${args[2]}<:StarPoint:766794021128765469>MPoints para ${user}?`)
+                    .setDescription(`<a:attention:836101248183959562> Confirmar transação no valor de ${args[2]}<:NPoints:837666759389347910>NPoints para ${user}?`)
 
                 return message.inlineReply(confirm2).then(msg => {
                     msg.react('✅').catch(err => { return }) // Check
@@ -149,7 +149,7 @@ exports.run = async (client, message, args) => {
 
                             db.add(`mpoints_${message.mentions.members.first().id}`, cachemoney2)
                             db.delete(`cachemoney2_${message.author.id}`, args[2])
-                            return message.channel.send(`<a:Check:836347816036663309> Transação efetuada com sucesso!\n${message.mentions.members.first()} recebeu ${args[2]}<:StarPoint:766794021128765469>MPoints`).catch(err => { return })
+                            return message.channel.send(`<a:Check:836347816036663309> Transação efetuada com sucesso!\n${message.mentions.members.first()} recebeu ${args[2]}<:NPoints:837666759389347910>NPoints`).catch(err => { return })
                         }
 
                         if (reaction.emoji.name === '❌') { // Não

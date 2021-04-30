@@ -38,7 +38,7 @@ exports.run = async (client, message, args) => {
                         let embed = new Discord.MessageEmbed()
                             .setColor('GREEN')
                             .setTitle('O cliente gostou!')
-                            .setDescription(`${message.author}, o cliente anônimo gostou dos seus serviços e te pagou ${din}<:StarPoint:766794021128765469>MPoints`)
+                            .setDescription(`${message.author}, o cliente anônimo gostou dos seus serviços e te pagou ${din}<:NPoints:837666759389347910>NPoints`)
                         return message.inlineReply(embed)
                     }
 
@@ -49,12 +49,12 @@ exports.run = async (client, message, args) => {
                         let embed = new Discord.MessageEmbed()
                             .setColor('#8B0000')
                             .setTitle('O cliente não gostou!')
-                            .setDescription(`${message.author}, o cliente anônimo não gostou dos seus serviços e seu prejuizo foi de ${din}<:StarPoint:766794021128765469>MPoints`)
+                            .setDescription(`${message.author}, o cliente anônimo não gostou dos seus serviços e seu prejuizo foi de ${din}<:NPoints:837666759389347910>NPoints`)
                         return message.inlineReply(embed)
                     }
                 }
 
-                if (reaction.emoji.name === '❌') { // MPEmbed
+                if (reaction.emoji.name === '❌') { // NPEmbed
                     msg.delete().catch(err => { return })
                     let cancel = new Discord.MessageEmbed()
                         .setColor('GREEN')

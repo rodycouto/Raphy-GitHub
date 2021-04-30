@@ -54,7 +54,7 @@ exports.run = async (client, message, args) => {
                     .setTitle('Status alterado com sucesso!')
                 message.inlineReply(embednewstatus)
             }
-            if (reaction.emoji.name === '❌') { // MPEmbed
+            if (reaction.emoji.name === '❌') { // NPEmbed
                 msg.delete().catch(err => { return })
                 let cancel = new Discord.MessageEmbed()
                     .setColor("GREEN")

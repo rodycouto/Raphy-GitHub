@@ -78,7 +78,7 @@ exports.run = async (client, message, args) => {
         return message.inlineReply(`${amount} Maças foram removidas do slot de ${user}.`)
     }
 
-    if (['mp', 'money'].includes(args[0])) {
+    if (['np', 'money'].includes(args[0])) {
 
         if (!user) { return message.inlineReply('`' + prefix + 'remove money @user Valor`') }
 

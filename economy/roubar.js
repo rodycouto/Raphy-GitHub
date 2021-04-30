@@ -53,12 +53,12 @@ exports.run = async (client, message, args) => {
             let LoseEmbed = new Discord.MessageEmbed()
                 .setColor('#8B0000')
                 .setTitle("🚨 A polícia te pegou e você foi preso!")
-                .setDescription(`A fiança custou ${amount}<:StarPoint:766794021128765469>MPoints`)
+                .setDescription(`A fiança custou ${amount}<:NPoints:837666759389347910>NPoints`)
 
             let WinEmbed = new Discord.MessageEmbed()
                 .setColor("GREEN")
                 .setTitle(`🔫 Você roubou ${user.user.username} com sucesso!`)
-                .setDescription(`${message.author} obteve um lucro de ${amount1}<:StarPoint:766794021128765469>MPoints com o roubo.`)
+                .setDescription(`${message.author} obteve um lucro de ${amount1}<:NPoints:837666759389347910>NPoints com o roubo.`)
 
             if (result == 'lose') {
                 db.subtract(`mpoints_${message.author.id}`, amount)

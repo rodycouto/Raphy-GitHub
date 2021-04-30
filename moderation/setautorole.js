@@ -70,7 +70,7 @@ exports.run = async (client, message, args) => {
                     return message.channel.send('<a:carregando:836101628083437608> Desativando o Autorole System...').then(msg => msg.delete({ timeout: 3400 })).then(msg => msg.channel.send(desativado))
                 }
 
-                if (reaction.emoji.name === '❌') { // MPEmbed
+                if (reaction.emoji.name === '❌') { // NPEmbed
                     msg.delete().catch(err => { return })
                     return message.channel.send('Comando cancelado')
                 }
@@ -134,7 +134,7 @@ exports.run = async (client, message, args) => {
                 return message.channel.send(timing).then(msg => msg.delete({ timeout: 8000 })).then(msg => msg.channel.send(redefine))
             }
 
-            if (reaction.emoji.name === '❌') { // MPEmbed
+            if (reaction.emoji.name === '❌') { // NPEmbed
                 msg.delete().catch(err => { return })
                 return message.channel.send('Comando cancelado')
             }

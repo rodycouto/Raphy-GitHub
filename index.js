@@ -93,7 +93,7 @@ client.on("message", async (message) => {
                 if (xpchannel) {
                     const newlevel = new Discord.MessageEmbed()
                         .setColor('GREEN')
-                        .setDescription(`:tada: ${message.author}, você subiu para o level ${newLevel}! Bônus: 500 <:StarPoint:766794021128765469>MPoints`)
+                        .setDescription(`:tada: ${message.author}, você subiu para o level ${newLevel}! Bônus: 500 <:NPoints:837666759389347910>NPoints`)
                     client.channels.cache.get(xpchannel).send(newlevel)
                 }
             }

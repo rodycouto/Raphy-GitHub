@@ -14,13 +14,13 @@ exports.run = async (client, message, args) => {
     const noargs = new Discord.MessageEmbed()
         .setColor('BLUE')
         .setTitle('👊 ✋ ✌️ Jokempo')
-        .setDescription('Você pode jogar jokempo e ganhar ou perder 10 <:StarPoint:766794021128765469>MPoints')
+        .setDescription('Você pode jogar jokempo e ganhar ou perder 10 <:NPoints:837666759389347910>NPoints')
         .addField('Comando', '`' + prefix + 'j <pedra> <papel> <tesoura>`')
 
     if (!args[0]) { return message.inlineReply(noargs) }
     if (money === null) money = 0
-    if (!money) { return message.inlineReply('<:xis:835943511932665926> Você precisa ter pelo menos 10<:StarPoint:766794021128765469>MPoints na carteira') }
-    if (money < 10) { return message.inlineReply('<:xis:835943511932665926> Você precisa ter pelo menos 10<:StarPoint:766794021128765469>MPoints na carteira') }
+    if (!money) { return message.inlineReply('<:xis:835943511932665926> Você precisa ter pelo menos 10<:NPoints:837666759389347910>NPoints na carteira') }
+    if (money < 10) { return message.inlineReply('<:xis:835943511932665926> Você precisa ter pelo menos 10<:NPoints:837666759389347910>NPoints na carteira') }
     if (!Options.includes(args[0])) { return message.inlineReply('<:xis:835943511932665926> Opção Incorreta!\n`' + prefix + 'j <pedra> <papel> <tesoura>`') }
 
     if (['pedra', 'rock'].includes(args[0])) {
@@ -28,12 +28,12 @@ exports.run = async (client, message, args) => {
         const lose = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('😭 | Eu Perdiiii')
-            .setDescription('Você 👊 x ✌️ Naya\nVocê ganhou 10<:StarPoint:766794021128765469>MPoints')
+            .setDescription('Você 👊 x ✌️ Naya\nVocê ganhou 10<:NPoints:837666759389347910>NPoints')
 
         const win = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('😌 | Eu Ganheeei')
-            .setDescription('Você 👊 x ✋ Naya\nVocê perdeu 10<:StarPoint:766794021128765469>MPoints')
+            .setDescription('Você 👊 x ✋ Naya\nVocê perdeu 10<:NPoints:837666759389347910>NPoints')
 
         const draw = new Discord.MessageEmbed()
             .setColor('BLUE')
@@ -58,12 +58,12 @@ exports.run = async (client, message, args) => {
         const lose = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('😭 | Eu Perdiiii')
-            .setDescription('Você ✋ x 👊 Naya\nVocê ganhou 10<:StarPoint:766794021128765469>MPoints')
+            .setDescription('Você ✋ x 👊 Naya\nVocê ganhou 10<:NPoints:837666759389347910>NPoints')
 
         const win = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('😌 | Eu Ganheeei')
-            .setDescription('Você ✋ x ✌️ Naya\nVocê perdeu 10<:StarPoint:766794021128765469>MPoints')
+            .setDescription('Você ✋ x ✌️ Naya\nVocê perdeu 10<:NPoints:837666759389347910>NPoints')
 
         const draw = new Discord.MessageEmbed()
             .setColor('BLUE')
@@ -87,12 +87,12 @@ exports.run = async (client, message, args) => {
         const lose = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('😭 | Eu Perdiiii')
-            .setDescription('Você ✌️ x ✋ Naya\nVocê ganhou 10<:StarPoint:766794021128765469>MPoints')
+            .setDescription('Você ✌️ x ✋ Naya\nVocê ganhou 10<:NPoints:837666759389347910>NPoints')
 
         const win = new Discord.MessageEmbed()
             .setColor('BLUE')
             .setTitle('😌 | Eu Ganheeei')
-            .setDescription('Você ✌️ x 👊 Naya\nVocê perdeu 10<:StarPoint:766794021128765469>MPoints')
+            .setDescription('Você ✌️ x 👊 Naya\nVocê perdeu 10<:NPoints:837666759389347910>NPoints')
 
         const draw = new Discord.MessageEmbed()
             .setColor('BLUE')

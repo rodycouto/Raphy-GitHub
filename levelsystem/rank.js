@@ -49,7 +49,7 @@ exports.run = async (client, message, args) => {
         return message.channel.send(embedxp)
     }
 
-    if (['dinheiro', 'money', 'cash', 'mp', 'coin', 'moeda'].includes(args[0])) {
+    if (['dinheiro', 'money', 'cash', 'np', 'coin', 'moeda'].includes(args[0])) {
         let data = db.all().filter(i => i.ID.startsWith("banco_")).sort((a, b) => b.data - a.data)
         if (data.length < 1) return message.inlineReply("Sem ranking por enquanto").then(m => m.delete({ timeout: 5000 }))
         let myrank = data.map(m => m.ID).indexOf(`banco_${message.author.id}`) + 1 || "N/A"
@@ -72,16 +72,16 @@ exports.run = async (client, message, args) => {
 
         let embedxp = new Discord.MessageEmbed()
             .setColor("YELLOW")
-            .setTitle("👑 Ranking Global - MPoints")
+            .setTitle("👑 Ranking Global - NPoints")
         lb.forEach(d => {
-            embedxp.addField(`${d.rank}. ${d.user.tag}`, `🆔 *(${d.user.id})*\n💸 Carteira - ${d.level} <:StarPoint:766794021128765469>MPoints\n🏦 Banco - ${d.xp} <:StarPoint:766794021128765469>MPoints`)
+            embedxp.addField(`${d.rank}. ${d.user.tag}`, `🆔 *(${d.user.id})*\n💸 Carteira - ${d.level} <:NPoints:837666759389347910>NPoints\n🏦 Banco - ${d.xp} <:NPoints:837666759389347910>NPoints`)
         })
         embedxp.setFooter(`Seu ranking: ${myrank}`)
-        embedxp.addField('Loteria Naya', `Prêmio Atual: ${db.get('loteria')} <:StarPoint:766794021128765469>MPoints`)
+        embedxp.addField('Loteria Naya', `Prêmio Atual: ${db.get('loteria')} <:NPoints:837666759389347910>NPoints`)
         return message.channel.send(embedxp)
     }
 
-    if (!['dinheiro', 'money', 'cash', 'mp', 'coin', 'moeda', 'xp', 'level', 'nivel'].includes(args[0])) {
+    if (!['dinheiro', 'money', 'cash', 'np', 'coin', 'moeda', 'xp', 'level', 'nivel'].includes(args[0])) {
         return message.inlineReply('Ranking não encontrado, digite `' + prefix + 'rank`')
     }
 }

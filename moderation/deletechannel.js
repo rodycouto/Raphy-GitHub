@@ -92,7 +92,7 @@ exports.run = async (client, message, args) => {
                                         })
                                     }
 
-                                    if (reaction.emoji.name === '❌') { // MPEmbed
+                                    if (reaction.emoji.name === '❌') { // NPEmbed
                                         msg.delete().catch(err => { return })
 
                                         let canceled3 = new Discord.MessageEmbed()
@@ -103,7 +103,7 @@ exports.run = async (client, message, args) => {
                                 })
                             })
                         }
-                        if (reaction.emoji.name === '❌') { // MPEmbed
+                        if (reaction.emoji.name === '❌') { // NPEmbed
                             msg.delete().catch(err => { return })
 
                             let canceled2 = new Discord.MessageEmbed()
@@ -114,7 +114,7 @@ exports.run = async (client, message, args) => {
                     })
                 })
             }
-            if (reaction.emoji.name === '❌') { // MPEmbed
+            if (reaction.emoji.name === '❌') { // NPEmbed
                 msg.delete().catch(err => { return })
                 let canceled = new Discord.MessageEmbed()
                     .setColor('GREEN')

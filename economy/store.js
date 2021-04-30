@@ -20,7 +20,7 @@ exports.run = async (client, message, args) => {
         return message.inlineReply(presomax)
     } else {
 
-        let star = '<:StarPoint:766794021128765469>'
+        let star = '<:NPoints:837666759389347910>'
         let loli = '<:Loli:831571527744356422>'
         let StarM = '<:starM:832974891635572787>'
         let loteria = db.get(`loteria`)
@@ -32,15 +32,15 @@ exports.run = async (client, message, args) => {
             .addFields(
                 {
                     name: 'Disponiveis',
-                    value: '🛡️ `Escudo` (Em Breve)\n🎣 `Vara de Pesca` 140 <:StarPoint:766794021128765469>MPoints\n🔫 `Arma` 4.000 <:StarPoint:766794021128765469>MPoints\n⛏️ `Picareta` 85 <:StarPoint:766794021128765469>MPoints\n🪓 `Machado` 35 <:StarPoint:766794021128765469>MPoints\n🎟️ `Fichas` 2 <:StarPoint:766794021128765469>MPoints\n💌 `Carta de Amor` 1 <:StarPoint:766794021128765469>MPoints\n🥘 `Comida` 2 <:StarPoint:766794021128765469>MPoints\n🪱 `Isca` 1 <:StarPoint:766794021128765469>MPoints\n🥤 `Água` 1 <:StarPoint:766794021128765469>MPoints'
+                    value: '🛡️ `Escudo` (Em Breve)\n🎣 `Vara de Pesca` 140 <:NPoints:837666759389347910>NPoints\n🔫 `Arma` 4.000 <:NPoints:837666759389347910>NPoints\n⛏️ `Picareta` 85 <:NPoints:837666759389347910>NPoints\n🪓 `Machado` 35 <:NPoints:837666759389347910>NPoints\n🎟️ `Fichas` 2 <:NPoints:837666759389347910>NPoints\n💌 `Carta de Amor` 1 <:NPoints:837666759389347910>NPoints\n🥘 `Comida` 2 <:NPoints:837666759389347910>NPoints\n🪱 `Isca` 1 <:NPoints:837666759389347910>NPoints\n🥤 `Água` 1 <:NPoints:837666759389347910>NPoints'
                 },
                 {
                     name: 'Loteria',
-                    value: '🎫 `Ticket Loteria` 10 <:StarPoint:766794021128765469>MPoints' + `\nPrêmio Atual: ${loteria} <:StarPoint:766794021128765469>MPoints`
+                    value: '🎫 `Ticket Loteria` 10 <:NPoints:837666759389347910>NPoints' + `\nPrêmio Atual: ${loteria} <:NPoints:837666759389347910>NPoints`
                 },
                 {
                     name: 'Perfil',
-                    value: '<:starM:832974891635572787> `Estrela1` 500.000 <:StarPoint:766794021128765469>MPoints\n<:starM:832974891635572787><:starM:832974891635572787> `Estrela2` 1.000.000 <:StarPoint:766794021128765469>MPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela3` 2.000.000 <:StarPoint:766794021128765469>MPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela4` 4.000.000 <:StarPoint:766794021128765469>MPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela5` 10.000.000 <:StarPoint:766794021128765469>MPoints\n🔰 `Título` 10.000<:StarPoint:766794021128765469>MPoints'
+                    value: '<:starM:832974891635572787> `Estrela1` 500.000 <:NPoints:837666759389347910>NPoints\n<:starM:832974891635572787><:starM:832974891635572787> `Estrela2` 1.000.000 <:NPoints:837666759389347910>NPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela3` 2.000.000 <:NPoints:837666759389347910>NPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela4` 4.000.000 <:NPoints:837666759389347910>NPoints\n<:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787><:starM:832974891635572787> `Estrela5` 10.000.000 <:NPoints:837666759389347910>NPoints\n🔰 `Título` 10.000<:NPoints:837666759389347910>NPoints'
                 }
             )
             .setFooter(`${prefix}buy | ${prefix}itens | ${prefix}vender | ${prefix}doar | ${prefix}slot`)
