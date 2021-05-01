@@ -211,22 +211,43 @@ exports.run = async (client, message, args) => {
 
     if (['blacklistid'].includes(args[0])) {
 
-        if (args[1]) { return message.channel.send('`' + prefix + 'add blacklistid ID`') }
-        if (args[1].length < 17) { return message.channel.send("Isso não é um ID") }
-        if (isNaN(args[1])) { return message.channel.send("Isso não é um número.") }
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'add blacklistid ID`') }
+        if (id.length < 17) { return message.channel.send("Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send("Isso não é um número.") }
 
-        db.add(`blacklist_${user.id}`, args[1])
-        return message.channel.send(`${user} foi adicionado a blacklist com sucesso!`)
+        db.add(`blacklist_${id}`, id)
+        return message.channel.send(`<@${id}> foi adicionado a blacklist com sucesso!`)
     }
 
-    if (['whitelistid'].includes(args[0])) {
+    if (['whitelistid'].includes(args[0])) {    
 
-        if (args[1]) { return message.channel.send('`' + prefix + 'add whitelistid ID`') }
-        if (args[1].length < 17) { return message.channel.send("Isso não é um ID") }
-        if (isNaN(args[1])) { return message.channel.send("Isso não é um número.") }
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'add whitelistid ID`') }
+        if (id.length < 17) { return message.channel.send("Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send("Isso não é um número.") }
 
-        db.add(`whitelist_${user.id}`, args[1])
-        return message.channel.send(`${user} foi adicionado a whitelist com sucesso!`)
+        db.add(`whitelist_${id}`, id)
+        return message.channel.send(`<@${id}> foi adicionado a whitelist com sucesso!`)
+    }
+
+    if (['nochat', 'noglobal', 'ban', 'block', 'banlist', 'nogloabalchat', 'banchat'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'add banchat ID`') }
+        if (id.length < 17) { return message.channel.send("Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send("Isso não é um número.") }
+
+        db.add(`noglobalchat_${id}`, id)
+        return message.channel.send(`<@${id}> foi adicionado ao No Global Chat com sucesso e não consegue mais falar no chat global!`)
+    }
+
+    if (['moderadorglobal', 'modglobal', 'modchat', 'modchatglobal'].includes(args[0])) {
+
+        if (!user) { return message.channel.send('`' + prefix + 'add modglobal @user`') }
+
+        db.add(`moderadoreschatglobal_${user.id}`, user.id)
+        return message.channel.send(`${user} foi autenticado como Moderador do Chat Global!`)
     }
 
     if (['vip'].includes(args[0])) {
@@ -237,14 +258,23 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`${user} foi adicionado a lista vip com sucesso!`)
     }
 
+    if (['modserver', 'servermod', 'serverstaff', 'staffserver', 'serveradm'].includes(args[0])) {
+
+        if (!user) { return message.channel.send('`' + prefix + 'add staffserver @user`') }
+
+        db.add(`modserver_${user.id}`, user.id)
+        return message.channel.send(`${user} foi adicionado a lista moderadores do servidor!`)
+    }
+
     if (['vipid'].includes(args[0])) {
 
-        if (args[1]) { return message.channel.send('`' + prefix + 'add vipid ID`') }
-        if (args[1].length < 17) { return message.channel.send("Isso não é um ID") }
-        if (isNaN(args[1])) { return message.channel.send("Isso não é um número.") }
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'add vipid ID`') }
+        if (id.length < 17) { return message.channel.send("Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send("Isso não é um número.") }
 
-        db.add(`whitelist_${user.id}`, args[1])
-        return message.channel.send(`${user} foi adicionado a list vip com sucesso!`)
+        db.add(`whitelist_${id}`, id)
+        return message.channel.send(`<@${id}> foi adicionado a list vip com sucesso!`)
     }
 
     if (['whitelist'].includes(args[0])) {

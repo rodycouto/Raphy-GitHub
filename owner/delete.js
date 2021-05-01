@@ -187,6 +187,17 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`Você deletou ${user} da whitelist.`)
     }
 
+    if (['nochat', 'noglobal', 'ban', 'block', 'banlist', 'nogloabalchat', 'banglobal'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'delete banglobal ID`') }
+        if (id.length < 17) { return message.channel.send("Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send("Isso não é um número.") }
+
+        db.delete(`noglobalchat_${id}`, id)
+        return message.channel.send(`${user} foi removido do No Global Chat com sucesso e agora consegue mais falar no chat global!`)
+    }
+
     if (['timeout', 'tempo', 'cooldown'].includes(args[0])) {
 
         if (!user) { return message.channel.send('`' + prefix + 'delete timeout @user') }
