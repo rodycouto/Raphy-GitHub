@@ -3,13 +3,14 @@ const db = require('quick.db')
 const ms = require('parse-ms')
 
 exports.run = async (client, message, args) => {
+    message.delete({ timeout: 10000 }).catch(err => { return })
 
     let timeout1 = 120000
     let author1 = db.fetch(`globaltiming_${message.author.id}`)
 
     if (author1 !== null && timeout1 - (Date.now() - author1) > 0) {
         let time = ms(timeout1 - (Date.now() - author1))
-        return message.channel.send(`<:xis:835943511932665926> Espere o sistema global esfriar os motores... ${time.minutes}m e ${time.seconds}s`)
+        return message.inlineReply(`<:xis:835943511932665926> Espere o sistema global esfriar os motores... ${time.minutes}m e ${time.seconds}s`)
     } else {
 
         let prefix = db.get(`prefix_${message.guild.id}`)
@@ -26,7 +27,7 @@ exports.run = async (client, message, args) => {
                 .addField('Valide o canal', '`' + prefix + 'setglobalchat #naya-global-chat`')
                 .addField('Desative o Canal', '`' + prefix + 'setglobalchat off` ou `' + prefix + 'deletechannel #naya-global-chat`')
 
-            return message.channel.send('<:xis:835943511932665926> O canal Global Chat não existe neste servidor!', SetGlobalChatEmbed)
+            return message.inlineReply('<:xis:835943511932665926> O canal Global Chat não existe neste servidor!', SetGlobalChatEmbed)
         }
 
         let CanalDoGlobalChat = db.get(`globalchat_${message.guild.id}`)
@@ -39,13 +40,13 @@ exports.run = async (client, message, args) => {
             .addField('Valide o canal', '`' + prefix + 'setglobalchat #canal`')
             .addField('Desative o Canal', '`' + prefix + 'setglobalchat off` ou `' + prefix + 'deletechannel #naya-global-chat`')
 
-        if (CanalDoGlobalChat === null) { return message.channel.send('<:xis:835943511932665926> O canal não foi autenticado!', SemCanalDefinido) }
+        if (CanalDoGlobalChat === null) { return message.inlineReply('<:xis:835943511932665926> O canal não foi autenticado!', SemCanalDefinido) }
 
         let ConfirmaCanal = message.channel.id === db.get(`globalchat_${message.guild.id}`)
-        if (!ConfirmaCanal) { return message.channel.send(`<:xis:835943511932665926> Este não é o Global Chat! Vem cá, é aqui: ${client.channels.cache.get(CanalDoGlobalChat)}`).then(msg => msg.delete({ timeout: 7000 }).catch(err => { return })) }
+        if (!ConfirmaCanal) { return message.inlineReply(`<:xis:835943511932665926> Este não é o Global Chat! Vem cá, é aqui: ${client.channels.cache.get(CanalDoGlobalChat)}`).then(msg => msg.delete({ timeout: 7000 }).catch(err => { return })) }
 
         if (!db.get(`globalchat_${message.guild.id}`)) {
-            return message.channel.send('<:xis:835943511932665926> Parece que o Global Chat foi excluido... Use `' + prefix + 'setglobalchat` Para mais informações.')
+            return message.inlineReply('<:xis:835943511932665926> Parece que o Global Chat foi excluido... Use `' + prefix + 'setglobalchat` Para mais informações.')
         } else {
 
             function AchaLink(str) {
@@ -57,26 +58,28 @@ exports.run = async (client, message, args) => {
             let Mensagem = message.content.split(" ").slice(1)
             let MensagemGlobal = Mensagem.join(" ")
 
-            if (!MensagemGlobal) return message.channel.send("<:xis:835943511932665926> Você precisa dizer algo para ser enviado no Global Chat.")
-            if (MensagemGlobal > 150) { return message.channel.send('<:xis:835943511932665926> Heeey! A mensagem não pode ser maior que **150 caracteres**.') }
-            if (MensagemGlobal < 10) { return message.channel.send('<:xis:835943511932665926> Heeey! A mensagem não pode ser menor que **10 caracteres**.') }
-            if (AchaLink(MensagemGlobal) === true) { message.channel.send(`${message.author}, Por favor, não envie links no Global Chat.`) }
+            if (!MensagemGlobal) return message.inlineReply("<:xis:835943511932665926> Você precisa dizer algo para ser enviado no Global Chat.")
+            if (MensagemGlobal.length > 150) { return message.inlineReply('<:xis:835943511932665926> Heeey! A mensagem não pode ter mais que **150 caracteres**.') }
+            if (MensagemGlobal.length < 10) { return message.inlineReply('<:xis:835943511932665926> Heeey! A mensagem não pode ter menos que **10 caracteres**.') }
+            if (AchaLink(MensagemGlobal) === true) { return message.inlineReply(`${message.author}, Por favor, não envie links no Global Chat.`) }
+            if (['xvideos', 'pornhub', 'redtube'].includes(MensagemGlobal)) {
+                message.delete().catch(err => { return }).then(msg => msg.channel.send('<:xis:835943511932665926> Eu nem preciso dizer o motivo desta mensagem ser bloqueada, não é?'))
 
-            return client.guilds.cache.forEach(guild => {
+            }
 
-                if (guild == message.guild) return
+            client.guilds.cache.forEach(guild => {
+
                 db.set(`globaltiming_${message.author.id}`, Date.now())
-                let CanaisAllowed = guild.channels.cache.find(ch => ch.name === "naya-global-chat")
+                let CanaisValidos = guild.channels.cache.find(ch => ch.name === "naya-global-chat")
 
-                if (!CanaisAllowed) return
+                if (!CanaisValidos) return
                 const GlobalChatEmbedMensagem = new Discord.MessageEmbed()
                     .setColor('BLUE')
                     .setAuthor(`${message.author.tag} | ${message.author.id}`, avatar)
                     .setDescription(`🌐 Servidor: ${message.guild.name}\n\`\`\`txt\n${MensagemGlobal}\n\`\`\``)
-                    .setTimestamp(Date.now())
-                    .setFooter(`A Naya não se responsabiliza pelo conteúdo presente nesta mensagem.`)
+                    .setFooter(`${prefix}chat sua mensagem`)
 
-                return CanaisAllowed.send(GlobalChatEmbedMensagem).then(() => message.channel.send(`<a:Check:836347816036663309> ${message.author}, sua mensagem foi enviada com sucesso!`, GlobalChatEmbedMensagem))
+                return CanaisValidos.send(GlobalChatEmbedMensagem)
             })
         }
     }
