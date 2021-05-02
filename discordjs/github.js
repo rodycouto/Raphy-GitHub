@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
             },
             {
                 name: 'Programador',
-                value: 'Rody#4191',
+                value: 'Rody#1000',
                 inline: true
             },
             {

@@ -28,7 +28,7 @@ exports.run = async (client, message, args) => {
         .addFields(
             {
                 name: 'Informações Técinas',
-                value: (`🌐 Servidores: ${client.guilds.cache.size}\n💬 Canais: ${client.channels.cache.size}\n🫂 Usuários: ${client.users.cache.size}\n🛠️ Comandos usados: ${TotalCommands}\n🛠️ Comandos diário: ${DailyCommands}\n⏳ Ping Atual: ${Math.round(client.ws.ping)}ms\n🕛 Criada em: 15/03/2021\n💡 Idealizada por: Rody#4191 \n:gear: Criada por: Rody#4191\n🖌️ Design: Rody#4191 | Sayu\n🖊️ Start Cooper: Gowther#9233\n📡 Host: DisCloud\n🇩 Discord.js Version: 12.5.3\n🇯 Linguagem: 100% JavaScript`)
+                value: (`🌐 Servidores: ${client.guilds.cache.size}\n💬 Canais: ${client.channels.cache.size}\n🫂 Usuários: ${client.users.cache.size}\n🛠️ Comandos usados: ${TotalCommands}\n🛠️ Comandos diário: ${DailyCommands}\n⏳ Ping Atual: ${Math.round(client.ws.ping)}ms\n🕛 Criada em: 15/03/2021\n💡 Idealizada por: Rody#1000 \n:gear: Criada por: Rody#1000\n🖌️ Design: Rody#1000 | Sayu\n🖊️ Start Cooper: Gowther#9233\n📡 Host: DisCloud\n🇩 Discord.js Version: 12.5.3\n🇯 Linguagem: 100% JavaScript`)
             }
         )
 
@@ -58,7 +58,7 @@ exports.run = async (client, message, args) => {
             },
             {
                 name: 'Desenvolvedor',
-                value: 'Rody#4191',
+                value: 'Rody#1000',
                 inline: true
             },
             {
