@@ -1,4 +1,4 @@
-const axios = require('axios')
+const axios = require("axios")
 const Discord = require("discord.js")
 const db = require("quick.db")
 
