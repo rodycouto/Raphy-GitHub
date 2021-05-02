@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 const canvacord = require("canvacord")
-const db = require('quick.db')
+const db = require("quick.db")
 
 exports.run = async (client, message, args) => {
 

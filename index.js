@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 require("./inlineReply") // Remove in Discord.js V13
 const client = new Discord.Client({})
 const { token } = require("./config.json")
-const db = require('quick.db')
+const db = require("quick.db")
 client.commands = new Discord.Collection()
 client.aliases = new Discord.Collection()
 

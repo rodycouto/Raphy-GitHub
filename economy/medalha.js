@@ -1,5 +1,5 @@
-const Discord = require('discord.js')
-const db = require('quick.db')
+const Discord = require("discord.js")
+const db = require("quick.db")
 
 exports.run = async (client, message, args) => {
     message.delete().catch(err => { return message.channel.send('Eu preciso da permissão `Gerenciar Mensagens` para executar este comando. Este comando tem segredos que não pode ser expostos.') })

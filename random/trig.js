@@ -1,4 +1,4 @@
-const Discord = require('discord.js')
+const Discord = require("discord.js")
 const canvacord = require('canvacord')
 
 exports.run = async (client, message, args) => {

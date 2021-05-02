@@ -1,18 +1,19 @@
-const Discord = require('discord.js')
-const db = require('quick.db')
+const Discord = require("discord.js")
+const db = require("quick.db")
 
 exports.run = async (client, message, args) => {
 
-  let linkgithub = 'https://github.com/rodycouto/NayaCommands/blob/main/README.md'
-  let linksupport = 'https://discord.gg/YpFWgJuuUV'
-  let linkservidor = 'https://discord.gg/YpFWgJuuUV'
-  let mercadopago = 'https://mpago.la/2jYiNDg'
-  let invitebot = 'https://discord.com/api/oauth2/authorize?client_id=837147659898191902&permissions=8&scope=bot'
+  const linkgithub = 'https://github.com/rodycouto/NayaCommands/blob/main/README.md'
+  const linksupport = 'https://discord.gg/YpFWgJuuUV'
+  const linkservidor = 'https://discord.gg/YpFWgJuuUV'
+  const mercadopago = 'https://mpago.la/2jYiNDg'
+  const invitebot = 'https://discord.com/api/oauth2/authorize?client_id=837147659898191902&permissions=8&scope=bot'
+
   let prefix = db.get(`prefix_${message.guild.id}`)
   if (prefix === null) { prefix = "-" }
 
   if (!args[0]) {
-    let newhelp = new Discord.MessageEmbed()
+    const newhelp = new Discord.MessageEmbed()
       .setColor('#CD853F')
       .setTitle('⭐ Centralzinha de Ajuda da Naya ⭐')
       .setDescription('Use `' + `${prefix}help categoria` + '` para as pastas de comandos')
@@ -22,12 +23,23 @@ exports.run = async (client, message, args) => {
   }
 
   if (['categoria', 'categorias'].includes(args[0].toLowerCase())) {
-    let catego = new Discord.MessageEmbed()
+    const catego = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle('📑 Todos os comandos sob categorias')
       .setDescription('❓ **O que são categorias?**\nCategorias são como caixas, dentro de cada caixa tem os comandos que a ela pertence.\n \nDentro de cada categoria, tem comandos disponiveis. Começe a explorar!')
-      .addField('• Categorias Disponiveis (17)', '`' + prefix + 'help afksystem`\n' + '`' + prefix + 'help animes`\n' + '`' + prefix + 'help commands`\n' + '`' + prefix + 'help discordjs`\n' + '`' + prefix + 'help economy`\n' + '`' + prefix + 'help games`\n' + '`' + prefix + 'help interação`\n' + '`' + prefix + 'help levelsystem`\n' + '`' + prefix + 'help naya`\n' + '`' + prefix + 'help moderation`\n' + '`' + prefix + 'help owner`\n' + '`' + prefix + 'help perfil`\n' + '`' + prefix + 'help personagens`\n' + '`' + prefix + 'help quiz`\n' + '`' + prefix + 'help random`\n' + '`' + prefix + 'help reações`\n' + `:tools: [Lista de Comandos](${linkgithub})`)
+      .addField('• Categorias Disponiveis (17)', '`' + prefix + 'ajuda afksystem`\n' + '`' + prefix + 'ajuda animes`\n' + '`' + prefix + 'ajuda commands`\n' + '`' + prefix + 'ajuda discordjs`\n' + '`' + prefix + 'ajuda economy`\n' + '`' + prefix + 'ajuda games`\n' + '`' + prefix + 'ajuda interação`\n' + '`' + prefix + 'ajuda levelsystem`\n' + '`' + prefix + 'ajuda naya`\n' + '`' + prefix + 'ajuda moderation`\n' + '`' + prefix + 'ajuda owner`\n' + '`' + prefix + 'ajuda perfil`\n' + '`' + prefix + 'ajuda personagens`\n' + '`' + prefix + 'ajuda quiz`\n' + '`' + prefix + 'ajuda random`\n' + '`' + prefix + 'ajuda reações`\n' + `:tools: [Lista de Comandos](${linkgithub})`)
     return message.inlineReply(catego)
+  }
+
+  if (['globalchat', 'chat'].includes(args[0].toLowerCase())) {
+    const GlobalChatEmbed = new Discord.MessageEmbed()
+      .setColor('BLUE')
+      .setTitle('💬 Naya Global Chat System')
+      .setDescription('Fale com os outros servidores em um único chat. Isso é um experiência única!')
+      .addField('Crie o canal', '`' + prefix + 'createchannel naya-global-chat`')
+      .addField('Valide o canal', '`' + prefix + 'setglobalchat #naya-global-chat`')
+      .addField('Desative o Canal', '`' + prefix + 'setglobalchat off` ou `' + prefix + 'deletechannel #naya-global-chat`')
+    return message.inlineReply(GlobalChatEmbed)
   }
 
   if (['afksystem', 'afk'].includes(args[0].toLowerCase())) {
@@ -55,13 +67,13 @@ exports.run = async (client, message, args) => {
       .setTitle('📺 Anime Place')
       .setDescription('Os comandos de animes da Naya ainda está sendo produzidos.')
       .addField('• Comandos Online:', '`' + prefix + 'ind` Indicações de Animes\n' + '`' + prefix + 'sao` Meu anime favorito\n' + '`' + prefix + 'kimetsu` no yaibaaaaa\n' + '`' + prefix + 'senpai` Meu senpai' + `\n:tools: [Lista de Comandos](${linkgithub})`, true)
-      .addField('• Categoria Recomendada', '`' + prefix + 'help personagens`', true)
+      .addField('• Categoria Recomendada', '`' + prefix + 'ajuda personagens`', true)
       .addField('• Mande Gifs para os comandos', '`' + prefix + 'gif`', true)
     return message.inlineReply(embed)
   }
 
   if (['comandos', 'commands'].includes(args[0].toLowerCase())) {
-    let embed1 = new Discord.MessageEmbed()
+    const embed1 = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle(' Comandos livres para todos usarem')
       .setDescription('Comandos presentes nesta lista, é disponivel para qualquer um usa-los')
@@ -90,12 +102,12 @@ exports.run = async (client, message, args) => {
     return message.inlineReply(embed)
   }
 
-  if (['help', 'help', 'help', 'comandos'].includes(args[0].toLowerCase())) {
+  if (['ajuda', 'ajuda', 'ajuda', 'comandos'].includes(args[0].toLowerCase())) {
     const embed = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle('❓ Ué? Help no Help?')
       .setDescription('Bom, vou deixar comandos de ajuda aqui')
-      .addField('• Comandos Online:', '`' + prefix + 'help`\n' + '`' + prefix + 'help`\n' + '`' + prefix + 'help`\n' + '`' + prefix + 'thanks`\n' + '`' + prefix + 'bjhelp/blackjackhelp`')
+      .addField('• Comandos Online:', '`' + prefix + 'ajuda`\n' + '`' + prefix + 'ajuda`\n' + '`' + prefix + 'ajuda`\n' + '`' + prefix + 'thanks`\n' + '`' + prefix + 'bjhelp/blackjackhelp`')
       .setFooter(`${prefix}ideianaya | ${prefix}bug`)
     return message.inlineReply(embed)
   }
@@ -148,7 +160,7 @@ exports.run = async (client, message, args) => {
   }
 
   if (['doar', 'donate'].includes(args[0].toLowerCase())) {
-    let ajuda = new Discord.MessageEmbed()
+    const ajuda = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle('💸 Comando Doar')
       .setDescription('Doe dinheiro e itens pra galera, é simples e rápido!\n \n*Itens/Dinheiro perdidos não serão recuperados. Cuidado para não ser enganado*\n \n')
@@ -251,10 +263,10 @@ exports.run = async (client, message, args) => {
       .addField('• Edite cargos', '`' + prefix + 'role edit nome @cargo Novo Nome do Cargo`\n' + '`' + prefix + 'role edit cor @cargo #CódigoHEX`\n')
       .addField('• Quantos membros tem?', '`' + prefix + 'role membros @cargo`')
       .addField('• Veja o ID', '`' + prefix + 'role id @cargo`')
-      .addField('• Autorole System', '`' + prefix + 'help autorole`')
+      .addField('• Autorole System', '`' + prefix + 'ajuda autorole`')
       .setFooter(`${prefix}ideianaya | ${prefix}bug`)
     return message.inlineReply(embed)
   } else {
-    return message.inlineReply('Esta categoria não foi encontrada. use `' + prefix + 'help categoria` e veja as categorias disponiveis.')
+    return message.inlineReply('Esta categoria não foi encontrada. use `' + prefix + 'ajuda categoria` e veja as categorias disponiveis.')
   }
 }

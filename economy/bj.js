@@ -1,6 +1,6 @@
 const db = require("quick.db")
 const Discord = require("discord.js")
-const ms = require('parse-ms')
+const ms = require("parse-ms")
 
 exports.run = async (client, message, args) => {
 

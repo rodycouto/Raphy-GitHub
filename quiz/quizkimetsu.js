@@ -1,4 +1,4 @@
-const Discord = require('discord.js')
+const Discord = require("discord.js")
 const quiz = require('./kimetsu.json')
 
 exports.run = async (client, message, args) => {

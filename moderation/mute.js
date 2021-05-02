@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 const ms = require("ms")
-const db = require('quick.db')
+const db = require("quick.db")
 
 exports.run = async (client, message, args) => {
 
@@ -8,7 +8,8 @@ exports.run = async (client, message, args) => {
    if (prefix === null) prefix = "-"
 
    if (!message.member.hasPermission("MANAGE_ROLES")) { return message.inlineReply('<:xis:835943511932665926> Permissão Necessária: Gerenciar Roles (cargos)') }
-   if (!message.guild.me.hasPermission("MANAGE_ROLES")) { return message.inlineReply('<:xis:835943511932665926> Eu preciso da permissão "Gerenciar Cargos" para executar este comando.') }
+   if (!message.guild.me.hasPermission("MANAGE_ROLES")) { return message.inlineReply('<:xis:835943511932665926> Eu preciso da permissão "Gerenciar Cargos & Gerenciar Canais" para executar este comando.') }
+   if (!message.guild.me.hasPermission("MANAGEL_CHANNELS")) { return message.inlineReply('<:xis:835943511932665926> Eu preciso da permissão "Gerenciar Cargos & Gerenciar Canais" para executar este comando.') }
 
    const nolog = new Discord.MessageEmbed()
       .setColor('#8B0000')
@@ -282,6 +283,7 @@ exports.run = async (client, message, args) => {
 
                member.roles.remove(role).then(x => x.roles.add(role))
                if (member.voice.channel) { member.voice.kick() }
+
                setTimeout(function () {
                   member.roles.remove(role)
                   client.channels.cache.get(logchannel).send(unmuteembed)
