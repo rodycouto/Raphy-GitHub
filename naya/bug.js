@@ -22,7 +22,7 @@ exports.run = async (client, message, args) => {
     let newideia = new Discord.MessageEmbed()
         .setColor('BLUE')
         .setTitle('📢 Nova Bug Recebido')
-        .addField('Enviado por', message.author, true)
+        .addField('Enviado por', `${message.author.tag} *(${messa.author.id})*`, true)
         .addField('Servidor', message.guild.name, true)
         .addField('Relatório', mensagem)
 

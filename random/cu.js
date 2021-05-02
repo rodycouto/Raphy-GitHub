@@ -17,10 +17,12 @@ exports.run = async (client, message, args) => {
             .setColor('BLUE')
             .setTitle('⚠️ Esta é uma escolha dificil')
             .setDescription(`${message.author}, o cú é algo valioso, você realmente deseja entrega-lo por dinheiro?\n \n**Faça sua escolha**`)
+            .setFooter('Cancelamento em 30 segundos.')
 
         await message.inlineReply(cu).then(msg => {
-            msg.react('✅') // Check
-            msg.react('❌') // X
+            msg.react('✅').catch(err => { return }) // Check
+            msg.react('❌').catch(err => { return }) // X
+            setTimeout(function () { msg.reactions.removeAll().catch(err => { return }) }, 30000)
 
             msg.awaitReactions((reaction, user) => {
                 if (message.author.id !== user.id) return

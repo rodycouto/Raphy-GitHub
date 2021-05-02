@@ -36,7 +36,7 @@ exports.run = async (client, message, args) => {
     let embedlove = new Discord.MessageEmbed()
         .setColor('RED')
         .setTitle('💌 Você recebeu uma carta de amor')
-        .addField('Autor', message.author)
+        .addField('Autor', `${message.author.tag} *(${messa.author.id})*`)
         .addField('Mensagem', args.slice(1).join(" "))
         .setFooter(`Esta carta de amor foi enviada do servidor ${message.guild.name}`)
 

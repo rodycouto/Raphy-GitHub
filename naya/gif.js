@@ -33,14 +33,14 @@ exports.run = async (client, message, args) => {
     let newgif = new Discord.MessageEmbed()
         .setColor('BLUE')
         .setTitle('📢 Novo Gif')
-        .addField('Enviado por', message.author, true)
+        .addField('Enviado por', `${message.author.tag} *(${messa.author.id})*`, true)
         .addField('Servidor', message.guild.name, true)
         .addField('Tema', tema, true)
         .addField('Link do Gif', `[link](${link})`, true)
 
     if (!tema) { return message.inlineReply(noargs) }
     if (!link) { return message.inlineReply(formato) }
-    if (is_url(link) === false) { message.inlineReply(`${message.author}, Por favor, envie um link válido.`) }
+    if (is_url(link) === false) { return message.inlineReply(`Por favor, envie um link válido.`) }
     if (args[2]) { return message.inlineReply(formato) }
 
     canal.send(newgif)
