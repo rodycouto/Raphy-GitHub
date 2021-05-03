@@ -19,13 +19,10 @@ exports.run = async (client, message, args) => {
 
     db.set(`globalcooldown`, args[0])
 
-    let ServidoresAtivados = db.fetch(`globalchat_${message.guild.id}`)
-    if (message.channel.id === ServidoresAtivados) {
-
-        client.guilds.cache.forEach(Canal => {
-            try {
-                client.channels.cache.get(db.fetch(`globalchat_${Canal.id}`)).send(`<a:Check:836347816036663309> Novo timeout global definido! ${args[0]} milésimos. *(1000 = 1 segundos)*`)
-            } catch (e) { return }
-        })
-    }
+    client.guilds.cache.forEach(Canal => {
+        try {
+            client.channels.cache.get(db.fetch(`globalchat_${Canal.id}`)).send(`<a:Check:836347816036663309> Novo timeout global definido! ${args[0]} milésimos. *(1000 = 1 segundos)*`)
+        } catch (e) { return }
+    })
+    message.channel.send('OK!')
 }
