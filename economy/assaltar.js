@@ -86,7 +86,7 @@ exports.run = async (client, message, args) => {
                     const WinEmbed = new Discord.MessageEmbed()
                         .setColor("GREEN")
                         .setTitle(`🔫 Você assaltou ${user.user.username} com sucesso!`)
-                        .setDescription(`${message.author} assaltou todo o dinheiro de ${user} e obteve ${db.get(`mpoints_${user.id}`)}<:NPoints:837666759389347910>NPoints`)
+                        .setDescription(`${message.author} assaltou todo o dinheiro de ${user} e obteve ${cache}<:NPoints:837666759389347910>NPoints`)
 
                     const PresoEmbed = new Discord.MessageEmbed()
                         .setColor('#8B0000')
@@ -152,7 +152,7 @@ exports.run = async (client, message, args) => {
                     const AssaltEmbed = new Discord.MessageEmbed()
                         .setColor("GREEN")
                         .setTitle(`🔫 Você assaltou ${user.user.username} com sucesso!`)
-                        .setDescription(`${message.author} assaltou todo o dinheiro de ${user} e obteve ${db.get(`mpoints_${user.id}`)}<:NPoints:837666759389347910>NPoints`)
+                        .setDescription(`${message.author} assaltou todo o dinheiro de ${user} e obteve ${usermoney}<:NPoints:837666759389347910>NPoints`)
 
                     const PresoEmbed = new Discord.MessageEmbed()
                         .setColor('#8B0000')
