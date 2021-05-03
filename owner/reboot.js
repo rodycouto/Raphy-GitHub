@@ -6,7 +6,9 @@ exports.run = async (client, message, args) => {
         message.delete().catch(err => { return })
         return message.inlineReply('⚠️ Este é um comando restrito.').then(msg => msg.delete({ timeout: 5000 }))
     }
-    
+
+    let Mensagem = args.join(" ")
+
     let ServidoresAtivados = db.fetch(`globalchat_${message.guild.id}`)
     if (message.channel.id === ServidoresAtivados) {
 
@@ -18,5 +20,5 @@ exports.run = async (client, message, args) => {
     }
 
     client.user.setActivity(`Rebooting...`, { type: "WATCHING" })
-    return message.inlineReply('<a:carregando:836101628083437608> Rebooting...')
+    return message.inlineReply(`<a:carregando:836101628083437608> Rebooting... ${Mensagem}`)
 }
