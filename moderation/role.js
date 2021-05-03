@@ -62,7 +62,7 @@ exports.run = async (client, message, args) => {
   } else if (['delete', 'excluir', 'deletar'].includes(args[0])) {
 
     let RoleToDelete = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]) || message.guild.roles.cache.find(r => r.name == args[1])
-    if (!RoleToDelete) { return message.channel.send(formato) }
+    if (!RoleToDelete) { return message.channel.send(FormatoDelete) }
 
     if (message.author.id !== message.guild.owner.id) {
       if (RoleToDelete.comparePositionTo(message.member.roles.highest) > 0) { return message.inlineReply(`<:xis:835943511932665926> Você não tem permissão para gerenciar o cargo ${RoleToDelete}.`) }
@@ -294,7 +294,7 @@ exports.run = async (client, message, args) => {
     const RoleMembrosEmbed = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setDescription(`**Cargo:** ${role}\n**${MembrosComARole.size} Membros** possui este cargo.`)
-    return message.channel.send(RoleMembrosEmbed)
+    return message.channel.send(RoleMembrosEmbed).catch(err => { return message.channel.send(`**ERRO:** ${err}`) })
 
   } else if (["id"].includes(args[0])) {
     let role = message.mentions.roles.first().id
@@ -304,6 +304,6 @@ exports.run = async (client, message, args) => {
       .setColor('#9D24DD')
       .setDescription(`<@&${role}>\n:id: \`${role}\``)
 
-    return message.channel.send(roleid)
+    return message.channel.send(roleid).catch(err => { return message.channel.send(`**ERRO:** ${err}`) })
   } else { return message.inlineReply(`Não achei nenhum comando com o nome **${args.join(" ")}**. Use ` + '`' + prefix + 'help role`') }
 }
