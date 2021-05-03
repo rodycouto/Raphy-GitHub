@@ -14,11 +14,11 @@ exports.run = async (client, message, args) => {
 
         client.guilds.cache.forEach(Canal => {
             try {
-                client.channels.cache.get(db.fetch(`globalchat_${Canal.id}`)).send('<a:carregando:836101628083437608> Reiniciando...')
+                client.channels.cache.get(db.fetch(`globalchat_${Canal.id}`)).send(`<a:carregando:836101628083437608> Rebooting... ${Mensagem}`)
             } catch (e) { return }
         })
     }
 
     client.user.setActivity(`Rebooting...`, { type: "WATCHING" })
-    return message.inlineReply(`<a:carregando:836101628083437608> Rebooting... ${Mensagem}`)
+    return message.inlineReply('Reiniciando...')
 }
