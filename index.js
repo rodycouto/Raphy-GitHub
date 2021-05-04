@@ -95,6 +95,7 @@ client.on("message", async (message) => {
                 db.add(`mpoints_${message.author.id}`, 500)
                 let xpchannel = db.get(`xpchannel_${message.guild.id}`)
                 if (xpchannel === null) { return }
+                if (!db.get(`xpchannel_${message.guild.id}`)) { return }
                 if (xpchannel) {
                     const newlevel = new Discord.MessageEmbed()
                         .setColor('GREEN')

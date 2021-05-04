@@ -3,9 +3,12 @@ const Discord = require("discord.js")
 
 exports.run = async (client, message, args) => {
 
-    if (!message.author.id === "451619591320371213") // Rody ID
-        return message.inlineReply('Este é um comando de informações privado. Pelo menos no momento.')
-
+    const rody = message.author.id === ("451619591320371213")
+    if (!rody) {
+        message.delete().catch(err => { return })
+        return message.channel.send('⚠️ Este é um comando restrito.').then(msg => msg.delete({ timeout: 5000 }))
+    }
+    
     let page = args[0]
     if (!page) {
         let pag = new Discord.MessageEmbed()

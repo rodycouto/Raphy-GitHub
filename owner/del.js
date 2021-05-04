@@ -31,6 +31,17 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`O banco de ${user} foi deletado`)
     }
 
+    if (['banco', 'bank'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'del bancoid ID Valor`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
+
+        db.delete(`banco_${user.id}`)
+        return message.channel.send(`O banco de ${user} foi deletado`)
+    }
+
     if (['estrelas', 'estrela'].includes(args[0])) {
 
         if (!user) { return message.channel.send('`' + prefix + 'del estrelas @user`') }
@@ -43,67 +54,19 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`<:starM:832974891635572787> Estrelas deletadas do slot de ${user}`)
     }
 
-    if (['comida', 'food'].includes(args[0])) {
-
-        if (!user) { return message.channel.send('`' + prefix + 'del comida @user`') }
-
-        db.delete(`comida_${user.id}`)
-        return message.channel.send(`As comidas de ${user} foram deletadas`)
-    }
-
-    if (['moneyid', 'mpid'].includes(args[0])) {
+    if (['estrelasid', 'estrelaid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.channel.send('`' + prefix + 'del moneyid ID`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'del estrelasid ID Valor`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
-        db.delete(`mpoints_${id}`)
-        db.delete(`banco_${id}`)
-        return message.channel.send('Feito!')
-    }
-
-    if (['iscas', 'isca'].includes(args[0])) {
-
-        if (!user) { return message.channel.send('`' + prefix + 'del iscas @user`') }
-
-        db.delete(`iscas_${user.id}`)
-        return message.channel.send(`As iscas de ${user} foram deletadas..`)
-    }
-
-    if (['dailycommands'].includes(args[0])) {
-
-        db.delete('CommandCountDaily')
-        return message.channel.send(`Feito!`)
-    }
-
-    if (['cartas', 'carta'].includes(args[0])) {
-
-        if (!user) { return message.channel.send('`' + prefix + 'del cartas @user`') }
-
-        db.delete(`cartas_${user.id}`)
-        return message.channel.send(`As cartas de ${user} foram deletadas..`)
-    }
-
-    if (['np', 'money', 'carteira'].includes(args[0])) {
-
-        if (!user) { return message.channel.send('`' + prefix + 'del money @user`') }
-
-        db.delete(`mpoints_${user.id}`)
-        return message.channel.send(`O dinheiro da carteira de ${user} foi deletado.`)
-    }
-
-    if (['peixe', 'peixes', 'fish'].includes(args[0])) {
-
-        if (!user) { return message.channel.send('`' + prefix + 'del peixes @user`') }
-
-        db.delete(`peixes_${user.id}`)
-        return message.channel.send(`Os peixes de ${user} foram deletados.`)
-    }
-
-    if (['rp', 'reputação'].includes(args[0])) {
-
-        if (!user) { return message.channel.send('`' + prefix + 'del rp @user`') }
-        db.delete(`rp_${user.id}`)
-        return message.channel.send(`A reputação de ${user} foi deletada.`)
+        db.delete(`estrela1_${id}`)
+        db.delete(`estrela2_${id}`)
+        db.delete(`estrela3_${id}`)
+        db.delete(`estrela4_${id}`)
+        db.delete(`estrela5_${id}`)
+        return message.channel.send(`<:starM:832974891635572787> Estrelas deletadas do slot de <@${id}> *(${id})*`)
     }
 
     if (['status'].includes(args[0])) {
@@ -112,6 +75,17 @@ exports.run = async (client, message, args) => {
 
         db.delete(`status_${user.id}`)
         return message.channel.send(`O status de ${user} foi deletado.`)
+    }
+
+    if (['statusid'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'del statusid ID`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
+
+        db.delete(`status_${id}`)
+        return message.channel.send(`O status de <@${id}> *(${id})* foi deletado.`)
     }
 
     if (['xp', 'level'].includes(args[0])) {
@@ -126,11 +100,32 @@ exports.run = async (client, message, args) => {
     if (['xpid', 'levelid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.channel.send('`' + prefix + 'del xpid @user`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'del xpid ID`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
         db.delete(`xp_${id}`)
         db.delete(`level_${id}`)
-        return message.channel.send(`O level de <@${user}> foi deletado.`)
+        return message.channel.send(`O level de <@${id}> *(${id})* foi deletado.`)
+    }
+
+    if (['cachorro', 'doguinho', 'dog'].includes(args[0])) {
+
+        if (!user) { return message.channel.send('`' + prefix + 'del cachorro @user`') }
+
+        db.delete(`cachorro_${user.id}`)
+        return message.channel.send(`Cachorrinho Brown foi deletado do slot de ${user}`)
+    }
+
+    if (['cachorroid', 'doguinhoid', 'dogid'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.channel.send('`' + prefix + 'del cachorroid ID`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send('<:xis:835943511932665926> Esse ID não é um número.') }
+
+        db.set(`cachorro_${id}`)
+        return message.channel.send(`Cachorrinho Brown foi deletado do slot de <@${id}> *(${id})*.`)
     }
 
     if (['marry', 'casal', 'casamento'].includes(args[0])) {
@@ -141,12 +136,34 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`O relacionamento de ${user} foi deletado.`)
     }
 
+    if (['marryid', 'casalid', 'casamentoid'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'del marryid ID`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
+
+        db.delete(`marry_${id}`)
+        return message.channel.send(`O relacionamento de <@${id}> *(${id})* foi deletado.`)
+    }
+
     if (['family1'].includes(args[0])) {
 
         if (!user) { return message.channel.send('`' + prefix + 'del family1 @user`') }
 
         db.delete(`family1_${user.id}`)
         return message.channel.send(`O family1 de ${user} foi deletado.`)
+    }
+
+    if (['family1id'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'del family1id ID`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
+
+        db.delete(`family1_${id}`)
+        return message.channel.send(`O family1 de <@${id}> *(${id})* foi deletado.`)
     }
 
     if (['family2'].includes(args[0])) {
@@ -157,12 +174,34 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`O family2 de ${user} foi deletado.`)
     }
 
+    if (['family2id'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'del family2id ID`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
+
+        db.delete(`family2_${id}`)
+        return message.channel.send(`O family2 de <@${id}> *(${id})* foi deletado.`)
+    }
+
     if (['family3'].includes(args[0])) {
 
         if (!user) { return message.channel.send('`' + prefix + 'del family2 @user`') }
 
         db.delete(`family3_${user.id}`)
         return message.channel.send(`O family3 de ${user} foi deletado.`)
+    }
+
+    if (['family3id'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'del family3id ID`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
+
+        db.delete(`family3_${id}`)
+        return message.channel.send(`O family3 de <@${id}> *(${id})* foi deletado.`)
     }
 
     if (['title', 'titulo', 'título'].includes(args[0])) {
@@ -173,6 +212,17 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`A permissão de alterar o título, foi deletada da conta de ${user}.`)
     }
 
+    if (['titleid', 'tituloid', 'títuloid'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'del tituloid ID`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
+
+        db.delete(`title_${id}`)
+        return message.channel.send(`A permissão de alterar o título, foi deletada da conta de <@${id}> *(${id})*.`)
+    }
+
     if (['remedio', 'remédio'].includes(args[0])) {
 
         if (!user) { return message.channel.send('`' + prefix + 'del remedio @user`') }
@@ -181,13 +231,16 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`O remédio Do Velho Welter foi deletado do slot de ${user}.`)
     }
 
-    if (['blacklist'].includes(args[0])) {
+    if (['remedioid', 'remédioid'].includes(args[0])) {
 
-        if (!user) { return message.channel.send('`' + prefix + 'del blacklist @user`') }
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'del remedioid ID`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
-        db.delete(`blacklist_${user.id}`, user.id)
-        return message.channel.send(`Você deletou ${user} da blacklist.`)
-    } //
+        db.delete(`remedio_${id}`)
+        return message.channel.send(`O remédio Do Velho Welter foi deletado do slot de <@${id}> *(${id})*.`)
+    }
 
     if (['niver', 'aniversário', 'aniversario'].includes(args[0])) {
 
@@ -197,44 +250,15 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`Você deletou a data de aniversário de ${user}.`)
     }
 
-    if (['whitelist'].includes(args[0])) {
-
-        if (!user) { return message.channel.send('`' + prefix + 'del whitelist @user`') }
-
-        db.delete(`whitelist_${user.id}`, user.id)
-        return message.channel.send(`Você deletou ${user} da whitelist.`)
-    }
-
-    if (['nochat', 'noglobal', 'ban', 'block', 'banlist', 'nogloabalchat', 'banglobal'].includes(args[0])) {
+    if (['niverid', 'aniversárioid', 'aniversarioid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'del banglobal ID`') }
-        if (id.length < 17) { return message.channel.send("Isso não é um ID") }
-        if (isNaN(id)) { return message.channel.send("Isso não é um número.") }
+        if (!id) { return message.inlineReply('`' + prefix + 'del niverid ID`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send(`<:xis:835943511932665926> **${args[1]}** não é um número.`) }
 
-        db.delete(`noglobalchat_${id}`, id)
-        return message.channel.send(`${id} foi removido do No Global Chat com sucesso e agora consegue mais falar no chat global!`)
-    }
-
-    if (['timeout', 'tempo', 'cooldown'].includes(args[0])) {
-
-        if (!user) { return message.channel.send('`' + prefix + 'del timeout @user') }
-
-        db.delete(`dailyxp_${user.id}`)
-        db.delete(`rptimeout_${user.id}`)
-        db.delete(`robtime_${user.id}`)
-        db.delete(`lotery_${user.id}`)
-        db.delete(`worked_${user.id}`)
-        db.delete(`slut_${user.id}`)
-        db.delete(`preso_${user.id}`)
-        db.delete(`pego_${user.id}`)
-        db.delete(`globaltiming_${user.id}`)
-        db.delete(`esmolatimeout_${user.id}`)
-        db.delete(`lancetimeout_${user.id}`)
-        db.delete(`procurado_${user.id}`)
-        db.delete(`assaltotime_${user.id}`)
-        db.delete(`roletatimeout_${user.id}`)
-        return message.channel.send(`Todos os Timeouts de ${user} foram deletados.`)
+        db.delete(`aniversario_${id}`)
+        return message.channel.send(`Você deletou a data de aniversário de <@${id}> *(${id})*.`)
     }
 
     return message.channel.send('Comando não encontrado no registro.')
