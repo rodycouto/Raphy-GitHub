@@ -31,7 +31,7 @@ exports.run = async (client, message, args) => {
     return message.inlineReply(catego)
   }
 
-  if (['globalchat', 'chat'].includes(args[0].toLowerCase())) {
+  if (['globalchat', 'chat', 'chatglobal'].includes(args[0].toLowerCase())) {
     const GlobalChatEmbed = new Discord.MessageEmbed()
       .setColor('BLUE')
       .setTitle('💬 Naya Global Chat System')
