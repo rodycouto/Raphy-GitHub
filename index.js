@@ -108,7 +108,7 @@ client.on("message", async (message) => {
 
     if (author !== null && timeout - (Date.now() - author) > 0) {
         let time = ms(timeout - (Date.now() - author))
-        return message.inlineReply(`⏲️ | ${reposta}`)
+        return message.inlineReply(`⏲️ | ${reposta} | **${time.seconds}s**`)
     } else {
         db.set(`commandcooldown_${message.author.id}`, Date.now())
 
