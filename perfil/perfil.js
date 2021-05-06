@@ -55,7 +55,7 @@ exports.run = async (client, message, args) => {
 
     let estrela = '<:starM:832974891635572787>'
     let noestrela = '<:nostar:832972978009538591>'
-    let vip = db.get(`vip_${user.id}`)
+    let vip = await db.get(`vip_${user.id}`)
 
     let star1 = db.get(`estrela1_${user.id}`)
     let star2 = db.get(`estrela2_${user.id}`)
@@ -64,7 +64,7 @@ exports.run = async (client, message, args) => {
     let star5 = db.get(`estrela5_${user.id}`)
 
     if (user.id === '837147659898191902') {
-        let perfil = new Discord.MessageEmbed()
+        const perfil = new Discord.MessageEmbed()
             .setDescription(`<a:vip:837441854332338227> **Perfil Pessoal de ${user.user.username}** ${estrela}${estrela}${estrela}${estrela}${estrela}`)
             .setColor('#FDFF00')
             .addFields(
@@ -97,7 +97,7 @@ exports.run = async (client, message, args) => {
         return message.inlineReply(perfil)
     }
 
-    let perfilembed = new Discord.MessageEmbed()
+    const perfilembed = new Discord.MessageEmbed()
         .setColor(color)
         .addFields(
             {
@@ -138,7 +138,6 @@ exports.run = async (client, message, args) => {
     }
 
     if (vip) {
-        perfilembed.setColor('#FDFF00')
         if (!star1) { perfilembed.setDescription(`<a:vip:837441854332338227> **Perfil de ${user.user.username}** ${noestrela}${noestrela}${noestrela}${noestrela}${noestrela}`) }
         if (star1) { perfilembed.setDescription(`<a:vip:837441854332338227> **Perfil de ${user.user.username}** ${estrela}${noestrela}${noestrela}${noestrela}${noestrela}`) }
         if (star2) { perfilembed.setDescription(`<a:vip:837441854332338227> **Perfil de ${user.user.username}** ${estrela}${estrela}${noestrela}${noestrela}${noestrela}`) }
