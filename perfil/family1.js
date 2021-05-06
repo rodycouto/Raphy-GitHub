@@ -53,7 +53,7 @@ exports.run = async (client, message, args) => {
 					.setColor('GREEN')
 					.setDescription(`<a:Check:836347816036663309> ${member} aceitou o pedido de ${message.author} e agora são uma familia!`)
 					setTimeout(function () { message.inlineReply(familyembed) }, 4650)
-					return message.channel.send('<a:carregando:836101628083437608> Autenticando mudanças no banco de dados...').then(msg => msg.delete({ timeout: 4500 }).catch(err => { return }))
+					return message.channel.send('<a:Pulse:839682326211854337> Autenticando mudanças no banco de dados...').then(msg => msg.delete({ timeout: 4500 }).catch(err => { return }))
 			})
 		})
 	} else {

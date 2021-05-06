@@ -9,7 +9,7 @@ exports.run = async (client, message, args) => {
   if (prefix === null) prefix = "-"
 
   if (!user) { return message.inlineReply('`' + prefix + 'gado @user`') }
-  if (user.id === '837147659898191902') { return message.inlineReply('Eu nunca namorei, então não tem como eu ser corna.') }
+  if (user.id === '837147659898191902') { return message.inlineReply('eu não tenho ninguém pra gadear, para com isso.') }
   if (user.id === message.author.id) { return message.inlineReply('Você não pode usar este comando com você mesmo.') }
 
   let GadoEmbed = new Discord.MessageEmbed()

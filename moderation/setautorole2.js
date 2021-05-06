@@ -5,30 +5,33 @@ exports.run = async (client, message, args) => {
 
     let botperm = message.guild.me.hasPermission("MANAGE_ROLES")
     let userperms = message.member.hasPermission("MANAGE_ROLES")
-    let autorole = db.get(`autorole_${message.guild.id}`)
+    let autorole = db.get(`autorole2_${message.guild.id}`)
     let role = message.mentions.roles.first()
 
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (prefix === null) prefix = "-"
 
-    let adm = new Discord.MessageEmbed()
+    let autorole1 = db.det(`autorole_${message.guild.id}`)
+    if (!autorole1) { return message.inlineReply('<:xis:835943511932665926> O Autorole 1 tem que estar ativado para habilitar o Autorole 2. `' + prefix + 'setautorole`') }
+
+    const adm = new Discord.MessageEmbed()
         .setColor('#8B0000')
         .setTitle('Eu preciso da permissão "Gerenciar Cargos" para utilizar esta função.')
 
-    let permss = new Discord.MessageEmbed()
+    const permss = new Discord.MessageEmbed()
         .setColor('#8B0000')
         .setTitle('Permissão Necessária: Gerenciar Roles (cargos)')
 
-    let cargoatual = new Discord.MessageEmbed()
+    const cargoatual = new Discord.MessageEmbed()
         .setColor('BLUE')
-        .setDescription(`O autorole atual é: <@&${db.get(`autorole_${message.guild.id}`)}>`)
+        .setDescription(`O autorole 2 atual é: <@&${db.get(`autorole2_${message.guild.id}`)}>`)
 
-    let noargs = new Discord.MessageEmbed()
+    const noargs = new Discord.MessageEmbed()
         .setColor('BLUE') // red
-        .setTitle('O Autorole System está desativado')
+        .setTitle('O Autorole System 2 está desativado')
         .setDescription('Escolha o cargo que todos vão receber assim que entrar no servidor.')
-        .addField('Defina o cargo', '`' + prefix + 'setautorole @Cargo`')
-        .addField('Desative o Autorole', '`' + prefix + 'setautorole off`')
+        .addField('Defina o cargo', '`' + prefix + 'setautorole2 @Cargo`')
+        .addField('Desative o Autorole', '`' + prefix + 'setautorole2 off`')
 
     if (!botperm) { return message.inlineReply(adm) }
     if (!userperms) { return message.inlineReply(permss) }
@@ -42,13 +45,13 @@ exports.run = async (client, message, args) => {
         if (autorole === null) {
             let noauto = new Discord.MessageEmbed()
                 .setColor('#8B0000')
-                .setTitle('O Autorole System já está desativado.')
+                .setTitle('O Autorole System 2 já está desativado.')
             return message.channel.send(noauto)
         }
 
-        let confirm1 = new Discord.MessageEmbed()
+        const confirm1 = new Discord.MessageEmbed()
             .setColor('BLUE')
-            .setDescription(`Você deseja desligar o sistema de Autorole? O cargo <@&${autorole}> deixará de ser dado a todos os novos membros.`)
+            .setDescription(`Você deseja desligar o Sistema de Autorole 2? O cargo <@&${autorole}> deixará de ser dado a todos os novos membros.`)
             .setFooter('Auto delete em 1 minuto.')
 
         return message.channel.send(confirm1).then(msg => {
@@ -61,13 +64,13 @@ exports.run = async (client, message, args) => {
 
                 if (reaction.emoji.name === '✅') { // Sim
                     msg.delete().catch(err => { return })
-                    db.delete(`autorole_${message.guild.id}`)
+                    db.delete(`autorole2_${message.guild.id}`)
 
-                    let desativado = new Discord.MessageEmbed()
+                    const desativado = new Discord.MessageEmbed()
                         .setColor('GREEN')
-                        .setTitle('<a:Check:836347816036663309> Autorole System foi desativado com sucesso.')
+                        .setTitle('<a:Check:836347816036663309> Autorole System 2 foi desativado com sucesso.')
 
-                    return message.channel.send('<a:Pulse:839682326211854337> Desativando o Autorole System...').then(msg => msg.delete({ timeout: 3400 })).then(msg => msg.channel.send(desativado))
+                    return message.channel.send('<a:Pulse:839682326211854337> Desativando o Autorole System 2...').then(msg => msg.delete({ timeout: 3400 })).then(msg => msg.channel.send(desativado))
                 }
 
                 if (reaction.emoji.name === '❌') { // NPEmbed
@@ -81,9 +84,9 @@ exports.run = async (client, message, args) => {
     let norole = new Discord.MessageEmbed()
         .setColor('#8B0000')
         .setTitle('Siga o formato correto')
-        .setDescription('`' + prefix + 'setautorole @cargo`')
+        .setDescription('`' + prefix + 'setautorole2 @cargo`')
 
-    let soberol = new Discord.MessageEmbed()
+    const soberol = new Discord.MessageEmbed()
         .setColor('BLUE')
         .setTitle('Este cargo é maior que o meu.')
         .addFields(
@@ -93,17 +96,17 @@ exports.run = async (client, message, args) => {
             }
         )
 
-    let sobcarg = new Discord.MessageEmbed()
+    const sobcarg = new Discord.MessageEmbed()
         .setColor('#8B0000')
         .setDescription('<a:Pulse:839682326211854337> Um erro foi encontrado. Buscando solução...')
 
-    let iqual = new Discord.MessageEmbed()
+    const iqual = new Discord.MessageEmbed()
         .setColor('#8B0000') // Red
         .setTitle('Este cargo já foi definido como Autorole!')
 
-    let confirm = new Discord.MessageEmbed()
+    const confirm = new Discord.MessageEmbed()
         .setColor('BLUE')
-        .setDescription(`Você deseja definir o cargo ${role} como autorole?`)
+        .setDescription(`Você deseja definir o cargo ${role} como Autorole 2?`)
 
     if (!role) { return message.channel.send(norole) }
     if (!role.editable) { return message.channel.send(sobcarg).then(msg => msg.delete({ timeout: 4000 })).then(msg => msg.channel.send(soberol)) }
@@ -121,13 +124,13 @@ exports.run = async (client, message, args) => {
             if (message.author.id !== user.id) return
             if (reaction.emoji.name === '✅') { // Sim
                 msg.delete().catch(err => { return })
-                db.set(`autorole_${message.guild.id}`, role.id)
+                db.set(`autorole2_${message.guild.id}`, role.id)
 
-                let redefine = new Discord.MessageEmbed()
+                const redefine = new Discord.MessageEmbed()
                     .setColor('GREEN')
-                    .setDescription(`<a:Check:836347816036663309> O cargo ${role} foi definido como autorole com sucesso.`)
+                    .setDescription(`<a:Check:836347816036663309> O cargo ${role} foi definido como Autorole 2 com sucesso.`)
 
-                let timing = new Discord.MessageEmbed()
+                const timing = new Discord.MessageEmbed()
                     .setColor('BLUE')
                     .setDescription(`<a:Pulse:839682326211854337> Autenticando o cargo no banco de dados do servidor **${message.guild.name}**...`)
 

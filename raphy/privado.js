@@ -23,7 +23,7 @@ exports.run = async (client, message, args) => {
 
         const confirm = new Discord.MessageEmbed()
             .setColor('BLUE')
-            .setTitle('<a:carregando:836101628083437608> Confirmação...')
+            .setTitle('<a:Pulse:839682326211854337> Confirmação...')
             .setDescription('Você confirma em desabilitar minhas mensagens no seu privado?\n \nVocê confirmando esta ação, alguns comandos será desativado para você e você não receberá nenhuma mensagem minha no seu privado.')
             .setFooter('Auto delete em 1 minuto.')
 
@@ -40,7 +40,7 @@ exports.run = async (client, message, args) => {
 
                     if (PrivadoDesativado) {
                         setTimeout(function () { return message.inlineReply('<a:Check:836347816036663309> Minhas mensagens no seu privado já estão desativadas.\nDigite `' + prefix + 'privado` para mais informações.') }, 4300)
-                        return message.inlineReply('<a:carregando:836101628083437608> Autenticando alterações...').then(msg => msg.delete({ timeout: 4200 }).catch(err => { return }))
+                        return message.inlineReply('<a:Pulse:839682326211854337> Autenticando alterações...').then(msg => msg.delete({ timeout: 4200 }).catch(err => { return }))
                     }
 
                     if (PrivadoDesativado === null) {
@@ -48,7 +48,7 @@ exports.run = async (client, message, args) => {
                             db.set(`privadooff_${message.author.id}`, "Desativado")
                             return message.inlineReply('<a:Check:836347816036663309> Você desativou minhas mensagens no seu privado com sucesso! Alguns comandos também foram bloqueados.')
                         }, 6300)
-                        return message.inlineReply('<a:carregando:836101628083437608> Autenticando alterações...').then(msg => msg.delete({ timeout: 6200 }).catch(err => { return }))
+                        return message.inlineReply('<a:Pulse:839682326211854337> Autenticando alterações...').then(msg => msg.delete({ timeout: 6200 }).catch(err => { return }))
                     }
                 }
                 if (reaction.emoji.name === '❌') { // Não
@@ -61,7 +61,7 @@ exports.run = async (client, message, args) => {
 
         const confirm1 = new Discord.MessageEmbed()
             .setColor('BLUE')
-            .setTitle('<a:carregando:836101628083437608> Confirmação...')
+            .setTitle('<a:Pulse:839682326211854337> Confirmação...')
             .setDescription('Você confirma em habilitar minhas mensagens no seu privado?\n \nVocê confirmando esta ação, comandos será ativado para você e você receberá mensagens minhas no seu privado. *(Tudo opicional)*')
             .setFooter('Auto delete em 1 minuto.')
 
@@ -78,7 +78,7 @@ exports.run = async (client, message, args) => {
 
                     if (PrivadoDesativado === null) {
                         setTimeout(function () { message.channel.send('<a:Check:836347816036663309> Minhas mensagens no seu privado já estão ativadas.\nDigite `' + prefix + 'privado` para mais informações.') }, 6300)
-                        return message.inlineReply('<a:carregando:836101628083437608> Autenticando alterações...').then(msg => msg.delete({ timeout: 6200 }).catch(err => { return }))
+                        return message.inlineReply('<a:Pulse:839682326211854337> Autenticando alterações...').then(msg => msg.delete({ timeout: 6200 }).catch(err => { return }))
                     }
 
                     if (PrivadoDesativado) {
@@ -86,7 +86,7 @@ exports.run = async (client, message, args) => {
                             db.delete(`privadooff_${message.author.id}`)
                             message.inlineReply('<a:Check:836347816036663309> Você habilitou minhas mensagens no seu privado com sucesso!')
                         }, 6300)
-                        return message.inlineReply('<a:carregando:836101628083437608> Autenticando alterações...').then(msg => msg.delete({ timeout: 6200 }).catch(err => { return }))
+                        return message.inlineReply('<a:Pulse:839682326211854337> Autenticando alterações...').then(msg => msg.delete({ timeout: 6200 }).catch(err => { return }))
                     }
                 }
                 if (reaction.emoji.name === '❌') { // Não

@@ -268,6 +268,12 @@ client.on("guildMemberAdd", (member) => {
     return member.roles.add(role)
 })
 
+client.on("guildMemberAdd", (member) => {
+    let role2 = db.get(`autorole2_${member.guild.id}`)
+    if (role2 === null) { return }
+    return member.roles.add(role2)
+})
+
 client.on("ready", () => {
     let activities = ['Me marca que eu falo o prefixo', '#FiqueEmCasa']
     i = 0

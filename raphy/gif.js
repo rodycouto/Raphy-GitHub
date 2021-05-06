@@ -45,5 +45,5 @@ exports.run = async (client, message, args) => {
 
     canal.send(newgif)
     setTimeout(function () { message.inlineReply('<a:Check:836347816036663309> Gif enviado com sucesso!') }, 4100)
-    return message.inlineReply('<a:carregando:836101628083437608> Enviando Gif ao Servidor Central...').then(msg => msg.delete({ timeout: 4000 }))
+    return message.inlineReply('<a:Pulse:839682326211854337> Enviando Gif ao Servidor Central...').then(msg => msg.delete({ timeout: 4000 }))
 }

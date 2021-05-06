@@ -58,7 +58,7 @@ exports.run = async (client, message, args) => {
 
             let desativando = new Discord.MessageEmbed()
                 .setColor('BLUE')
-                .setDescription('<a:carregando:836101628083437608> Desativando Report System...')
+                .setDescription('<a:Pulse:839682326211854337> Desativando Report System...')
 
             return message.channel.send(desativando).then(msg => msg.delete({ timeout: 5000 })).then(msg => msg.channel.send(desativado))
         }

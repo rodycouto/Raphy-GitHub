@@ -21,6 +21,6 @@ exports.run = async (client, message, args) => {
     setTimeout(function () {
         message.inlineReply(respostas)
     }, 2000)
-    return message.inlineReply('<a:carregando:836101628083437608> Buscando resposta divina...').then(msg => msg.delete({ timeout: 1900 }).catch(err => { return }))
+    return message.inlineReply('<a:Pulse:839682326211854337> Buscando resposta divina...').then(msg => msg.delete({ timeout: 1900 }).catch(err => { return }))
 
 }

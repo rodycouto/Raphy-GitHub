@@ -17,5 +17,5 @@ exports.run = async (client, message, args) => {
     await db.delete(`family3_${db.get(`family3_${message.author.id}`)}`)
     await db.delete(`family3_${message.author.id}`)
     setTimeout(function () { message.inlineReply(`<a:Check:836347816036663309> Você não tem mais parentesco com ${user}.`) }, 4650)
-    return message.channel.send('<a:carregando:836101628083437608> Autenticando mudanças no banco de dados...').then(msg => msg.delete({ timeout: 4500 }).catch(err => { return }))
+    return message.channel.send('<a:Pulse:839682326211854337> Autenticando mudanças no banco de dados...').then(msg => msg.delete({ timeout: 4500 }).catch(err => { return }))
 }

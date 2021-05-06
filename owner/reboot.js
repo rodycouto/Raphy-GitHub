@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
 
         client.guilds.cache.forEach(Canal => {
             try {
-                client.channels.cache.get(db.fetch(`globalchat_${Canal.id}`)).send(`<a:carregando:836101628083437608> Rebooting... ${Mensagem}`)
+                client.channels.cache.get(db.fetch(`globalchat_${Canal.id}`)).send(`<a:Pulse:839682326211854337> Rebooting... ${Mensagem}`)
             } catch (e) { return }
         })
     }

@@ -38,7 +38,7 @@ exports.run = async (client, message, args) => {
                         .setTitle('✅ Sucesso!')
                         .setDescription('<a:Check:836347816036663309> Sua data de aniversário foi deletada com sucesso.')
                     setTimeout(function () { message.inlineReply(ok) }, 4100)
-                    return message.inlineReply('<a:carregando:836101628083437608> Apagando data de aniversário...').then(msg => msg.delete({ timeout: 4000 }).catch(err => { return }))
+                    return message.inlineReply('<a:Pulse:839682326211854337> Apagando data de aniversário...').then(msg => msg.delete({ timeout: 4000 }).catch(err => { return }))
                 }
 
                 if (reaction.emoji.name === '❌') {
@@ -96,7 +96,7 @@ exports.run = async (client, message, args) => {
                     .setTitle('🎉 Sucesso!')
                     .setDescription('<a:Check:836347816036663309> Sua data de aniversário foi salva com sucesso.')
                 setTimeout(function () { message.inlineReply(ok) }, 4100)
-                return message.inlineReply('<a:carregando:836101628083437608> Autenticando data de aniversário...').then(msg => msg.delete({ timeout: 4000 }).catch(err => { return }))
+                return message.inlineReply('<a:Pulse:839682326211854337> Autenticando data de aniversário...').then(msg => msg.delete({ timeout: 4000 }).catch(err => { return }))
             }
 
             if (reaction.emoji.name === '❌') {

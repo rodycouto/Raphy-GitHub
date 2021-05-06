@@ -31,5 +31,5 @@ exports.run = async (client, message, args) => {
 
     canal.send(newideia).catch(err => { return message.channel.send(`<:xis:835943511932665926> Ocorreu um erro! Use **${prefix}help** e entre no meu servidor, por favor.\n \nErro: \n${err}`) })
     setTimeout(function () { message.inlineReply('<a:Check:836347816036663309> Seu report foi enviado com sucesso! Entre no servidor para ganhar uma recompensa.') }, 5000)
-    return message.inlineReply('<a:carregando:836101628083437608> Enviando mensagem ao Servidor Central...').then(msg => msg.delete({ timeout: 4850 }))
+    return message.inlineReply('<a:Pulse:839682326211854337> Enviando mensagem ao Servidor Central...').then(msg => msg.delete({ timeout: 4850 }))
 }

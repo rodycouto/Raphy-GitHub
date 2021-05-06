@@ -65,6 +65,6 @@ exports.run = async (client, message, args) => {
 
             return message.inlineReply('<a:Check:836347816036663309> Autenticação finalizada.', sucess)
         }, 7000)
-        return message.inlineReply(`<a:carregando:836101628083437608> Autenticando canal no banco de dados...`).then(msg => msg.delete({ timeout: 6900 }).catch(err => { return }))
+        return message.inlineReply(`<a:Pulse:839682326211854337> Autenticando canal no banco de dados...`).then(msg => msg.delete({ timeout: 6900 }).catch(err => { return }))
     }
 }

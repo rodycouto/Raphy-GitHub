@@ -50,7 +50,7 @@ exports.run = async (client, message, args) => {
             message.guild.roles.create({ data: { name: RoleName, color: "#99AAB5" } }).catch(err => { return message.channel.send(err) })
             message.channel.send("<a:Check:836347816036663309> Cargo criado com sucesso!")
           }, 2100)
-          return message.channel.send("<a:carregando:836101628083437608> Criando cargo...").then(msg => msg.delete({ timeout: 2000 }))
+          return message.channel.send("<a:Pulse:839682326211854337> Criando cargo...").then(msg => msg.delete({ timeout: 2000 }))
         }
 
         if (reaction.emoji.name === '❌') { // Não
@@ -81,7 +81,7 @@ exports.run = async (client, message, args) => {
 
       const sobcarg = new Discord.MessageEmbed()
         .setColor('#8B0000')
-        .setDescription('<a:carregando:836101628083437608> Um erro foi encontrado. Buscando solução...')
+        .setDescription('<a:Pulse:839682326211854337> Um erro foi encontrado. Buscando solução...')
 
       setTimeout(function () {
         message.inlineReply(soberol)
@@ -110,7 +110,7 @@ exports.run = async (client, message, args) => {
             RoleToDelete.delete()
             message.channel.send("<a:Check:836347816036663309> Cargo deletado com sucesso!")
           }, 2100)
-          return message.channel.send("<a:carregando:836101628083437608> Deletando cargo...").then(msg => msg.delete({ timeout: 2000 }))
+          return message.channel.send("<a:Pulse:839682326211854337> Deletando cargo...").then(msg => msg.delete({ timeout: 2000 }))
         }
 
         if (reaction.emoji.name === '❌') { // Não
@@ -145,7 +145,7 @@ exports.run = async (client, message, args) => {
 
       const sobcarg = new Discord.MessageEmbed()
         .setColor('#8B0000')
-        .setDescription('<a:carregando:836101628083437608> Um erro foi encontrado. Buscando solução...')
+        .setDescription('<a:Pulse:839682326211854337> Um erro foi encontrado. Buscando solução...')
 
       setTimeout(function () {
         message.inlineReply(soberol)
@@ -181,7 +181,7 @@ exports.run = async (client, message, args) => {
           )
         const sobcarg = new Discord.MessageEmbed()
           .setColor('#8B0000')
-          .setDescription('<a:carregando:836101628083437608> Um erro foi encontrado. Buscando solução...')
+          .setDescription('<a:Pulse:839682326211854337> Um erro foi encontrado. Buscando solução...')
 
         setTimeout(function () {
           message.inlineReply(soberol)
@@ -210,7 +210,7 @@ exports.run = async (client, message, args) => {
               RoleToEdit.edit({ name: NovoNome }).catch(err => { return message.channel.send(`**ERRO:** ${err}`) })
               message.inlineReply(`<a:Check:836347816036663309> O nome do cargo foi atualizado com sucesso!`)
             }, 2100)
-            return message.channel.send("<a:carregando:836101628083437608> Editando nome do cargo...").then(msg => msg.delete({ timeout: 2000 }))
+            return message.channel.send("<a:Pulse:839682326211854337> Editando nome do cargo...").then(msg => msg.delete({ timeout: 2000 }))
           }
 
           if (reaction.emoji.name === '❌') { // Não
@@ -245,7 +245,7 @@ exports.run = async (client, message, args) => {
           )
         const sobcarg = new Discord.MessageEmbed()
           .setColor('#8B0000')
-          .setDescription('<a:carregando:836101628083437608> Um erro foi encontrado. Buscando solução...')
+          .setDescription('<a:Pulse:839682326211854337> Um erro foi encontrado. Buscando solução...')
 
         setTimeout(function () {
           message.inlineReply(soberol)
@@ -273,7 +273,7 @@ exports.run = async (client, message, args) => {
               RoleToEdit.setColor(NovaCor).catch(err => { return message.channel.send(`**ERRO:** ${err}`) })
               message.inlineReply(`<a:Check:836347816036663309> A cor do cargo foi atualizada com sucesso!`)
             }, 2100)
-            return message.channel.send("<a:carregando:836101628083437608> Editando cor do cargo...").then(msg => msg.delete({ timeout: 2000 }))
+            return message.channel.send("<a:Pulse:839682326211854337> Editando cor do cargo...").then(msg => msg.delete({ timeout: 2000 }))
           }
 
           if (reaction.emoji.name === '❌') { // Não

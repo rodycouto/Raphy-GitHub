@@ -179,7 +179,7 @@ exports.run = async (client, message, args) => {
             }
         }
 
-        if (['maças', 'apple', 'maça', 'apples'].includes(args[0])) {
+        if (['maças', 'apple', 'maça', 'apples', 'maçã', 'maçãs'].includes(args[0])) {
 
             if (apple === null) { return message.inlineReply(`❌ ${message.author}, você não tem maças para vender.`) }
             if (!args[1]) { return message.inlineReply('Quantas rosas você quer vender? `' + prefix + 'vender maças quantidade`') }

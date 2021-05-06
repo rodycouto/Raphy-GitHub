@@ -35,7 +35,7 @@ exports.run = async (client, message, args) => {
 
         let sobcarg = new Discord.MessageEmbed()
             .setColor('#8B0000')
-            .setDescription('<a:carregando:836101628083437608> Um erro foi encontrado. Buscando solução...')
+            .setDescription('<a:Pulse:839682326211854337> Um erro foi encontrado. Buscando solução...')
 
         setTimeout(function () {
             message.inlineReply(soberol)

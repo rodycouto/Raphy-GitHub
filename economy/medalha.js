@@ -56,7 +56,7 @@ exports.run = async (client, message, args) => {
             db.set(`code1_${message.author.id}`, "OK")
             message.channel.send(CódigoCertoEmbed1)
         }, 7100)
-        return message.channel.send('<a:carregando:836101628083437608> Verificando primeiro código pessoal...').then(msg => msg.delete({ timeout: 7000 }))
+        return message.channel.send('<a:Pulse:839682326211854337> Verificando primeiro código pessoal...').then(msg => msg.delete({ timeout: 7000 }))
 
     } else if (args[0] === id) {
         if (!code1) { return message.channel.send('<:xis:835943511932665926> Soldado, parece que você já descobriu qual é o segundo código. Porém, diga primeiro código antes.') }
@@ -67,7 +67,7 @@ exports.run = async (client, message, args) => {
             db.set(`medalha_${message.author.id}`, "ON")
             message.channel.send(CódigoCertoEmbed2)
         }, 9100)
-        return message.channel.send('<a:carregando:836101628083437608> Verificando segundo código pessoal...').then(msg => msg.delete({ timeout: 9000 }))
+        return message.channel.send('<a:Pulse:839682326211854337> Verificando segundo código pessoal...').then(msg => msg.delete({ timeout: 9000 }))
 
     } else {
         return message.channel.send(CódigoErradoEmbed)

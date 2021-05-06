@@ -48,7 +48,7 @@ exports.run = async (client, message, args) => {
          })
       } catch (error) { message.channel.send(error) }
       try {
-         message.inlineReply('<a:carregando:836101628083437608> Criando e configurando cargo, espere...').then(msg => msg.delete({ timeout: 8000 })).catch(err => { return }).then(msg => message.inlineReply(`<a:carregando:836101628083437608> Buscando erros...`)).then(msg => msg.delete({ timeout: 4000 })).catch(err => { return }).then(msg => message.inlineReply('<a:Check:836347816036663309> Cargo criado e configurado com sucesso!'))
+         message.inlineReply('<a:Pulse:839682326211854337> Criando e configurando cargo, espere...').then(msg => msg.delete({ timeout: 8000 })).catch(err => { return }).then(msg => message.inlineReply(`<a:Pulse:839682326211854337> Buscando erros...`)).then(msg => msg.delete({ timeout: 4000 })).catch(err => { return }).then(msg => message.inlineReply('<a:Check:836347816036663309> Cargo criado e configurado com sucesso!'))
       } catch (error) { message.channel.send(error) }
    }
    if (!role) return
@@ -110,7 +110,7 @@ exports.run = async (client, message, args) => {
 
       let sobcarg = new Discord.MessageEmbed()
          .setColor('#8B0000')
-         .setDescription('<a:carregando:836101628083437608> Um erro foi encontrado. Buscando solução...')
+         .setDescription('<a:Pulse:839682326211854337> Um erro foi encontrado. Buscando solução...')
 
       setTimeout(function () {
          message.inlineReply(soberol)
