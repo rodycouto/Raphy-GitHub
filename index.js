@@ -98,30 +98,34 @@ client.on("message", async (message) => {
         }
     }
 
-    if (message.content === '-_-') return
-    if (message.content === "-'") return
-    if (message.content === "-.-") return
+    if (message.content.startsWith('-_-')) return
+    if (message.content.startsWith("-'")) return
+    if (message.content.startsWith("-.-")) return
+
+    if (!message.member.hasPermission("ADMINISTRATOR")) {
+        if (db.get(`blockchannel_${message.channel.id}`)) {
+            message.delete().catch(err => { return })
+            return message.channel.send('<:xis:835943511932665926> **COMANDOS BLOQUEADOS** | Apenas administradores podem usar meus comandos neste canal.').then(msg => msg.delete({ timeout: 4000 })).catch(err => { return })
+        }
+    }
+
+    if (message.content.startsWith(`${prefix}check`)) { message.react("✅") }
+    if (message.content.startsWith(`${prefix}inline`)) { return message.inlineReply("<a:Check:836347816036663309> Inline Reply funcionando corretamente") }
+
+    try {
+        const commandFile = require(`./farming/${command}.js`)
+        return commandFile.run(client, message, args)
+    } catch (err) { }
 
     let timeout = 3000
     let author = await db.fetch(`commandcooldown_${message.author.id}`)
     let respostinhas = ['Calminha coisa fofa!', 'Tem um tempinho pra usar outro comando, calma aí!', 'Calma, não tão rápido.', 'Cooldown é de 3 segundos, calma.', 'Tá com pressa? Pera um pouquinho.']
     let reposta = respostinhas[Math.floor(Math.random() * respostinhas.length)]
-
     if (author !== null && timeout - (Date.now() - author) > 0) {
         let time = ms(timeout - (Date.now() - author))
         return message.inlineReply(`⏲️ | ${reposta} | **${time.seconds}s**`)
     } else {
         db.set(`commandcooldown_${message.author.id}`, Date.now())
-
-        if (!message.member.hasPermission("ADMINISTRATOR")) {
-            if (db.get(`blockchannel_${message.channel.id}`)) {
-                message.delete().catch(err => { return })
-                return message.channel.send('<:xis:835943511932665926> **COMANDOS BLOQUEADOS** | Apenas administradores podem usar meus comandos neste canal.').then(msg => msg.delete({ timeout: 4000 })).catch(err => { return })
-            }
-        }
-
-        if (message.content.startsWith(`${prefix}check`)) { message.react("✅") }
-        if (message.content.startsWith(`${prefix}inline`)) { return message.inlineReply("<a:Check:836347816036663309> Inline Reply funcionando corretamente") }
 
         try {
             const commandFile = require(`./afksystem/${command}.js`)
