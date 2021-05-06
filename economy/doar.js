@@ -80,7 +80,7 @@ exports.run = async (client, message, args) => {
                     }
                 })
             })
-        } else if (['money', 'np', 'dinheiro', 'cash'].includes(args[0])) {
+        } else if (['money', 'rp', 'dinheiro', 'cash'].includes(args[0])) {
 
             if (["all", 'tudo'].includes(args[2])) {
                 if (money === '0') { return message.inlineReply('<:xis:835943511932665926> Você não tem dinheiro para doar.') }

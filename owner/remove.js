@@ -178,7 +178,7 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`<a:Check:836347816036663309> Sucesso!`)
     }
 
-    if (['np', 'money'].includes(args[0])) {
+    if (['rp', 'money'].includes(args[0])) {
 
         if (!user) { return message.channel.send('`' + prefix + 'remove money @user Valor`') }
 

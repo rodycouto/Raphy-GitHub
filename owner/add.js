@@ -130,7 +130,7 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`<@${id}> *(${id})* recebeu as fichas com sucesso!`)
     }
 
-    if (['np', 'money'].includes(args[0])) {
+    if (['rp', 'money'].includes(args[0])) {
 
         if (!user) { return message.channel.send('`' + prefix + 'add money @user Valor`') }
 
