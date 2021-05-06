@@ -6,7 +6,8 @@ const ms = require("parse-ms")
 exports.run = async (client, message, args) => {
 
   let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member
-  let avatar = user.user.displayAvatarURL({ format: 'png' })
+  let avatar = user.user.displayAvatarURL({ dynamic: true, format: "png", size: 1024 })
+ 
   let fotospot = 'https://imgur.com/vw6z7v4.png'
   if (message.mentions.users.first()) {
     user = message.mentions.users.first()
