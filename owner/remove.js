@@ -825,6 +825,7 @@ exports.run = async (client, message, args) => {
         db.delete(`slut_${id}`)
         db.delete(`preso_${id}`)
         db.delete(`pego_${id}`)
+        db.delete(`PorquinhoTimeout_${user.id}`)
         db.delete(`procurado_${id}`)
         db.delete(`assaltotime_${id}`)
         return message.inlineReply(`Todos os Timeouts de <@${id}> *(${id})* foram removidos.`)

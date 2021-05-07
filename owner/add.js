@@ -541,5 +541,16 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`${valor}<:RPoints:837666759389347910>RPoints foram adicionados a loteria com sucesso!.`)
     }
 
+    if (['pig', 'porco', 'porquinho'].includes(args[0])) {
+
+        let valor = args[1]
+        if (!valor) { return message.channel.send('`' + prefix + 'add pig Valor`') }
+        if (args[2]) { return message.channel.send('Sem args[2] por favor') }
+        if (isNaN(valor)) { return message.channel.send(`**${valor}** não é um número.`) }
+
+        db.add('PorquinhoMoney', valor)
+        return message.channel.send(`${valor}<:RPoints:837666759389347910>RPoints foram adicionados ao pig com sucesso!.`)
+    }
+
     return message.channel.send('Comando não encontrado no registro.')
 }
