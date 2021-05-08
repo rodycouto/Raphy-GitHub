@@ -1,6 +1,10 @@
 const Discord = require("discord.js")
+const db = require("quick.db")
 
 exports.run = async (client, message, args) => {
+
+  let color = await db.get(`color_${message.author.id}`)
+  if (color === null) color = '#6F6C6C'
 
   let lista = [
     'https://imgur.com/XhwPW1b.png',
@@ -65,8 +69,8 @@ exports.run = async (client, message, args) => {
   let saophotos = lista[Math.floor(Math.random() * lista.length)]
 
   const SAOEmbed = new Discord.MessageEmbed()
+    .setColor(color)
     .setTitle('📺 SAO - Sword Art Online')
-    .setColor('BLUE')
     .setImage(saophotos)
 
   await message.inlineReply(SAOEmbed).then(msg => {
@@ -81,8 +85,8 @@ exports.run = async (client, message, args) => {
         reaction.users.remove(user).catch(err => { return })
 
         const SAOEmbed1 = new Discord.MessageEmbed()
+          .setColor(color)
           .setTitle('📺 SAO - Sword Art Online')
-          .setColor('BLUE')
           .setImage(lista[Math.floor(Math.random() * lista.length)])
         msg.edit(SAOEmbed1)
       }

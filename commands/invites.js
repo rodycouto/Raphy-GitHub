@@ -17,9 +17,9 @@ exports.run = async (client, message, args) => {
         }))
 
         const replyText = new Discord.MessageEmbed()
+            .setColor("BLUE")
             .setTitle(`📩 Convites ${message.guild.name}`)
             .setDescription(` \n`)
-            .setColor("BLUE")
             .setFooter('Apareceu o ID? O membro saiu do servidor')
 
         let sortedInvites = Object.keys(inviteCounter).sort((a, b) => inviteCounter[b] - inviteCounter[a])

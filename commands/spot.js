@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
 
   let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member
   let avatar = user.user.displayAvatarURL({ dynamic: true, format: "png", size: 1024 })
- 
+
   let fotospot = 'https://imgur.com/vw6z7v4.png'
   if (message.mentions.users.first()) {
     user = message.mentions.users.first()
@@ -37,8 +37,8 @@ exports.run = async (client, message, args) => {
     let time = `${minutes}:${seconds}`
 
     const embed = new Discord.MessageEmbed()
-      .setAuthor(`${user.username} está escutando...`, (avatar))
       .setColor(0x1ED768)
+      .setAuthor(`${user.username} está escutando...`, (avatar))
       .setDescription(`**Nome:**\n[${name}](${url})`)
       .setThumbnail(image)
       .addField("Duração", time, true)

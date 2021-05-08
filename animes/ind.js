@@ -1,6 +1,10 @@
 const Discord = require("discord.js")
+const db = require("quick.db")
 
 exports.run = async (client, message, args) => {
+
+  let color = await db.get(`color_${message.author.id}`)
+  if (color === null) color = '#6F6C6C'
 
   var i = 'Isekai'
   var h = 'Hentai'
@@ -339,8 +343,8 @@ exports.run = async (client, message, args) => {
 
   let rand = list[Math.floor(Math.random() * list.length)]
 
-  let IndEmbed = new Discord.MessageEmbed()
-    .setColor('BLUE')
+  const IndEmbed = new Discord.MessageEmbed()
+    .setColor(color)
     .addFields(
       {
         name: 'Raphy Indica :hearts:',
@@ -356,8 +360,8 @@ exports.run = async (client, message, args) => {
       if (message.author.id !== user.id) return
 
       if (reaction.emoji.name === '🔄') { // 1º Embed - Principal
-        let IndEmbed1 = new Discord.MessageEmbed()
-          .setColor('BLUE')
+        const IndEmbed1 = new Discord.MessageEmbed()
+          .setColor(color)
           .addFields(
             {
               name: 'Raphy Indica :hearts:',

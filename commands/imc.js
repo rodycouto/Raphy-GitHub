@@ -6,6 +6,9 @@ exports.run = async (client, message, args) => {
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (prefix === null) { prefix = "-" }
 
+    let color = await db.get(`color_${message.author.id}`)
+    if (color === null) color = '#6F6C6C'
+
     let weight = args[0]
     let height = args[1]
 
@@ -38,7 +41,7 @@ exports.run = async (client, message, args) => {
         if (imc < 24.9 && imc > 18.5) category = "Padrão"
 
         const embed = new Discord.MessageEmbed()
-            .setColor("BLUE")
+            .setColor(color)
             .setTitle(`📉 Índice de Massa Corporal`)
             .addField('Peso', weight)
             .addField('Altura', height)

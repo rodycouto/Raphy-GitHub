@@ -6,6 +6,9 @@ exports.run = async (client, message, args) => {
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (prefix === null) prefix = "-"
 
+    let color = await db.get(`color_${message.author.id}`)
+    if (color === null) color = '#6F6C6C'
+
     let money = db.get(`mpoints_${message.author.id}`)
     let Options = ["pedra", "papel", "tesoura"]
     let random = ['win', 'lose', 'draw']
@@ -26,17 +29,17 @@ exports.run = async (client, message, args) => {
     if (['pedra', 'rock'].includes(args[0])) {
 
         const lose = new Discord.MessageEmbed()
-            .setColor('BLUE')
+            .setColor(color)
             .setTitle('😭 | Eu Perdiiii')
             .setDescription('Você 👊 x ✌️ Raphy\nVocê ganhou 10<:RPoints:837666759389347910>RPoints')
 
         const win = new Discord.MessageEmbed()
-            .setColor('BLUE')
+            .setColor(color)
             .setTitle('😌 | Eu Ganheeei')
             .setDescription('Você 👊 x ✋ Raphy\nVocê perdeu 10<:RPoints:837666759389347910>RPoints')
 
         const draw = new Discord.MessageEmbed()
-            .setColor('BLUE')
+            .setColor(color)
             .setTitle('😕 | Deu empate')
             .setDescription('Você 👊 x 👊 Raphy\nNinguém ganhou nada que pena')
 
@@ -56,17 +59,17 @@ exports.run = async (client, message, args) => {
     } else if (['papel', 'paper'].includes(args[0])) {
 
         const lose = new Discord.MessageEmbed()
-            .setColor('BLUE')
+            .setColor(color)
             .setTitle('😭 | Eu Perdiiii')
             .setDescription('Você ✋ x 👊 Raphy\nVocê ganhou 10<:RPoints:837666759389347910>RPoints')
 
         const win = new Discord.MessageEmbed()
-            .setColor('BLUE')
+            .setColor(color)
             .setTitle('😌 | Eu Ganheeei')
             .setDescription('Você ✋ x ✌️ Raphy\nVocê perdeu 10<:RPoints:837666759389347910>RPoints')
 
         const draw = new Discord.MessageEmbed()
-            .setColor('BLUE')
+            .setColor(color)
             .setTitle('😕 | Deu empate')
             .setDescription('Você ✋ x ✋ Raphy\nNinguém ganhou nada que pena')
 
@@ -85,17 +88,17 @@ exports.run = async (client, message, args) => {
     } else if (['tesoura', 'sissors'].includes(args[0])) {
 
         const lose = new Discord.MessageEmbed()
-            .setColor('BLUE')
+            .setColor(color)
             .setTitle('😭 | Eu Perdiiii')
             .setDescription('Você ✌️ x ✋ Raphy\nVocê ganhou 10<:RPoints:837666759389347910>RPoints')
 
         const win = new Discord.MessageEmbed()
-            .setColor('BLUE')
+            .setColor(color)
             .setTitle('😌 | Eu Ganheeei')
             .setDescription('Você ✌️ x 👊 Raphy\nVocê perdeu 10<:RPoints:837666759389347910>RPoints')
 
         const draw = new Discord.MessageEmbed()
-            .setColor('BLUE')
+            .setColor(color)
             .setTitle('😕 | Deu empate')
             .setDescription('Você ✌️ x ✌️ Raphy\nNinguém ganhou nada que pena')
 

@@ -3,38 +3,15 @@ const db = require("quick.db")
 
 exports.run = async (client, message, args) => {
 
-    let user = message.mentions.members.first()
+    let user = message.mentions.members.first() || message.author || message.member
 
-    if (!args[0]) {
-        const embed1 = new Discord.MessageEmbed()
-            .setColor('#9D24DD')
-            .setTitle(`${message.author.username}`)
-            .setDescription(`🆔 \`${message.author.id}\``)
-        return message.inlineReply(embed1)
-    }
+    let color = await db.get(`color_${user.id}`)
+    if (color === null) color = '#6F6C6C'
 
-    if (user) {
-        const idembed = new Discord.MessageEmbed()
-            .setColor('#9D24DD')
-            .setTitle(`${user.user.username}`)
-            .setDescription(`🆔 \`${user.user.id}\``)
-        return message.inlineReply(idembed)
-    }
+    const embed = new Discord.MessageEmbed()
+        .setColor(color)
+        .setTitle(`${user.username}`)
+        .setDescription(`🆔 \`${user.id}\``)
 
-    if (!user) {
-        let prefix = db.get(`prefix_${message.guild.id}`)
-        if (prefix === null) prefix = "-"
-
-        const no = new Discord.MessageEmbed()
-            .setColor('#8B0000')
-            .setTitle('Comando não reconhecido.')
-            .setDescription('Neste comando, é preciso marcar alguém ou mandar apenas o comando sem conteúdo algúm.')
-            .addFields(
-                {
-                    name: 'Exemplo',
-                    value: '`' + prefix + 'id` ou `' + prefix + 'id @user`'
-                }
-            )
-        return message.inlineReply(no)
-    }
+    if (!args[0]) { return message.inlineReply(embed) }
 }

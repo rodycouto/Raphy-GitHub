@@ -1,6 +1,10 @@
 const Discord = require("discord.js")
+const db = require("quick.db")
 
 exports.run = async (client, message, args) => {
+
+    let color = await db.get(`color_${message.author.id}`)
+    if (color === null) color = '#6F6C6C'
 
     let list = [
         'https://imgur.com/aXAIvkS.gif',
@@ -26,7 +30,7 @@ exports.run = async (client, message, args) => {
     let gif = list[Math.floor(Math.random() * list.length)]
 
     const kimetsu = new Discord.MessageEmbed()
-        .setColor('BLUE')
+        .setColor(color)
         .setImage(gif)
 
     await message.inlineReply(kimetsu).then(msg => {
@@ -40,7 +44,7 @@ exports.run = async (client, message, args) => {
             if (reaction.emoji.name === '🔄') { // 1º Embed - Principal
                 reaction.users.remove(user).catch(err => { return })
                 const kimetsu = new Discord.MessageEmbed()
-                    .setColor('BLUE')
+                    .setColor(color)
                     .setImage(list[Math.floor(Math.random() * list.length)])
                 msg.edit(kimetsu)
             }

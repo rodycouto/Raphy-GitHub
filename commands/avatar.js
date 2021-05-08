@@ -7,9 +7,12 @@ exports.run = async (client, message, args) => {
   let avatar = user.avatarURL({ dynamic: true, format: "png", size: 1024 })
   let linkavatar = user.displayAvatarURL()
 
+  let color = await db.get(`color_${user.id}`)
+  if (color === null) color = '#6F6C6C'
+  
   const embed = new Discord.MessageEmbed()
-    .setColor(`BLUE`)
-    .setDescription(`[Baixar](${linkavatar}) avatar de ${user}`)
+    .setColor(color)
+    .setDescription(`[Clique aqui](${linkavatar}) para baixar o avatar de ${user}`)
     .setImage(avatar)
 
   await message.inlineReply(embed).then(msg => {

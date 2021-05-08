@@ -65,7 +65,7 @@ exports.run = async (client, message, args) => {
 
         } else if (['voice', 'voz'].includes(args[1])) {
 
-            const NomeDoCanal = args.slice(2).join(" ").toLowerCase()
+            const NomeDoCanal = args.slice(2).join(" ")
             if (!NomeDoCanal) { return message.inlineReply('<:xis:835943511932665926> Você se esqueceu do nome do canal.\n`' + prefix + 'channel create voice NomeDoCanal`') }
             if (NomeDoCanal.length > 40) { return message.inlineReply('<:xis:835943511932665926> O nome do canal não pode ultrapassar **40 caracteres**') }
 
