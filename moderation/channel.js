@@ -13,8 +13,8 @@ exports.run = async (client, message, args) => {
         .setColor('BLUE')
         .setTitle('🛠️ Gerenciamento de Canais')
         .setDescription('Com este comando você pode gerenciar os canais rapidamente.')
-        .addField('Mute o Nome', '`' + prefix + 'channel name #canal NomeDoCanal` Edite o nome do canal\n')
-        .addField('Mute o Tópico', '`' + prefix + 'channel topic O novo tópico irado do canal`')
+        .addField('Mude o Nome', '`' + prefix + 'channel name #canal NomeDoCanal` Edite o nome do canal\n')
+        .addField('Mude o Tópico', '`' + prefix + 'channel topic O novo tópico irado do canal`')
         .addField('Crie e Delete', '`' + prefix + 'channel create text/voice NomeDoCanal` Crie canais\n' + '`' + prefix + 'channel delete NomeDoCanal` Crie canais\n')
         .setFooter(`Precisa de Ajuda? ${prefix}support`)
 

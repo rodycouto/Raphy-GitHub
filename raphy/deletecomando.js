@@ -3,40 +3,26 @@ const db = require("quick.db")
 
 exports.run = async (client, message, args) => {
 
-    if (!message.member.hasPermission('ADMINISTRATOR')) {
-        let permss = new Discord.MessageEmbed()
-            .setColor('#8B0000')
-            .setTitle('Permissão Necessária: ADMINISTRADOR')
-        return message.inlineReply(permss)
-    }
+    if (!message.member.hasPermission('ADMINISTRATOR')) { return message.inlineReply('<:xis:835943511932665926> | Permissão Necessária: ADMINISTRADOR') }
 
-    if (!args[0]) {
-        let prefix = db.get(`prefix_${message.guild.id}`)
-        if (prefix === null) prefix = "-"
+    let prefix = db.get(`prefix_${message.guild.id}`)
+    if (prefix === null) prefix = "-"
 
-        let noargs = new Discord.MessageEmbed()
-            .setColor('#8B0000')
-            .setTitle('Siga o formato correto')
-            .setDescription('`' + prefix + 'deletecomando NomeDoComando`')
-            .addFields(
-                {
-                    name: 'Exemplo',
-                    value: '`' + prefix + 'deletecomando Sorvete`'
-                }
-            )
-        return message.inlineReply(noargs)
-    }
+    const noargs = new Discord.MessageEmbed()
+        .setColor('BLUE')
+        .setTitle('🛠️ Delete comandos')
+        .setDescription('Aqui você pode deletar comandos criados. Siga o exemplo para delerar algúm comando.')
+        .addField('Crie', '`' + prefix + 'criarcomando NomeDoComando Resposta do comando`\n' + 'Exemplo: `' + prefix + 'criarcomando Sorvete Eu amo sorvete`')
+        .addField('Exclua', '`' + prefix + 'deletecomando NomeDoComando`')
+
+    if (!args[0]) { return message.inlineReply(noargs) }
 
     let commandName = args[0].toLowerCase()
     let database = db.get(`guildConfigurations_${message.guild.id}.commands`)
+
     if (database) {
         let data = database.find(x => x.name === commandName.toLowerCase())
-        if (!data) {
-            let noex = new Discord.MessageEmbed()
-                .setColor('#8B0000')
-                .setTitle('Este comando não existe no meu banco de dados.')
-            return message.inlineReply(noex)
-        }
+        if (!data) { return message.inlineReply('<:xis:835943511932665926> | Este comando não existe no meu banco de dados.') }
 
         let value = database.indexOf(data)
         delete database[value]
@@ -45,19 +31,7 @@ exports.run = async (client, message, args) => {
 
         db.set(`guildConfigurations_${message.guild.id}.commands`, filter)
 
-        let prefix = db.get(`prefix_${message.guild.id}`)
-        if (prefix === null) prefix = "-"
-
-        let embed = new Discord.MessageEmbed()
-            .setColor('GREEN')
-            .setTitle('Comando `' + prefix + args[0] + '` deletado com sucesso!')
-
-        return message.inlineReply(embed)
+        return message.inlineReply('<a:Check:836347816036663309> | Comando `' + prefix + args[0] + '` deletado com sucesso!')
     }
-    else {
-        let nof = new Discord.MessageEmbed()
-            .setColor('#8B0000')
-            .setTitle('Comando não encontrado')
-        return message.inlineReply(nof)
-    }
+    else { return message.inlineReply('<:xis:835943511932665926> |  Comando não encontrado') }
 }
