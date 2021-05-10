@@ -153,7 +153,7 @@ exports.run = async (client, message, args) => {
     if (rosa === null) { rosa = '' }
 
     let ciane = db.get(`ciane_${user.id}`)
-    if (ciane) { ciane = '\nCiane' }
+    if (ciane) { ciane = '\nCiano' }
     if (ciane === null) { ciane = '' }
 
     let verde = db.get(`green_${user.id}`)
@@ -168,7 +168,7 @@ exports.run = async (client, message, args) => {
     if (azul) { azul = '\nAzul' }
     if (azul === null) { azul = '' }
 
-    let nada3 = !vermelho && !branco && !laranja && !rosa && !ciano
+    let nada3 = !vermelho && !branco && !laranja && !rosa && !ciane
     if (nada3) { nada3 = 'Nenhuma cor foi comprada ainda.' }
     if (!nada3) { nada3 = '' }
 

@@ -309,11 +309,11 @@ exports.run = async (client, message, args) => {
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
             if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
-            if (money < 10000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+            if (money < 15000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
 
-            if (money = 10000 || money > 10000) {
-                db.subtract(`mpoints_${message.author.id}`, 10000)
-                db.add(`banco_${client.user.id}`, 10000)
+            if (money = 15000 || money > 15000) {
+                db.subtract(`mpoints_${message.author.id}`, 15000)
+                db.add(`banco_${client.user.id}`, 15000)
                 db.set(`green_${message.author.id}`, "#00FC07")
                 const BuyColorEmbed = new Discord.MessageEmbed()
                     .setColor('GREEN')
@@ -329,11 +329,11 @@ exports.run = async (client, message, args) => {
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
             if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
-            if (money < 10000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+            if (money < 15000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
 
-            if (money = 10000 || money > 10000) {
-                db.subtract(`mpoints_${message.author.id}`, 10000)
-                db.add(`banco_${client.user.id}`, 10000)
+            if (money = 15000 || money > 15000) {
+                db.subtract(`mpoints_${message.author.id}`, 15000)
+                db.add(`banco_${client.user.id}`, 15000)
                 db.set(`yellow_${message.author.id}`, "#E5FC00")
                 const BuyColorEmbed = new Discord.MessageEmbed()
                     .setColor('GREEN')
@@ -349,11 +349,11 @@ exports.run = async (client, message, args) => {
             if (money === null) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro para comprar esta cor.`) }
             if (money === 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro.`) }
             if (money < 0) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você está com divida.`) }
-            if (money < 10000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
+            if (money < 15000) { return message.inlineReply(`<:xis:835943511932665926> ${message.author}, você não tem dinheiro suficiente para comprar esta cor.`) }
 
-            if (money = 10000 || money > 10000) {
-                db.subtract(`mpoints_${message.author.id}`, 10000)
-                db.add(`banco_${client.user.id}`, 10000)
+            if (money = 15000 || money > 15000) {
+                db.subtract(`mpoints_${message.author.id}`, 15000)
+                db.add(`banco_${client.user.id}`, 15000)
                 db.set(`blue_${message.author.id}`, "#0005FC")
                 const BuyColorEmbed = new Discord.MessageEmbed()
                     .setColor('GREEN')

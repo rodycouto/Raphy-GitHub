@@ -1,5 +1,6 @@
 // Sharding Soon
 const Discord = require("discord.js")
+require("dotenv").config()
 require("./inlineReply") // Remove in Discord.js V13
 const client = new Discord.Client()
 const { token } = require("./config.json")
@@ -347,4 +348,4 @@ client.once("ready", () => {
     if (!envi) { return } else if (envi) { return envi.send(`Cheguei ( ͡° ͜ʖ ͡°)`) }
 })
 
-client.login(token)
+client.login(process.env.DISCORD_RAPHY_TOKEN)
