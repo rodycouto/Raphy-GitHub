@@ -68,7 +68,7 @@ exports.run = async (client, message, args) => {
                 let num = ['win', 'lose', 'lose', 'lose', 'lose', 'lose', 'lose', 'lose', 'lose', 'lose', 'lose', 'lose', 'lose', 'lose', 'lose', 'lose']
                 let rand = num[Math.floor(Math.random() * num.length)]
 
-                let a = ['wiin', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'remédio', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'cachorro', 'nodog', 'bola', 'nodog', 'nodog', 'nodog', 'nodog']
+                let a = ['wiin', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'remédio', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'loose', 'diamante', 'loose', 'loose', 'cachorro', 'nodog', 'bola', 'nodog', 'nodog', 'nodog', 'nodog']
                 let randa = a[Math.floor(Math.random() * a.length)]
                 db.set(`florestatiming_${message.author.id}`, Date.now())
                 db.subtract(`comida_${message.author.id}`, 1)
@@ -107,6 +107,32 @@ exports.run = async (client, message, args) => {
                                 .setTitle('⭐ Você adquiriu um item de Classe Especial')
                                 .addField('Classe Especial: 🥎 Bola do Brown', `Você obteve: ${dinh}<:RPoints:837666759389347910>RPoints, ${apple} 🍎 Maças, ${comidas} 🥘 Comidas e ${rosas} 🌹 Rosas`)
                             return message.inlineReply(FlorestaEmbed)
+                        } else {
+
+                            let dinh = Math.floor(Math.random() * 30) + 1
+                            let apple = Math.floor(Math.random() * 4) + 1
+                            let comidas = Math.floor(Math.random() * 3) + 1
+                            let rosas = Math.floor(Math.random() * 2) + 1
+                            db.add(`apple_${message.author.id}`, apple)
+                            db.add(`comida_${message.author.id}`, comidas)
+                            db.add(`rosas_${message.author.id}`, rosas)
+                            db.add(`mpoints_${message.author.id}`, dinh)
+                            const FlorestaEmbed = new Discord.MessageEmbed()
+                                .setColor('GREEN')
+                                .setTitle('🌲 Você achou um baú perdido!')
+                                .addField('<:RPoints:837666759389347910> <:RPoints:837666759389347910> Você achou um baú perdido! <:RPoints:837666759389347910> <:RPoints:837666759389347910>', `Você obteve: ${dinh}<:RPoints:837666759389347910>RPoints, ${apple} 🍎 Maças, ${comidas} 🥘 Comidas e ${rosas} 🌹 Rosas`)
+                            return message.inlineReply(FlorestaEmbed)
+                        }
+                    }
+
+                    if (randa === 'diamante') {
+                        if (bola === null) {
+                            db.set(`dima_${message.author.id}`, "Diamante")
+                            const DimaEmbed = new Discord.MessageEmbed()
+                                .setColor('GREEN')
+                                .setTitle('⭐ Você adquiriu um item de Classe Especial')
+                                .addField('Classe Especial: <:darkdiamond:841328892898967593> Diamante Negro')
+                            return message.inlineReply(DimaEmbed)
                         } else {
 
                             let dinh = Math.floor(Math.random() * 30) + 1

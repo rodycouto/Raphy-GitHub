@@ -60,6 +60,25 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`A permissão de alterar título foi adicionada ao slot de <@${id}> *(${id})*.`)
     }
 
+    if (['diamante', 'dima', 'diamond'].includes(args[0])) {
+
+        if (!user) { return message.channel.send('`' + prefix + 'give diamante @user`') }
+
+        db.set(`dima_${user.id}`, "ON")
+        return message.channel.send(`O Diamante Negro foi adicionado ao slot de ${user}`)
+    }
+
+    if (['diamanteid', 'dimaid', 'diamondid'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'give diamandteid ID`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send("<:xis:835943511932665926> Isso não é um número.") }
+
+        db.set(`dima_${id}`, "ON")
+        return message.channel.send(`O Diamante Negro foi adicionado ao slot de <@${id}> *(${id})*.`)
+    }
+
     if (['picareta'].includes(args[0])) {
 
         if (!user) { return message.channel.send('`' + prefix + 'give picareta @user`') }

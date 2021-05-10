@@ -123,6 +123,11 @@ exports.run = async (client, message, args) => {
     if (fossil === null) { fossil = "" }
     if (!db.get(`fossil_${user.id}`)) { fossil = "" }
 
+    let diamante = await db.get(`dima_${user.id}`)
+    if (diamante) { diamante = "\n<:darkdiamond:841328892898967593> Diamante Negro" }
+    if (diamante === null) { diamante = "" }
+    if (!db.get(`dima_${user.id}`)) { diamante = "" }
+
     let mamute = await db.get(`mamute_${user.id}`)
     if (mamute) { mamute = "\n🦣 Mamute" }
     if (mamute === null) { mamute = "" }
@@ -132,7 +137,7 @@ exports.run = async (client, message, args) => {
     if (nada) { nada = 'Não há nada aqui' }
     if (!nada) { nada = '' }
 
-    let nada2 = !title && !faca && !loli && !fossil && !mamute && !bola && !cachorro && !remedio
+    let nada2 = !title && !faca && !loli && !fossil && !mamute && !bola && !cachorro && !remedio && !diamante
     if (nada2) { nada2 = 'Não há nada aqui' }
     if (!nada2) { nada2 = '' }
 
@@ -193,7 +198,7 @@ exports.run = async (client, message, args) => {
             .setAuthor(`Inventário de ${user.user.username}`, avatar)
             .addField('Itens Comprados', `${nada}${arma}${picareta}${vara}${machado}${cartas}`)
             .setFooter(`${prefix}buy | ${prefix}itens | ${prefix}vender | ${prefix}shop | ${prefix}doar | ${prefix}slot vip`)
-        if (!medalha) { NormalSlotEmbed.addField('Itens Obtidos', `${nada2}${title}${faca}${loli}${fossil}${mamute}${bola}${cachorro}${remedio}`) }
+        if (!medalha) { NormalSlotEmbed.addField('Itens Obtidos', `${nada2}${title}${faca}${loli}${fossil}${mamute}${diamante}${bola}${cachorro}${remedio}`) }
         if (medalha) { NormalSlotEmbed.addField('Itens Obtidos', `${nada2}${title}${faca}${loli}${fossil}${mamute}\n🏅 Medalha Cammum${dogname}`) }
         NormalSlotEmbed.addField('Mantimentos', `🐟 ${peixes} Peixes\n🥘 ${comida} Comidas\n🪱 ${iscas} Iscas\n🥤 ${agua} Água\n🎟️ ${fichas} Fichas\n🍤 ${camarao} Camarões\n🦴 ${ossos} Ossos\n🌹 ${rosas} Rosas\n🍎 ${apple} Maça\n🪨 ${minerio} Minérios\n💎 ${diamond} Diamantes`)
         NormalSlotEmbed.addField('Cores', `${nada4}${verde}${amarelo}${azul}`)
