@@ -60,12 +60,31 @@ exports.run = async (client, message, args) => {
     if (['titleid', 'tituloid', 'títuloid'].includes(args[0])) {
 
         let id = args[1]
-        if (!id) { return message.inlineReply('`' + prefix + 'remove tituloid ID Valor`') }
+        if (!id) { return message.inlineReply('`' + prefix + 'remove tituloid ID`') }
         if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
         if (isNaN(id)) { return message.channel.send("<:xis:835943511932665926> Isso não é um número.") }
 
         db.delete(`titulo_${id}`)
         return message.inlineReply(`O título de <@${id}> *(${id})* foi removido.`)
+    }
+
+    if (['diamante', 'dima', 'diamond'].includes(args[0])) {
+
+        if (!user) { return message.inlineReply('`' + prefix + 'remove diamante @user`') }
+
+        db.delete(`dima_${user.id}`)
+        return message.inlineReply(`O Diamante Negro de ${user} foi removido.`)
+    }
+
+    if (['diamanteid', 'dimaid', 'diamondid'].includes(args[0])) {
+
+        let id = args[1]
+        if (!id) { return message.inlineReply('`' + prefix + 'remove diamanteid ID`') }
+        if (id.length < 17) { return message.channel.send("<:xis:835943511932665926> Isso não é um ID") }
+        if (isNaN(id)) { return message.channel.send("<:xis:835943511932665926> Isso não é um número.") }
+
+        db.delete(`dima_${id}`)
+        return message.inlineReply(`O Diamante Negro de <@${id}> *(${id})* foi removido.`)
     }
 
     if (['iscas', 'isca'].includes(args[0])) {
@@ -232,7 +251,7 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`<a:Check:836347816036663309> Sucesso!`)
     }
 
-    if (['rp', 'reputação'].includes(args[0])) {
+    if (['rep', 'reputação'].includes(args[0])) {
 
         if (!user) { return message.channel.send('`' + prefix + 'remove rp @user Valor`') }
 
@@ -244,7 +263,7 @@ exports.run = async (client, message, args) => {
         return message.channel.send(`<a:Check:836347816036663309> Sucesso!`)
     }
 
-    if (['rpid', 'reputaçãoid'].includes(args[0])) {
+    if (['repid', 'reputaçãoid'].includes(args[0])) {
 
         let id = args[1]
         if (!id) { return message.inlineReply('`' + prefix + 'remove rpid ID Valor`') }
