@@ -126,7 +126,8 @@ exports.run = async (client, message, args) => {
                     }
 
                     if (randa === 'diamante') {
-                        if (bola === null) {
+                        let dima = db.get(`dima_${message.author}`)
+                        if (dima === null) {
                             db.set(`dima_${message.author.id}`, "Diamante")
                             const DimaEmbed = new Discord.MessageEmbed()
                                 .setColor('GREEN')

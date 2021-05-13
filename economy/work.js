@@ -4,7 +4,7 @@ const ms = require("parse-ms")
 
 exports.run = async (client, message, args) => {
 
-    let timeout1 = 9140000
+    let timeout1 = 480000
     let author1 = await db.fetch(`pego_${message.author.id}`)
 
     if (author1 !== null && timeout1 - (Date.now() - author1) > 0) {
