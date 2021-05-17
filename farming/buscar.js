@@ -132,7 +132,7 @@ exports.run = async (client, message, args) => {
                             const DimaEmbed = new Discord.MessageEmbed()
                                 .setColor('GREEN')
                                 .setTitle('⭐ Você adquiriu um item de Classe Especial')
-                                .addField('Classe Especial: <:darkdiamond:841328892898967593> Diamante Negro')
+                                .setDescription('Classe Especial: <:darkdiamond:841328892898967593> Diamante Negro')
                             return message.inlineReply(DimaEmbed)
                         } else {
 

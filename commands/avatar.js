@@ -5,7 +5,7 @@ exports.run = async (client, message, args) => {
 
   let user = message.mentions.users.first() || message.author || message.member
   let avatar = user.avatarURL({ dynamic: true, format: "png", size: 1024 })
-  let linkavatar = user.displayAvatarURL()
+  let linkavatar = user.displayAvatarURL({ dynamic: true, format: "png", size: 1024 })
 
   let color = await db.get(`color_${user.id}`)
   if (color === null) color = '#6F6C6C'

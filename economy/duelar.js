@@ -50,6 +50,7 @@ exports.run = async (client, message, args) => {
 
         if (UserMoney < '0') { return message.inlineReply(`<:xis:835943511932665926> ${user} está negativado. Tenha piedade!`) }
         if (UserBank + UserMoney < Valor) { return message.inlineReply('<:xis:835943511932665926> Não tem todo esse dinheiro.') }
+        if (UserMoney < Valor) { return message.inlineReply(`<:xis:835943511932665926> | ${user} não tem todo esse dinheiro na carteira.`) }
 
         const ConfirmBattle = new Discord.MessageEmbed()
             .setColor('BLUE')
