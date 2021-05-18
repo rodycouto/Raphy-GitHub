@@ -84,7 +84,38 @@ exports.run = async (client, message, args) => {
         return message.channel.send(embedxp)
     }
 
-    if (!['dinheiro', 'money', 'cash', 'rp', 'coin', 'moeda', 'xp', 'level', 'nivel'].includes(args[0])) {
+    if (['rep', 'reputação'].includes(args[0])) {
+        let data = db.all().filter(i => i.ID.startsWith("rp_")).sort((a, b) => b.data - a.data)
+        if (data.length < 1) return message.inlineReply("Sem ranking por enquanto").then(m => m.delete({ timeout: 5000 }))
+        let myrank = data.map(m => m.ID).indexOf(`rp_${message.author.id}`) + 1 || "N/A"
+        data.length = 10
+        let lb = []
+        for (let i in data) {
+            let id = data[i].ID.split("_")[1]
+            let user = await client.users.fetch(id)
+            user = user ? user.tag : "Usuário não encontrado"
+            let rank = data.indexOf(data[i]) + 1
+            let level = db.get(`rp_${id}`)
+            let xp = data[i].data
+            lb.push({
+                user: { id, tag: user },
+                rank,
+                level,
+                xp,
+            })
+        }
+
+        let embedrep = new Discord.MessageEmbed()
+            .setColor(color)
+            .setTitle("👑 Ranking Global - Reputação")
+        lb.forEach(d => {
+            embedrep.addField(`${d.rank}. ${d.user.tag}`, `:id: *(${d.user.id})*\n💌 ${d.level} Reputações`)
+        })
+        embedrep.setFooter(`Seu ranking: ${myrank}`)
+        return message.channel.send(embedrep)
+    }
+
+    if (!['dinheiro', 'money', 'cash', 'rp', 'coin', 'moeda', 'xp', 'level', 'nivel', 'rep', 'reputação'].includes(args[0])) {
         return message.inlineReply('Ranking não encontrado, digite `' + prefix + 'rank`')
     }
 }
